@@ -1,0 +1,74 @@
+---
+title: "Atividade 2"
+author: "Cesar Cordeiro"
+date: "9/2/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(rgbif)
+library(robis)
+library(tidyverse)
+
+```
+
+## Acesso a bancos de dados abertos
+
+O acesso pode ser feito de diferentes formas, seja diretamente no website do repositório, utilizando-se pacotes específicos que acessam os repositórios via R ou Python, ou através de API (Application Programming Interface). Nesta última opção, o repositório é acessado por outro aplicativo ou serviço web para automatização de tarefas, seja em servidor local ou remoto, mas requer conhecimento de programação em Java e outras linguagens e não será tratado aqui.
+ 
+Nesta atividade, temos como objetivo acessar um repositório de dados de ocorrência de espécies, inspecionar os dados, avaliar sua qualidade e fazer um mapa com as ocorrências.
+
+ 
+Para iniciar, vamos escolher um repositório e uma espécie de interesse. Vamos iniciar com uma única espécie para facilitar as demais etapas. 
+
+O GBIF (Global Biodiversity Integration Facility) é o maior repositório de ocorrências da biodiversidade da atualidade, então será nossa opção de repositório.
+
+ 
+A espécie-alvo será o peixe marinho *Paracanthurus hepatus*, também conhecido como *Blue Tang* e, mais recentemente como ![**Dori**](figures/dori.png)
+
+```{r ocorrencias}
+
+bra_vari <- occ_data(scientificName = "Paracanthurus hepatus", 
+                     #country = "BR",
+                     hasCoordinate = TRUE)
+
+robis::occurrence("Echinometra lucunter")
+
+
+```
+
+## Including Plots
+https://www.r-bloggers.com/2021/03/downloading-and-cleaning-gbif-data-with-r/
+
+https://poldham.github.io/abs/mapgbif.html
+
+https://ropensci.github.io/CoordinateCleaner/articles/Cleaning_GBIF_data_with_CoordinateCleaner.html
+
+```{r checagem, echo=FALSE}
+
+names(bra_vari$data)
+
+# check issues
+
+bra_vari$data %>% 
+  distinct(issues)
+
+bra_vari$data %>% 
+  distinct(issues)
+
+gbif_citation(bra_vari)
+
+myspecies_coords <- bra_vari$data[ , c("decimalLongitude", "decimalLatitude", "individualCount", "occurrenceStatus", "coordinateUncertaintyInMeters", "institutionCode", "references")] %>% 
+  filter(!is.na(decimalLongitude) & !is.na(decimalLatitude))
+
+
+# map the occurrence data:
+map("world", xlim = range(myspecies_coords$decimalLongitude), ylim = range(myspecies_coords$decimalLatitude))  # if the map doesn't appear right at first, run this command again
+points(myspecies_coords[ , c("decimalLongitude", "decimalLatitude")], pch = ".", cex = 4, col = "red")
+
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

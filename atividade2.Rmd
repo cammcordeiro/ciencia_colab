@@ -1,0 +1,207 @@
+---
+pagetitle: Atividades
+output:
+  html_document:
+    pandoc_args: [
+      "--number-offset=1"]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# load packages
+library(tidyverse)
+library(taxize)
+
+```
+
+# Atividade 2 {.unnumbered}
+
+## Criando arquivos no sistema eMOF
+
+Nesta atividade, continuaremos utilizando os dados modificados do dataset `iris` do pacote `vegan` com os dados coletados por Edgar Anderson.
+
+- Anderson E (1935) The irises of the Gaspe Peninsula, Bulletin of the American Iris Society, 59, 2–5.
+
+### Checando os dados
+
+O primeiro passo é identificar os campos presentes no dataset:
+
+1.  Usar a função `str` para conferir os tipos de dados em cada coluna
+`r str(iris)`
+2.  Aplicar a função `unique` a cada coluna usando a outra função de *loop* `lapply` 
+
+```{r load data}
+iris <- read.csv("~/github/cursodados/data/iris_mod.csv", header = T)
+
+lapply(iris, unique)
+
+```
+
+
+Aqui podemos identificar que temos 150 amostras e nomes de espécies associados às amostras, além de atributos (eg. Petal.Length, Sepal.Width) associados a cada espécie.
+Também existem dados de coordenadas dos sites e datas das amostragens.
+
+Avaliando estes campos, podemos ver que possuímos quase todos os campos obrigatórios para o sistema Darwin Core (DwC).
+
+### Taxóns
+
+Em seguida, é importante checar se os nomes utilizados dos táxons são válidos. 
+
+1.  Para isso podemos utilizar a função `get_tsn` do pacote `taxize`. Esta função permite investigar na base de dados do [*Integrated Taxonomic Information System*](https://www.itis.gov/) se a nomenclatura aplicada aos táxons é válida ou se necessita de atualização.
+
+```{r check_spp}
+
+# check taxa
+species <- iris %>% 
+  distinct(Species) %>% 
+  pull() %>% 
+  get_tsn() %>% 
+  data.frame() %>% 
+  bind_cols(iris %>% 
+              distinct(Species))
+
+```
+
+
+Os campos de `match` e `pattern_match` indicam que as espécies são válidas e, o campo `uri` indica o endereço único para checar a espécie no ITIS. Este campo `uri` será utilizado na planilha `occurrence` do sistema `event core`.
+
+
+### Manipulando os dados 
+
+#### Planilha base
+
+Sabendo-se que podemos prosseguir sem corrigir os táxons, agora é necessário renomear as variáveis de acordo com o DwC.
+
+1.  O primeiro passo é criar uma identidade única para as menores unidades de ocorrência dos táxons (`occurrenceID`) e das amostras (`eventID`).
+
+2.  Em seguida são adicionadas as informações de espécie (`uri`) e renomeados os campos de acordo com o DwC.
+
+3.  Por fim, são adicionados campos recomendados que detalham as variáveis presentes no `dataset` (eg. sistema de coordenadas, datum, amostrador etc)
+
+> OBS: os dados das coordenadas são fictícios e o nome do amostrador é baseado em informação do pacote `vegan` (para checar, carregue o pacote `vegan` e digite `?iris`)
+
+
+```{r add_fieds, message=FALSE}
+
+iris_1 <- iris %>% 
+  dplyr::mutate(eventID = paste(site, date, sep = "_"), # create indexing fields 
+                occurrenceID = paste(site, date, amostra, sep = "_")) %>% 
+  left_join(species %>% 
+              select(Species, uri)) %>% # add species unique identifier
+  dplyr::rename(decimalLongitude = lon, # rename fields according to DwC 
+         decimalLatitude = lat,
+         eventDate = date,
+         scientificName = Species,
+         scientificNameID = uri) %>% 
+  mutate(geodeticDatum = "WGS84", # and add complimentary fields
+         verbatimCoordinateSystem = "decimal degrees",
+         georeferenceProtocol = "Random coordinates obtained from Google Earth",
+         locality = "Gaspe Peninsula",
+         recordedBy = "Edgar Anderson",
+         taxonRank = "Species",
+         organismQuantityType = "individuals",
+         basisOfRecord = "Human observation")
+```
+
+#### Planilhas do eMOF
+
+Com os campos adicionados na planilha já podemos iniciar a construção das três matrizes necessárias para inserir os dados em repositórios baseados em ocorrências e dados acessórios como o [GBIF](https://www.gbif.org/).
+
+Os campos obrigatórios na planilha de eventos (`eventCore`) são: 
+ * eventID = indica os eventos únicos de amostragem
+ * eventDate = data da amostragem no formato YYYY-MM-DD (ano com 4 dígitos, mês com 2 dígitos e dia com 2 dígitos)
+ * decimalLongitude = longitude indicada em graus decimais
+ * decimalLatitude = latitude indicada em graus decimais
+ * verbatimCoordinateSystem = tipo de coordenadas
+ * geodeticDatum = Datum das coordenadas
+
+Os termos padronizados do DwC podem ser encontrados no site do [DwC](https://dwc.tdwg.org/terms/)
+
+##### Planilha de eventos
+
+Nesta planilha, apenas os campos relacionados às amostras e características gerais do conjunto de dados são selecionadas.
+
+```{r eventCore}
+## create eventCore
+eventCore <- iris_1 %>% 
+  select(eventID, eventDate, decimalLongitude, decimalLatitude, locality, site,
+         geodeticDatum, verbatimCoordinateSystem, georeferenceProtocol) %>% 
+  distinct() 
+```
+
+##### Planilha de ocorrências
+
+O próximo passo é derivar as ocorrências únicas presentes no *dataset*. Como ocorrência deve ser considerada a ocorrência única de determinada espécie.
+
+```{r occurrence}
+## create occurrence
+occurrences <- iris_1 %>% 
+  select(eventID, occurrenceID, scientificName, scientificNameID,
+         recordedBy, taxonRank, organismQuantityType, basisOfRecord) %>%
+  distinct() 
+```
+
+##### Planilha de atributos (eMOF)
+
+Por fim, podemos associar atributos a cada ocorrência, neste caso, medidas morfométricas das flores das espécies indicadas. Aqui também devem ser adicionados os campos onde são detalhados os tipos de atributos associados às ocorrências, por exemplo, indicar que as medidas foram tomadas de indivíduos e medidas em centímetros. Os nomes das medidas foram renomeados para seguir padrões de boas práticas.
+
+
+```{r eMOF}
+## create measurementsOrFacts
+eMOF <- iris_1 %>% 
+  select(eventID, occurrenceID, recordedBy, Sepal.Length:Petal.Width) %>%  
+  pivot_longer(cols = Sepal.Length:Petal.Width,
+              names_to = "measurementType",
+              values_to = "measurementValue") %>% 
+  mutate(measurementUnit = "cm",
+         measurementType = plyr::mapvalues(measurementType,
+                                           from = c("Sepal.Length", "Sepal.Width", "Petal.Width", "Petal.Length"), 
+                                           to = c("sepal length", "sepal width", "petal width", "petal length")))
+```
+
+#### Controle de qualidade
+
+O penúltimo passo é um rápido controle de qualidade para checar se todas as planilhas tem os mesmos valores de `eventID`. Afinal, este campo é o elo entre todas as planilhas.
+
+
+```{r last check}
+
+# check if all eventID matches
+setdiff(eventCore$eventID, occurrences$eventID)
+setdiff(eventCore$eventID, eMOF$eventID)
+setdiff(occurrences$eventID, eMOF$eventID)
+
+# check NA values
+eMOF %>%
+  filter(is.na(eventID))
+
+occurrences %>%
+  filter(is.na(eventID))
+
+```
+
+#### Escrevendo as matrizes como arquivos de texto
+
+Tudo parece OK!
+Agora podemos remover os arquivos intermediários e deixar apenas os que serão publicados, para então salvá-los como arquivo `*.csv`.
+
+
+```{r writing files, eval=FALSE}
+
+rm(list = setdiff(ls(), c("eventCore", "occurrences", "eMOF")))
+
+files <- list(eventCore, occurrences, eMOF) 
+data_names <- c("DF_eventCore","DF_occ","DF_eMOF")
+dir.create("Dwc_Files")
+
+
+for(i in 1:length(files)) {
+  path <- paste0(getwd(), "/", "DwC_Files")
+  write.csv(files[[i]], paste0(path, "/", data_names[i], ".csv"))
+}
+
+```
+
+
+Agora já está tudo pronto para subir os dados para o repositório ou compartilhar diretamente. Só não esqueça dos metadados!!

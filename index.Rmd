@@ -1,0 +1,84 @@
+---
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## TEERN: Ferramentas em ciência colaborativa e bancos de dados abertos
+
+>
+UENF - CBB - Laboratório de Ciências Ambientais (LCA)
+>
+Professor: Cesar A. M. M. Cordeiro
+
+***
+### Sobre o curso...
+
+Neste curso, serão explorados os usos de ferramentas em ciência colaborativa e construção de bases de dados abertos em estudos ecológicos, desde a aquisição de dados em repositórios existentes até a inserção de dados novos nestes repositórios. Tópicos contemplando as principais ferramentas aplicadas a controle de versão em documentos e roteiros de análises (e.g. plataformas Git e GitHub), modelos de bancos de dados e repositórios mais utilizados no campo da ecologia serão debatidos durante o curso. Também serão abordados padrões de construção de bases de dados (e.g. Darwin Core), etapas de verificação de qualidade de dados, noções de compartilhamento de arquivos e utilização de ferramentas para publicação e visualização de dados online.
+  
+  
+**Pré-requisitos**: Espera-se que os estudantes matriculados tenham familiaridade com a linguagem R.
+
+***
+
+### Cronograma
+
+[**Aula 1**](index.html) (20/09)
+
+* *Open Science* e *Open Data*: o que são?
+
+* Bancos de dados: histórico, conceitos e estrutura
+
+* Princípios **F.A.I.R.** em dados abertos
+
+* Atividade 1
+
+**Aula 2** (21/09)
+
+* Padrões e boas práticas no compartilhamento de dados
+
+* Sistema Darwin Core
+
+* Alimentando um banco de dados
+
+* Análise crítica de artigos científicos
+
+* Atividade 2
+
+
+**Aula 3** (22/09)
+
+* Repositórios de dados ecológicos
+
+* Acesso a bancos de dados abertos
+
+* Métodos de conferência de qualidade de dados
+
+* Análise crítica de artigos científicos
+
+* Atividade 3
+
+
+**Aula 4** (23/09)
+
+* Compartilhamento e pesquisa reprodutível (Git e GitHub)
+
+* Construção de rotinas de aquisição de dados em bases abertas (RMarkdown) 
+
+* Análise crítica de artigos científicos do tema na forma de seminário
+
+* Atividade 4
+
+
+**Aula 5** (24/09)
+
+* Ferramentas para disponibilização e visualização de dados online 
+
+* Análise crítica de artigos científicos do tema na forma de seminário
+
+* Considerações finais da disciplina
+
+* Atividade 5
+

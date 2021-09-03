@@ -1,0 +1,21 @@
+name: "Ciência Colaborativa"
+navbar:
+  title: "Ciência Colaborativa"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Aulas"
+      href: aulas.html
+    - text: "Materiais"
+      href: materiais.html
+    - text: "Atividades"
+      href: atividades.html
+  right:
+    - text: "seilá"
+      href: seila.html
+      
+output_dir: "."
+output:
+  html_document:
+    include:
+      after_body: footer.html
