@@ -83,7 +83,7 @@ gbif_issues()
 
 Para checar os `issues` indicados na base baixada é necessário um pequeno tratamento, uma vez que algumas ocorrências possuem múltiplos problemas. Assim, utilizamos a função `strsplit` para individualizar os `issues` e poder conferí-los.
 
-```{r issues, echo=FALSE}
+```{r issues1, echo=FALSE}
 
 # checar problemas reportados
 issues_gbif <- dori_gbif$data$issues %>% 
