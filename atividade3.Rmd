@@ -25,8 +25,10 @@ Para iniciar, vamos escolher um repositório e uma espécie de interesse. Vamos 
 
 O GBIF (Global Biodiversity Integration Facility) é o maior repositório de ocorrências da biodiversidade da atualidade, então será nossa opção de repositório.
 
- 
-A espécie-alvo será o peixe marinho *Paracanthurus hepatus*, também conhecido como *Blue Tang* e, mais recentemente como ![**Dori**](figures/dori.png)
+
+### Exemplo: *Finding Dori*
+
+A espécie-alvo será o peixe marinho *Paracanthurus hepatus*, também conhecido como *Blue Tang* e, mais recentemente como ![**Dori**](figs/dori.png)
 
 ```{r ocorrencias}
 

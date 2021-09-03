@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Atividade 1</title>
+
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Ciência Colaborativa</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="aulas.html">Aulas</a>
+</li>
+<li>
+  <a href="materiais.html">Materiais</a>
+</li>
+<li>
+  <a href="atividades.html">Atividades</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="seila.html">seilá</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="atividade-1" class="section level1 unnumbered">
+<h1 class="unnumbered">Atividade 1</h1>
+</div>
+<div id="planilhamento-de-dados" class="section level1" number="1">
+<h1 number="2"><span class="header-section-number">2</span> Planilhamento de dados</h1>
+<div id="fonte-dos-dados" class="section level2" number="1.1">
+<h2 number="2.1"><span class="header-section-number">2.1</span> Fonte dos dados</h2>
+<p>Para a primeira atividade do curso vamos utilizar dados amplamente conhecidos dos usuários de R no campo da ecologia.</p>
+<p>Estes dados foram derivados do trabalho de Edgar Anderson (Anderson E. 1935. The irises of the Gaspe Peninsula, <em>Bulletin of the American Iris Society</em>, 59: 2–5) realizado com medições morfológicas das flores de três espécies de plantas do gênero <em>Iris</em> coletadas em áreas gramadas na Península de Gaspé (EUA) em 1935. Este conjunto de dados ficou famoso por ter sido utilizado por Ronald Fisher <a href="https://digital.library.adelaide.edu.au/dspace/bitstream/2440/15227/1/138.pdf">(Fisher R. 1936. The Use of Multiple Measurements in Taxonomic Problems, <em>Annals of Eugenics</em>, 7:179 - 188)</a>.</p>
+<p>Vale indicar que, as coordenadas indicadas nas fichas de campo foram obtidas com a avaliação de imagem ortomosaico do serviço <em>Google Earth</em> com propósito ilustrativo, mas não correspondem às coordenadas originais dos locais de coleta.</p>
+<hr />
+</div>
+<div id="instruções" class="section level2" number="1.2">
+<h2 number="2.2"><span class="header-section-number">2.2</span> Instruções</h2>
+<p>A atividade 1 consiste em transferir os dados indicados nas fichas de campo para o formato de planilha. As fichas encontram-se na pasta compartilhada do <a href="link_pasta">Google Drive da disciplina</a>.</p>
+<ol style="list-style-type: decimal">
+<li>Esta atividade deve ser realizada de modo individual e cada participante deverá baixar as amostras (i.e., fichas de campo) indicadas junto ao seu nome na tabela abaixo.</li>
+</ol>
+<table>
+<colgroup>
+<col width="12%" />
+<col width="87%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">participante</th>
+<th align="left">amostras</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">A106, A33 , A90 , A24 , A5 , A107, A138, A108, A1 , A39 , A147, A22 , A132, A136, A62</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">A30 , A48 , A124, A49 , A146, A122, A20 , A71 , A69 , A97 , A47 , A43 , A4 , A144, A66</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left">A96 , A40 , A3 , A59 , A98 , A112, A88 , A103, A105, A36 , A79 , A77 , A91 , A120, A16</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="left">A52 , A89 , A121, A2 , A85 , A109, A60 , A72 , A100, A28 , A34 , A93 , A13 , A86 , A87</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="left">A127, A44 , A123, A25 , A14 , A67 , A65 , A82 , A118, A21 , A78 , A134, A80 , A38 , A42</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="left">A57 , A74 , A27 , A140, A101, A41 , A31 , A135, A130, A23 , A56 , A141, A128, A15 , A145</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">A6 , A142, A83 , A113, A92 , A50 , A9 , A114, A18 , A149, A129, A102, A54 , A35 , A125</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="left">A10 , A131, A68 , A104, A73 , A53 , A75 , A139, A61 , A55 , A148, A150, A126, A64 , A46</td>
+</tr>
+<tr class="odd">
+<td align="right">9</td>
+<td align="left">A84 , A133, A76 , A81 , A119, A45 , A110, A116, A19 , A111, A7 , A95 , A32 , A70 , A12</td>
+</tr>
+<tr class="even">
+<td align="right">10</td>
+<td align="left">A26 , A143, A99 , A94 , A37 , A11 , A115, A63 , A17 , A137, A8 , A29 , A58 , A117, A51</td>
+</tr>
+</tbody>
+</table>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Ao finalizar o planilhamento das informações, o arquivo deverá ser salvo no formato <code>*.csv</code> (<em>comma separated values</em>) e nomeado seguindo o padrão: <strong>atividade1_NOME-DO-PARTICIPANTE.csv</strong></p></li>
+<li><p>Enviar a planilha para o email: <code>cammcordeiro@id.uff.br</code></p></li>
+</ol>
+</div>
+</div>
+
+<p>
+    <i>Colabore, espalhe a palavra, mas cite as fontes!</i>
+</p>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
