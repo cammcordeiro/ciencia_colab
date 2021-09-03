@@ -8,9 +8,8 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
-library(rgbif)
 library(robis)
-library(tidyverse)
+library(leaflet)
 
 ```
 
@@ -23,54 +22,278 @@ Nesta atividade, temos como objetivo acessar um repositório de dados de ocorrê
  
 Para iniciar, vamos escolher um repositório e uma espécie de interesse. Vamos iniciar com uma única espécie para facilitar as demais etapas. 
 
-O GBIF (Global Biodiversity Integration Facility) é o maior repositório de ocorrências da biodiversidade da atualidade, então será nossa opção de repositório.
+O [GBIF (*Global Biodiversity Information Facility*)](https://www.gbif.org/) é o maior repositório de ocorrências da biodiversidade da atualidade, então será nossa opção de repositório. No entanto, o [OBIS (*Ocean Biodiversity Information System*)](https://obis.org/) é um repositório dedicado às espécies marinhas e espelhado no GBIF. Assim, espera-se que algumas ocorrências sejam duplicadas nos dois repositórios.
 
 
 ### Exemplo: *Finding Dori*
 
-A espécie-alvo será o peixe marinho *Paracanthurus hepatus*, também conhecido como *Blue Tang* e, mais recentemente como ![**Dori**](figs/dori.png)
+A espécie-alvo será o peixe marinho *Paracanthurus hepatus*, também conhecido como *Blue Tang* e, mais recentemente como ![**Dori**](figs/dori.png).
 
-```{r ocorrencias}
+Nosso primeiro exemplor será com as ocorrencias do **GBIF** e, para tal, vamos utilizar o pacote `rgbif`.
 
-bra_vari <- occ_data(scientificName = "Paracanthurus hepatus", 
-                     #country = "BR",
-                     hasCoordinate = TRUE)
+***
 
-robis::occurrence("Echinometra lucunter")
+### **GBIF**
+Vamos fazer uso do pacote `tidyverse` para manipular dos dados, então vamos carregar este pacote e o `rgbif`.
+
+```{r pacotes, echo = FALSE}
+
+library(rgbif)
+library(tidyverse)
+
+```
+
+É importante explorar as funções do pacote e pode-se fazer isto usando o comando `?rgbif` e, para ler sobre uma função em particular basta colocar `?` em frente ao nome da função. Se o pacote não estiver carregado ou instalada é preciso usar `??`.
+
+A função `occ_data` faz uma busca simplificada das ocorrências no repositório do **GBIF** por meio do nome científico, número de identificação, país e outros. Neste caso, vamos procurar diretamente pelo nome da espécie-alvo. Outros atributos podem ser adicionados à função para refinar a busca, leia o material de ajuda da função para ter uma ideia. Vamos aproveitar alguns destes atributos e selecionar apenas ocorrências que possuem coordenadas e sem problemas geoespaciais.
+
+```{r gbif}
+
+# checar funcoes
+?occ_data
+
+# baixar ocorrencias
+dori_gbif <- occ_data(scientificName = "Paracanthurus hepatus", 
+                      hasCoordinate = TRUE,
+                      hasGeospatialIssue=FALSE)
+
+# dimensoes
+dim(dori_gbif)
+
+dim(dori_gbif$data)
+
+# checar campos
+dori_gbif$data %>% names
+
+```
+
+Acima, vemos que o conjunto de dados tem `r nrow(dori_gbif)` ocorrências (uma por linha) e `r ncol(dori_gbif)` variáveis. As variáveis podem ser utilizadas para filtrar as ocorrências de acordo com o objetivo, além de fornecerem diversos dados a respeito das ocorrências, incluindo dados dos amostradores e detentores dos direitos.
+Vale notar que o conjunto de dados retornado pelo **GBIF** não é um `data frame` simples, mas sim um `list` que contém um conjunto de `data frames`. Para acessar estes `data frames` é necessário usar o operador `$`.
+
+
+## Problemas reportados
+
+Um dos campos mais úteis dos dados é a coluna `issues`, pois ela indica problema já identificados pelo validador automático do repositório. Os problemas (*issues*) possuem um código que pode ser conferido pela função `gbif_issues`. Ao usar a função não é preciso indicar nenhum atributo, pois ela retornará um dataframe com as abreviações usadas e a descrição dos problemas catalogados no GBIF. 
+
+
+```{r issues, echo=FALSE}
+# check issues
+gbif_issues() 
+```
+
+Para checar os `issues` indicados na base baixada é necessário um pequeno tratamento, uma vez que algumas ocorrências possuem múltiplos problemas. Assim, utilizamos a função `strsplit` para individualizar os `issues` e poder conferí-los.
+
+```{r issues, echo=FALSE}
+
+# checar problemas reportados
+issues_gbif <- dori_gbif$data$issues %>% 
+  unique() %>% 
+  strsplit(., "[,]") %>% 
+  unlist()
+
+gbif_issues() %>% 
+  data.frame() %>% 
+  filter(code %in% issues_gbif)
+
+```
+
+A maioria dos problemas reportados é relacionado com discrepancias entre informações indicadas pelos autores e as levantadas pelo algoritmo de checagem, mas nenhum parece invalidar as ocorrências, por enquanto.
+
+Prosseguimos selecionando algumas variáveis que serão úteis para a validação dos dados e futuras análises, como coordenadas, profundidade, nome da base de dados etc.
+
+```{r}
+dori_gbif1 <- dori_gbif$data %>%
+  select(scientificName, acceptedScientificName, decimalLatitude, decimalLongitude, 
+         issues, waterBody, basisOfRecord, occurrenceStatus, rightsHolder, 
+         datasetName, recordedBy, depth, locality, habitat) 
+```
+
+Note que temos `r nrow(dori_gbif1)` ocorrências, no entanto, vamos ver quantas são únicas aplicando a função `distinct` do pacote `dplyr`.
+
+```{r}
+dori_gbif1 <- dori_gbif1 %>% 
+  distinct() 
+```
+
+No fim, observamos que ficamos com `r nrow(dori_gbif1)` ocorrências agora, e isso acontece por causa de diferenças em colunas que, neste caso, não serão usadas para o objetivo desta prática. 
+
+Para identificar todos os valores únicos presented nos dados, vamos aplicar a função `unique` a cada coluna com um *loop* na função `lapply`.
+
+```{r}
+# checar niveis dos fatores
+lapply(dori_gbif1, unique)
+```
+
+## Problemas não reportados
+
+Agora iniciamos o processo de checagem mais fina que não é realizada pelo algoritmo, por apresenta especificidades que vão além de sua programação.
+Podemos iniciar checando a distribuição das ocorrências em relação às regiões oceanográficas indicadas nos dados (`waterBody`).
+
+```{r}
+# investigar niveis suspeitos
+dori_gbif1 %>% 
+  distinct(waterBody) %>% 
+  pull()
+
+# waterBody
+dori_gbif1 %>%
+  group_by(waterBody) %>% 
+  summarise(occ = length(scientificName)) %>% 
+  ggplot(aes(occ, y=waterBody)) +
+    geom_bar(stat = 'identity') 
+```
+
+Aparentemente, esta espécie tem sido reportada no mundo todo.
+Com o sucesso da animação *Procurando Nemo*, já temos uma ideia de que a **Dori** tem ocorrência nas águas Australianas, mas podemos acessar bancos de dados especializados para checar estas informações. No caso de peixes (Osteichthyes e Chondrichthyes) o [*FishBase*](https://fishbase.org) é a fonte mais atualizada de informações deste grupo.
+Depois desta confirmação, podemos suspeitar das ocorrências indicadas no Atlântico e, o tratamento mais rigoroso é a exclusão de qualquer ocorrência suspeita.
+
+```{r}
+# fonte das regioes erradas
+dori_gbif1 %>% 
+  filter(waterBody %in% c("Atlantic Ocean", "Carribean", "Royal Caribbean", "Carribean Sea", "Bonaire")) %>% 
+  distinct(datasetName)
+```
+
+Alguma característica destas ocorrências do Atlântico podem dar pistas de como continuar filtrando os resultados. Neste caso, abaixo podemos ver que, ao investigarmos um programa de ciência específico de identificação realizada por mergulhadores amadores, notamos que este concentra a maior parte das suspeitas. Assim, é melhor ser conservador e remover todas as ocorrências associadas a tal programa.
+
+```{r}
+# 27 ocorrencias
+dori_gbif1 %>% 
+  filter(datasetName %in% c("Diveboard - Scuba diving citizen science"))
+
+# filtrar todas do dataset suspeito
+dori_gbif_ok <- dori_gbif1 %>% 
+  filter(!datasetName %in% c("Diveboard - Scuba diving citizen science"))
+
+```
+
+Agora não vemos mais nenhuma ocorrência no Atlântico!
+
+```{r}
+# checar pontos
+dori_gbif_ok %>% 
+  leaflet() %>% 
+  addTiles() %>% 
+  addMarkers(~decimalLongitude, ~decimalLatitude, 
+             popup = ~as.character(datasetName), 
+             label = ~as.character(scientificName),
+             clusterOptions = markerClusterOptions())
+```
+
+Podemos usar a profundidade como outro critério, pois esta espécie é associada apenas a recifes rasos segundo o **FishBase**. E parece tudo ok.
+
+```{r}
+# checar profundidade
+dori_gbif_ok %>% 
+  ggplot(aes(x = depth, fill = waterBody)) +
+    geom_histogram() 
+```
+
+***
+
+### **OBIS**
+
+Agora vamos fazer os mesmos procedimentos com os dados do **OBIS**, utilizando o pacote `robis` e a função `occurrence` deste pacote.
+
+1. Baixar as ocorrências
+```{r}
+
+## OBIS
+dori_obis <- robis::occurrence("Paracanthurus hepatus")
+```
+
+2. Checar os dados
+
+Temos variáveis com os mesmos nomes, pois ambos usam o sistema `DwC`, mas os problemas reportados neste caso são indicados na coluna `flags`.
+
+```{r}
+# checar dados
+names(dori_obis)
+
+dori_obis1 <- dori_obis %>% 
+  select(scientificName, decimalLatitude, decimalLongitude, bathymetry,
+         flags, waterBody, basisOfRecord, occurrenceStatus, rightsHolder, 
+         datasetName, recordedBy, depth, locality, habitat) %>% 
+  distinct()
+
+# check problemas reportados (flags)
+dori_obis1 %>% 
+  distinct(flags)
+
+# check NA em datasetName
+dori_obis1 %>% 
+  filter(!flags %in% c("no_depth,on_land", "on_land", "on_land,depth_exceeds_bath", "depth_exceeds_bath,on_land"),
+         is.na(datasetName)) %>% 
+  distinct(waterBody)
+```
+
+Aqui usamos as `flags` para filtrar ocorrências em terra, além de remover dados sem nome de *dataset* (não temos como checar a origem adequadamente, então podemos tratar como suspeitos), filtrar ocorrências no Atlântico e verificar a profundidade reportada.
+
+```{r}
+
+# depth ok
+dori_obis1 %>% 
+  filter(!flags %in% c("no_depth,on_land", "on_land", "on_land,depth_exceeds_bath", "depth_exceeds_bath,on_land"),
+         !is.na(datasetName),
+         !waterBody %in% c("North America", "North America Atlantic", "atlantique")) %>% 
+  ggplot(aes(x = depth, fill = waterBody)) +
+    geom_histogram() 
+
+# checar niveis
+dori_obis1 %>% 
+  filter(!flags %in% c("no_depth,on_land", "on_land", "on_land,depth_exceeds_bath", "depth_exceeds_bath,on_land"),
+         !is.na(datasetName),
+         !waterBody %in% c("North America", "North America Atlantic", "atlantique")) %>% 
+  lapply(., unique)
+
+# ok
+dori_obis_ok <- dori_obis1 %>% 
+  filter(!flags %in% c("no_depth,on_land", "on_land", "on_land,depth_exceeds_bath", "depth_exceeds_bath,on_land"),
+         !is.na(datasetName),
+         !waterBody %in% c("North America", "North America Atlantic", "atlantique")) 
 
 
 ```
 
-## Including Plots
-https://www.r-bloggers.com/2021/03/downloading-and-cleaning-gbif-data-with-r/
+Podemo usar um mapa interativo para verificar melhor cada ocorrência com a função `leaflet` do pacote de mesmo nome.
 
-https://poldham.github.io/abs/mapgbif.html
+```{r}
+# check
+dori_obis_ok %>% 
+  leaflet() %>% 
+  addTiles() %>% 
+  addMarkers(~decimalLongitude, ~decimalLatitude, 
+             popup = ~as.character(datasetName), 
+             label = ~as.character(recordedBy),
+             clusterOptions = markerClusterOptions())
+```
 
-https://ropensci.github.io/CoordinateCleaner/articles/Cleaning_GBIF_data_with_CoordinateCleaner.html
+Parece tudo ok, e chegamos a `r nrow(dori_obis_ok)` ocorrências potenciais.
 
-```{r checagem, echo=FALSE}
+Por fim, vamos unir todas as ocorrências, checar se existem duplicatas e plotar o resultado final.
 
-names(bra_vari$data)
+```{r}
 
-# check issues
+# unir GBIF e OBIS
 
-bra_vari$data %>% 
-  distinct(issues)
+rm(list = setdiff(ls(), c("dori_obis_ok", "dori_gbif_ok")))
 
-bra_vari$data %>% 
-  distinct(issues)
+# ver diferencas
+setdiff(names(dori_gbif_ok), names(dori_obis_ok))
+setdiff(names(dori_obis_ok), names(dori_gbif_ok))
 
-gbif_citation(bra_vari)
-
-myspecies_coords <- bra_vari$data[ , c("decimalLongitude", "decimalLatitude", "individualCount", "occurrenceStatus", "coordinateUncertaintyInMeters", "institutionCode", "references")] %>% 
-  filter(!is.na(decimalLongitude) & !is.na(decimalLatitude))
-
+all_data <- bind_rows(dori_gbif_ok %>% 
+            mutate(repo = paste0("gbif", row.names(.))), 
+          dori_obis_ok%>% 
+            mutate(repo = paste0("obis", row.names(.)))) %>%
+  column_to_rownames("repo") %>% 
+  select(decimalLongitude, decimalLatitude, depth) %>% 
+  distinct() 
 
 # map the occurrence data:
-map("world", xlim = range(myspecies_coords$decimalLongitude), ylim = range(myspecies_coords$decimalLatitude))  # if the map doesn't appear right at first, run this command again
-points(myspecies_coords[ , c("decimalLongitude", "decimalLatitude")], pch = ".", cex = 4, col = "red")
-
+maps::map("world", main = "Paracanthurus hepatus")#, xlim = range(all_data$decimalLongitude), ylim = range(all_data$decimalLatitude))
+points(all_data[ , c("decimalLongitude", "decimalLatitude")], pch = ".", cex = 4, col = "red")
 
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
