@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Atividade 2</title>
+
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+.sourceCode .row {
+  width: 100%;
+}
+.sourceCode {
+  overflow-x: auto;
+}
+.code-folding-btn {
+  margin-right: -30px;
+}
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Ciência Colaborativa</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="aulas.html">Aulas</a>
+</li>
+<li>
+  <a href="materiais.html">Materiais</a>
+</li>
+<li>
+  <a href="atividades.html">Atividades</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/cammcordeiro/ciencia_colab">GitHub Repo</a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+
+</div>
+
+
+<div id="atividade-2" class="section level1 unnumbered">
+<h1 class="unnumbered">Atividade 2</h1>
+<hr />
+<div id="criando-arquivos-no-sistema-emof" class="section level2" number="0.1">
+<h2 number="2.1"><span class="header-section-number">2.1</span> Criando arquivos no sistema eMOF</h2>
+<p>Nesta atividade, continuaremos utilizando os dados modificados do dataset <code>iris</code> do pacote <code>vegan</code> com os dados coletados por Edgar Anderson.</p>
+<ul>
+<li>Anderson E (1935) The irises of the Gaspe Peninsula, Bulletin of the American Iris Society, 59, 2–5.</li>
+</ul>
+<hr />
+<div id="checando-os-dados" class="section level3" number="0.1.1">
+<h3 number="2.1.1"><span class="header-section-number">2.1.1</span> Checando os dados</h3>
+<p>O primeiro passo é identificar os campos presentes no dataset:</p>
+<ol style="list-style-type: decimal">
+<li>Usar a função <code>str</code> para conferir os tipos de dados em cada coluna</li>
+<li>Aplicar a função <code>unique</code> a cada coluna usando a outra função de <em>loop</em> <code>lapply</code></li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>iris <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;~/github/cursodados/data/iris_mod.csv&quot;</span>, <span class="at">header =</span> T)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(iris, unique)</span></code></pre></div>
+<pre><code>## $Sepal.Length
+##  [1] 5.1 5.4 5.0 4.7 5.2 4.4 4.5 4.6 7.0 5.5 6.3 6.0 6.7 6.2 6.1 6.4 5.8 5.7 6.5 7.3 7.7 7.2
+## [23] 7.9 6.8 5.9 4.8 4.9 6.9 6.6 5.6 7.4 4.3 5.3 7.1 7.6
+## 
+## $Sepal.Width
+##  [1] 3.5 3.4 3.3 3.2 4.1 3.0 2.3 3.8 2.7 2.2 3.1 2.8 2.9 2.4 2.5 2.6 3.9 4.0 3.6 3.7 4.2 2.0
+## [23] 4.4
+## 
+## $Petal.Length
+##  [1] 1.4 1.7 1.6 1.5 1.2 1.3 1.9 4.7 4.0 3.9 4.4 4.5 4.3 5.0 3.8 5.1 4.2 3.0 5.8 6.3 5.5 6.7
+## [23] 6.0 5.6 6.4 5.9 1.0 4.9 4.6 3.6 4.1 4.8 3.5 6.1 5.3 6.9 5.7 5.4 5.2 1.1 3.3 3.7 6.6
+## 
+## $Petal.Width
+##  [1] 0.3 0.2 0.5 0.4 0.1 1.4 1.3 1.6 1.0 1.5 1.7 1.1 1.2 1.9 2.2 1.8 2.0 2.1 2.4 2.3 0.6 2.5
+## 
+## $Species
+## [1] &quot;Iris setosa&quot;     &quot;Iris versicolor&quot; &quot;Iris virginica&quot; 
+## 
+## $amostra
+##   [1] &quot;A18&quot;  &quot;A21&quot;  &quot;A24&quot;  &quot;A27&quot;  &quot;A30&quot;  &quot;A33&quot;  &quot;A36&quot;  &quot;A39&quot;  &quot;A42&quot;  &quot;A45&quot;  &quot;A48&quot;  &quot;A51&quot; 
+##  [13] &quot;A54&quot;  &quot;A57&quot;  &quot;A60&quot;  &quot;A63&quot;  &quot;A66&quot;  &quot;A69&quot;  &quot;A72&quot;  &quot;A75&quot;  &quot;A78&quot;  &quot;A81&quot;  &quot;A84&quot;  &quot;A87&quot; 
+##  [25] &quot;A90&quot;  &quot;A93&quot;  &quot;A96&quot;  &quot;A99&quot;  &quot;A102&quot; &quot;A105&quot; &quot;A108&quot; &quot;A111&quot; &quot;A114&quot; &quot;A117&quot; &quot;A120&quot; &quot;A123&quot;
+##  [37] &quot;A126&quot; &quot;A129&quot; &quot;A132&quot; &quot;A135&quot; &quot;A138&quot; &quot;A141&quot; &quot;A144&quot; &quot;A147&quot; &quot;A150&quot; &quot;A3&quot;   &quot;A6&quot;   &quot;A9&quot;  
+##  [49] &quot;A12&quot;  &quot;A15&quot;  &quot;A17&quot;  &quot;A20&quot;  &quot;A23&quot;  &quot;A26&quot;  &quot;A29&quot;  &quot;A32&quot;  &quot;A35&quot;  &quot;A38&quot;  &quot;A41&quot;  &quot;A44&quot; 
+##  [61] &quot;A47&quot;  &quot;A50&quot;  &quot;A53&quot;  &quot;A56&quot;  &quot;A59&quot;  &quot;A62&quot;  &quot;A65&quot;  &quot;A68&quot;  &quot;A71&quot;  &quot;A74&quot;  &quot;A77&quot;  &quot;A80&quot; 
+##  [73] &quot;A83&quot;  &quot;A86&quot;  &quot;A89&quot;  &quot;A92&quot;  &quot;A95&quot;  &quot;A98&quot;  &quot;A101&quot; &quot;A104&quot; &quot;A107&quot; &quot;A110&quot; &quot;A113&quot; &quot;A116&quot;
+##  [85] &quot;A119&quot; &quot;A122&quot; &quot;A125&quot; &quot;A128&quot; &quot;A131&quot; &quot;A134&quot; &quot;A137&quot; &quot;A140&quot; &quot;A143&quot; &quot;A146&quot; &quot;A149&quot; &quot;A2&quot;  
+##  [97] &quot;A5&quot;   &quot;A8&quot;   &quot;A11&quot;  &quot;A14&quot;  &quot;A19&quot;  &quot;A22&quot;  &quot;A25&quot;  &quot;A28&quot;  &quot;A31&quot;  &quot;A34&quot;  &quot;A37&quot;  &quot;A40&quot; 
+## [109] &quot;A43&quot;  &quot;A46&quot;  &quot;A49&quot;  &quot;A52&quot;  &quot;A55&quot;  &quot;A58&quot;  &quot;A61&quot;  &quot;A64&quot;  &quot;A67&quot;  &quot;A70&quot;  &quot;A73&quot;  &quot;A76&quot; 
+## [121] &quot;A79&quot;  &quot;A82&quot;  &quot;A85&quot;  &quot;A88&quot;  &quot;A91&quot;  &quot;A94&quot;  &quot;A97&quot;  &quot;A100&quot; &quot;A103&quot; &quot;A106&quot; &quot;A109&quot; &quot;A112&quot;
+## [133] &quot;A115&quot; &quot;A118&quot; &quot;A121&quot; &quot;A124&quot; &quot;A127&quot; &quot;A130&quot; &quot;A133&quot; &quot;A136&quot; &quot;A139&quot; &quot;A142&quot; &quot;A145&quot; &quot;A148&quot;
+## [145] &quot;A1&quot;   &quot;A4&quot;   &quot;A7&quot;   &quot;A10&quot;  &quot;A13&quot;  &quot;A16&quot; 
+## 
+## $lat
+## [1] 48.93597 48.54050 48.32984
+## 
+## $lon
+## [1] -64.84098 -64.76651 -65.51233
+## 
+## $date
+## [1] &quot;1929-12-01&quot; &quot;1930-02-13&quot;
+## 
+## $site
+## [1] &quot;Site1&quot; &quot;Site2&quot; &quot;Site3&quot;</code></pre>
+<p>Aqui podemos identificar que temos 150 amostras e nomes de espécies associados às amostras, além de atributos (eg. Petal.Length, Sepal.Width) associados a cada espécie. Também existem dados de coordenadas dos sites e datas das amostragens.</p>
+<p>Avaliando estes campos, podemos ver que possuímos quase todos os campos obrigatórios para o sistema Darwin Core (DwC).</p>
+<hr />
+</div>
+<div id="taxóns" class="section level3" number="0.1.2">
+<h3 number="2.1.2"><span class="header-section-number">2.1.2</span> Taxóns</h3>
+<p>Em seguida, é importante checar se os nomes utilizados dos táxons são válidos.</p>
+<ol style="list-style-type: decimal">
+<li>Para isso podemos utilizar a função <code>get_tsn</code> do pacote <code>taxize</code>. Esta função permite investigar na base de dados do <a href="https://www.itis.gov/"><em>Integrated Taxonomic Information System</em></a> se a nomenclatura aplicada aos táxons é válida ou se necessita de atualização.</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check taxa</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>species <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(Species) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_tsn</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(iris <span class="sc">%&gt;%</span> </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>              <span class="fu">distinct</span>(Species))</span></code></pre></div>
+<pre><code>## ══  3 queries  ═══════════════</code></pre>
+<pre><code>## 
+## Retrieving data for taxon &#39;Iris setosa&#39;</code></pre>
+<pre><code>## ✔  Found:  Iris setosa</code></pre>
+<pre><code>## 
+## Retrieving data for taxon &#39;Iris versicolor&#39;</code></pre>
+<pre><code>## ✔  Found:  Iris versicolor</code></pre>
+<pre><code>## 
+## Retrieving data for taxon &#39;Iris virginica&#39;</code></pre>
+<pre><code>## ✔  Found:  Iris virginica
+## ══  Results  ═════════════════
+## 
+## ● Total: 3 
+## ● Found: 3 
+## ● Not Found: 0</code></pre>
+<p>Os campos de <code>match</code> e <code>pattern_match</code> indicam que as espécies são válidas e, o campo <code>uri</code> indica o endereço único para checar a espécie no ITIS. Este campo <code>uri</code> será utilizado na planilha <code>occurrence</code> do sistema <code>event core</code>.</p>
+<hr />
+</div>
+<div id="manipulando-os-dados" class="section level3" number="0.1.3">
+<h3 number="2.1.3"><span class="header-section-number">2.1.3</span> Manipulando os dados</h3>
+<div id="planilha-base" class="section level4" number="0.1.3.1">
+<h4 number="2.1.3.1"><span class="header-section-number">2.1.3.1</span> Planilha base</h4>
+<p>Sabendo-se que podemos prosseguir sem corrigir os táxons, agora é necessário renomear as variáveis de acordo com o DwC.</p>
+<ol style="list-style-type: decimal">
+<li><p>O primeiro passo é criar uma identidade única para as menores unidades de ocorrência dos táxons (<code>occurrenceID</code>) e das amostras (<code>eventID</code>).</p></li>
+<li><p>Em seguida são adicionadas as informações de espécie (<code>uri</code>) e renomeados os campos de acordo com o DwC.</p></li>
+<li><p>Por fim, são adicionados campos recomendados que detalham as variáveis presentes no <code>dataset</code> (eg. sistema de coordenadas, datum, amostrador etc)</p></li>
+</ol>
+<blockquote>
+<p>OBS: os dados das coordenadas são fictícios e o nome do amostrador é baseado em informação do pacote <code>vegan</code> (para checar, carregue o pacote <code>vegan</code> e digite <code>?iris</code>)</p>
+</blockquote>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>iris_1 <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">eventID =</span> <span class="fu">paste</span>(site, date, <span class="at">sep =</span> <span class="st">&quot;_&quot;</span>), <span class="co"># create indexing fields </span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">occurrenceID =</span> <span class="fu">paste</span>(site, date, amostra, <span class="at">sep =</span> <span class="st">&quot;_&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(species <span class="sc">%&gt;%</span> </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>              <span class="fu">select</span>(Species, uri)) <span class="sc">%&gt;%</span> <span class="co"># add species unique identifier</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">decimalLongitude =</span> lon, <span class="co"># rename fields according to DwC </span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">decimalLatitude =</span> lat,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">eventDate =</span> date,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">scientificName =</span> Species,</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">scientificNameID =</span> uri) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">geodeticDatum =</span> <span class="st">&quot;WGS84&quot;</span>, <span class="co"># and add complimentary fields</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">verbatimCoordinateSystem =</span> <span class="st">&quot;decimal degrees&quot;</span>,</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">georeferenceProtocol =</span> <span class="st">&quot;Random coordinates obtained from Google Earth&quot;</span>,</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">locality =</span> <span class="st">&quot;Gaspe Peninsula&quot;</span>,</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">recordedBy =</span> <span class="st">&quot;Edgar Anderson&quot;</span>,</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">taxonRank =</span> <span class="st">&quot;Species&quot;</span>,</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">organismQuantityType =</span> <span class="st">&quot;individuals&quot;</span>,</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">basisOfRecord =</span> <span class="st">&quot;Human observation&quot;</span>)</span></code></pre></div>
+<hr />
+</div>
+<div id="planilhas-do-emof" class="section level4" number="0.1.3.2">
+<h4 number="2.1.3.2"><span class="header-section-number">2.1.3.2</span> Planilhas do eMOF</h4>
+<p>Com os campos adicionados na planilha já podemos iniciar a construção das três matrizes necessárias para inserir os dados em repositórios baseados em ocorrências e dados acessórios como o <a href="https://www.gbif.org/">GBIF</a>.</p>
+<p>Os campos obrigatórios na planilha de eventos (<code>eventCore</code>) são: * eventID = indica os eventos únicos de amostragem * eventDate = data da amostragem no formato YYYY-MM-DD (ano com 4 dígitos, mês com 2 dígitos e dia com 2 dígitos) * decimalLongitude = longitude indicada em graus decimais * decimalLatitude = latitude indicada em graus decimais * verbatimCoordinateSystem = tipo de coordenadas * geodeticDatum = Datum das coordenadas</p>
+<p>Os termos padronizados do DwC podem ser encontrados no site do <a href="https://dwc.tdwg.org/terms/">DwC</a></p>
+<hr />
+<div id="planilha-de-eventos" class="section level5" number="0.1.3.2.1">
+<h5 number="2.1.3.2.1"><span class="header-section-number">2.1.3.2.1</span> Planilha de eventos</h5>
+<p>Nesta planilha, apenas os campos relacionados às amostras e características gerais do conjunto de dados são selecionadas.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">## create eventCore</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>eventCore <span class="ot">&lt;-</span> iris_1 <span class="sc">%&gt;%</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(eventID, eventDate, decimalLongitude, decimalLatitude, locality, site,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>         geodeticDatum, verbatimCoordinateSystem, georeferenceProtocol) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>() </span></code></pre></div>
+</div>
+<div id="planilha-de-ocorrências" class="section level5" number="0.1.3.2.2">
+<h5 number="2.1.3.2.2"><span class="header-section-number">2.1.3.2.2</span> Planilha de ocorrências</h5>
+<p>O próximo passo é derivar as ocorrências únicas presentes no <em>dataset</em>. Como ocorrência deve ser considerada a ocorrência única de determinada espécie.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="do">## create occurrence</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>occurrences <span class="ot">&lt;-</span> iris_1 <span class="sc">%&gt;%</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(eventID, occurrenceID, scientificName, scientificNameID,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>         recordedBy, taxonRank, organismQuantityType, basisOfRecord) <span class="sc">%&gt;%</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>() </span></code></pre></div>
+</div>
+<div id="planilha-de-atributos-emof" class="section level5" number="0.1.3.2.3">
+<h5 number="2.1.3.2.3"><span class="header-section-number">2.1.3.2.3</span> Planilha de atributos (eMOF)</h5>
+<p>Por fim, podemos associar atributos a cada ocorrência, neste caso, medidas morfométricas das flores das espécies indicadas. Aqui também devem ser adicionados os campos onde são detalhados os tipos de atributos associados às ocorrências, por exemplo, indicar que as medidas foram tomadas de indivíduos e medidas em centímetros. Os nomes das medidas foram renomeados para seguir padrões de boas práticas.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="do">## create measurementsOrFacts</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>eMOF <span class="ot">&lt;-</span> iris_1 <span class="sc">%&gt;%</span> </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(eventID, occurrenceID, recordedBy, Sepal.Length<span class="sc">:</span>Petal.Width) <span class="sc">%&gt;%</span>  </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> Sepal.Length<span class="sc">:</span>Petal.Width,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">names_to =</span> <span class="st">&quot;measurementType&quot;</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_to =</span> <span class="st">&quot;measurementValue&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">measurementUnit =</span> <span class="st">&quot;cm&quot;</span>,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">measurementType =</span> plyr<span class="sc">::</span><span class="fu">mapvalues</span>(measurementType,</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">from =</span> <span class="fu">c</span>(<span class="st">&quot;Sepal.Length&quot;</span>, <span class="st">&quot;Sepal.Width&quot;</span>, <span class="st">&quot;Petal.Width&quot;</span>, <span class="st">&quot;Petal.Length&quot;</span>), </span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">to =</span> <span class="fu">c</span>(<span class="st">&quot;sepal length&quot;</span>, <span class="st">&quot;sepal width&quot;</span>, <span class="st">&quot;petal width&quot;</span>, <span class="st">&quot;petal length&quot;</span>)))</span></code></pre></div>
+<hr />
+</div>
+</div>
+<div id="controle-de-qualidade" class="section level4" number="0.1.3.3">
+<h4 number="2.1.3.3"><span class="header-section-number">2.1.3.3</span> Controle de qualidade</h4>
+<p>O penúltimo passo é um rápido controle de qualidade para checar se todas as planilhas tem os mesmos valores de <code>eventID</code>. Afinal, este campo é o elo entre todas as planilhas.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check if all eventID matches</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(eventCore<span class="sc">$</span>eventID, occurrences<span class="sc">$</span>eventID)</span></code></pre></div>
+<pre><code>## character(0)</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(eventCore<span class="sc">$</span>eventID, eMOF<span class="sc">$</span>eventID)</span></code></pre></div>
+<pre><code>## character(0)</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(occurrences<span class="sc">$</span>eventID, eMOF<span class="sc">$</span>eventID)</span></code></pre></div>
+<pre><code>## character(0)</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check NA values</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>eMOF <span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(eventID))</span></code></pre></div>
+<pre><code>## # A tibble: 0 x 6
+## # … with 6 variables: eventID &lt;chr&gt;, occurrenceID &lt;chr&gt;, recordedBy &lt;chr&gt;,
+## #   measurementType &lt;chr&gt;, measurementValue &lt;dbl&gt;, measurementUnit &lt;chr&gt;</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>occurrences <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(eventID))</span></code></pre></div>
+<pre><code>## [1] eventID              occurrenceID         scientificName       scientificNameID    
+## [5] recordedBy           taxonRank            organismQuantityType basisOfRecord       
+## &lt;0 rows&gt; (or 0-length row.names)</code></pre>
+<hr />
+</div>
+<div id="escrevendo-as-matrizes-como-arquivos-de-texto" class="section level4" number="0.1.3.4">
+<h4 number="2.1.3.4"><span class="header-section-number">2.1.3.4</span> Escrevendo as matrizes como arquivos de texto</h4>
+<p>Tudo parece OK! Agora podemos remover os arquivos intermediários e deixar apenas os que serão publicados, para então salvá-los como arquivo <code>*.csv</code>.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">setdiff</span>(<span class="fu">ls</span>(), <span class="fu">c</span>(<span class="st">&quot;eventCore&quot;</span>, <span class="st">&quot;occurrences&quot;</span>, <span class="st">&quot;eMOF&quot;</span>)))</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>files <span class="ot">&lt;-</span> <span class="fu">list</span>(eventCore, occurrences, eMOF) </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>data_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;DF_eventCore&quot;</span>,<span class="st">&quot;DF_occ&quot;</span>,<span class="st">&quot;DF_eMOF&quot;</span>)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;Dwc_Files&quot;</span>)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(files)) {</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  path <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">getwd</span>(), <span class="st">&quot;/&quot;</span>, <span class="st">&quot;DwC_Files&quot;</span>)</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write.csv</span>(files[[i]], <span class="fu">paste0</span>(path, <span class="st">&quot;/&quot;</span>, data_names[i], <span class="st">&quot;.csv&quot;</span>))</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Agora já está tudo pronto para subir os dados para o repositório ou compartilhar diretamente. Só não esqueça dos metadados!!</p>
+</div>
+</div>
+</div>
+</div>
+
+<p>
+    <i>Colabore, espalhe a palavra, mas cite as fontes!</i>
+</p>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

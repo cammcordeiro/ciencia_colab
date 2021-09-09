@@ -11,11 +11,14 @@ navbar:
     - text: "Atividades"
       href: atividades.html
   right:
-    - text: "seilá"
-      href: seila.html
+    - text: "GitHub Repo"
+      href: https://github.com/cammcordeiro/ciencia_colab
       
 output_dir: "."
 output:
   html_document:
+    theme: united
+    highlight: tango
+    toc_depth: 4
     include:
       after_body: footer.html

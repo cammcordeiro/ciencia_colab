@@ -1,5 +1,8 @@
 ---
-output: html_document
+output: 
+  html_document:
+    theme: united
+    highlight: tango
 ---
 
 ```{r setup, include=FALSE}
@@ -14,6 +17,7 @@ UENF - CBB - Laboratório de Ciências Ambientais (LCA)
 Professor: Cesar A. M. M. Cordeiro
 
 ***
+
 ### Sobre o curso...
 
 Neste curso, serão explorados os usos de ferramentas em ciência colaborativa e construção de bases de dados abertos em estudos ecológicos, desde a aquisição de dados em repositórios existentes até a inserção de dados novos nestes repositórios. Tópicos contemplando as principais ferramentas aplicadas a controle de versão em documentos e roteiros de análises (e.g. plataformas Git e GitHub), modelos de bancos de dados e repositórios mais utilizados no campo da ecologia serão debatidos durante o curso. Também serão abordados padrões de construção de bases de dados (e.g. Darwin Core), etapas de verificação de qualidade de dados, noções de compartilhamento de arquivos e utilização de ferramentas para publicação e visualização de dados online.
@@ -33,9 +37,10 @@ Neste curso, serão explorados os usos de ferramentas em ciência colaborativa e
 
 * Princípios **F.A.I.R.** em dados abertos
 
-* Atividade 1
+* [Atividade 1](atividade1.html)
 
-**Aula 2** (21/09)
+
+[**Aula 2**](slides) (21/09)
 
 * Padrões e boas práticas no compartilhamento de dados
 
@@ -45,7 +50,7 @@ Neste curso, serão explorados os usos de ferramentas em ciência colaborativa e
 
 * Análise crítica de artigos científicos
 
-* Atividade 2
+* [Atividade 2](atividade2.html)
 
 
 **Aula 3** (22/09)
@@ -58,7 +63,7 @@ Neste curso, serão explorados os usos de ferramentas em ciência colaborativa e
 
 * Análise crítica de artigos científicos
 
-* Atividade 3
+* [Atividade 3](atividade3.html)
 
 
 **Aula 4** (23/09)

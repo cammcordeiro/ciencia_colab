@@ -4,6 +4,10 @@ output:
   html_document:
     pandoc_args: [
       "--number-offset=1"]
+    toc: yes
+    toc_float: true
+    number_sections: true
+    code_folding: "show"
 ---
 
 ```{r setup, include=FALSE}
@@ -18,20 +22,20 @@ library(tidyverse)
 # Planilhamento de dados
 
 ## Fonte dos dados
- 
+
 Para a primeira atividade do curso vamos utilizar dados amplamente conhecidos dos usuários de R no campo da ecologia.
- 
-Estes dados foram derivados do trabalho de Edgar Anderson (Anderson E. 1935. The irises of the Gaspe Peninsula, *Bulletin of the American Iris Society*, 59: 2–5) realizado com medições morfológicas das flores de três espécies de plantas do gênero *Iris* coletadas em áreas gramadas na Península de Gaspé (EUA) em 1935. Este conjunto de dados ficou famoso por ter sido utilizado por Ronald Fisher [(Fisher R. 1936. The Use of Multiple Measurements in Taxonomic Problems, *Annals of Eugenics*, 7:179 - 188)](https://digital.library.adelaide.edu.au/dspace/bitstream/2440/15227/1/138.pdf).
- 
+
+Estes dados foram derivados do trabalho de Edgar Anderson (Anderson E. 1935. The irises of the Gaspe Peninsula, *Bulletin of the American Iris Society*, 59: 2--5) realizado com medições morfológicas das flores de três espécies de plantas do gênero *Iris* coletadas em áreas gramadas na Península de Gaspé (EUA) em 1935. Este conjunto de dados ficou famoso por ter sido utilizado por Ronald Fisher [(Fisher R. 1936. The Use of Multiple Measurements in Taxonomic Problems, *Annals of Eugenics*, 7:179 - 188)](https://digital.library.adelaide.edu.au/dspace/bitstream/2440/15227/1/138.pdf).
+
 Vale indicar que, as coordenadas indicadas nas fichas de campo foram obtidas com a avaliação de imagem ortomosaico do serviço *Google Earth* com propósito ilustrativo, mas não correspondem às coordenadas originais dos locais de coleta.
 
-***
- 
+------------------------------------------------------------------------
+
 ## Instruções
- 
+
 A atividade 1 consiste em transferir os dados indicados nas fichas de campo para o formato de planilha. As fichas encontram-se na pasta compartilhada do [Google Drive da disciplina](link_pasta).
 
-1. Esta atividade deve ser realizada de modo individual e cada participante deverá baixar as amostras (i.e., fichas de campo) indicadas junto ao seu nome na tabela abaixo. 
+1.  Esta atividade deve ser realizada de modo individual e cada participante deverá baixar as amostras (i.e., fichas de campo) indicadas junto ao seu nome na tabela abaixo.
 
 ```{r load data, warning = FALSE}
 
@@ -50,10 +54,7 @@ data.frame(
   knitr::kable()
 
 ```
- 
-2. Ao finalizar o planilhamento das informações, o arquivo deverá ser salvo no formato `*.csv` (*comma separated values*) e nomeado seguindo o padrão: **atividade1_NOME-DO-PARTICIPANTE.csv**
- 
-3. Enviar a planilha para o email: `cammcordeiro@id.uff.br`
- 
- 
- 
+
+2.  Ao finalizar o planilhamento das informações, o arquivo deverá ser salvo no formato `*.csv` (*comma separated values*) e nomeado seguindo o padrão: **atividade1_NOME-DO-PARTICIPANTE.csv**
+
+3.  Subir a planilha para no [drive compartilhado](link)

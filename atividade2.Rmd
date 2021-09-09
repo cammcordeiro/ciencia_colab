@@ -3,7 +3,11 @@ pagetitle: Atividade 2
 output:
   html_document:
     pandoc_args: [
-      "--number-offset=1"]
+      "--number-offset=2"]
+    toc: yes
+    toc_float: true
+    number_sections: true
+    code_folding: "show"
 ---
 
 ```{r setup, include=FALSE}
@@ -17,19 +21,22 @@ library(taxize)
 
 # Atividade 2 {.unnumbered}
 
+------------------------------------------------------------------------
+
 ## Criando arquivos no sistema eMOF
 
 Nesta atividade, continuaremos utilizando os dados modificados do dataset `iris` do pacote `vegan` com os dados coletados por Edgar Anderson.
 
-- Anderson E (1935) The irises of the Gaspe Peninsula, Bulletin of the American Iris Society, 59, 2–5.
+-   Anderson E (1935) The irises of the Gaspe Peninsula, Bulletin of the American Iris Society, 59, 2--5.
+
+------------------------------------------------------------------------
 
 ### Checando os dados
 
 O primeiro passo é identificar os campos presentes no dataset:
 
-1.  Usar a função `str` para conferir os tipos de dados em cada coluna
-`r str(iris)`
-2.  Aplicar a função `unique` a cada coluna usando a outra função de *loop* `lapply` 
+1.  Usar a função `str` para conferir os tipos de dados em cada coluna `r str(iris)`
+2.  Aplicar a função `unique` a cada coluna usando a outra função de *loop* `lapply`
 
 ```{r load data}
 iris <- read.csv("~/github/cursodados/data/iris_mod.csv", header = T)
@@ -38,15 +45,15 @@ lapply(iris, unique)
 
 ```
 
-
-Aqui podemos identificar que temos 150 amostras e nomes de espécies associados às amostras, além de atributos (eg. Petal.Length, Sepal.Width) associados a cada espécie.
-Também existem dados de coordenadas dos sites e datas das amostragens.
+Aqui podemos identificar que temos 150 amostras e nomes de espécies associados às amostras, além de atributos (eg. Petal.Length, Sepal.Width) associados a cada espécie. Também existem dados de coordenadas dos sites e datas das amostragens.
 
 Avaliando estes campos, podemos ver que possuímos quase todos os campos obrigatórios para o sistema Darwin Core (DwC).
 
+------------------------------------------------------------------------
+
 ### Taxóns
 
-Em seguida, é importante checar se os nomes utilizados dos táxons são válidos. 
+Em seguida, é importante checar se os nomes utilizados dos táxons são válidos.
 
 1.  Para isso podemos utilizar a função `get_tsn` do pacote `taxize`. Esta função permite investigar na base de dados do [*Integrated Taxonomic Information System*](https://www.itis.gov/) se a nomenclatura aplicada aos táxons é válida ou se necessita de atualização.
 
@@ -63,11 +70,11 @@ species <- iris %>%
 
 ```
 
-
 Os campos de `match` e `pattern_match` indicam que as espécies são válidas e, o campo `uri` indica o endereço único para checar a espécie no ITIS. Este campo `uri` será utilizado na planilha `occurrence` do sistema `event core`.
 
+------------------------------------------------------------------------
 
-### Manipulando os dados 
+### Manipulando os dados
 
 #### Planilha base
 
@@ -80,7 +87,6 @@ Sabendo-se que podemos prosseguir sem corrigir os táxons, agora é necessário 
 3.  Por fim, são adicionados campos recomendados que detalham as variáveis presentes no `dataset` (eg. sistema de coordenadas, datum, amostrador etc)
 
 > OBS: os dados das coordenadas são fictícios e o nome do amostrador é baseado em informação do pacote `vegan` (para checar, carregue o pacote `vegan` e digite `?iris`)
-
 
 ```{r add_fieds, message=FALSE}
 
@@ -104,19 +110,17 @@ iris_1 <- iris %>%
          basisOfRecord = "Human observation")
 ```
 
+------------------------------------------------------------------------
+
 #### Planilhas do eMOF
 
 Com os campos adicionados na planilha já podemos iniciar a construção das três matrizes necessárias para inserir os dados em repositórios baseados em ocorrências e dados acessórios como o [GBIF](https://www.gbif.org/).
 
-Os campos obrigatórios na planilha de eventos (`eventCore`) são: 
- * eventID = indica os eventos únicos de amostragem
- * eventDate = data da amostragem no formato YYYY-MM-DD (ano com 4 dígitos, mês com 2 dígitos e dia com 2 dígitos)
- * decimalLongitude = longitude indicada em graus decimais
- * decimalLatitude = latitude indicada em graus decimais
- * verbatimCoordinateSystem = tipo de coordenadas
- * geodeticDatum = Datum das coordenadas
+Os campos obrigatórios na planilha de eventos (`eventCore`) são: \* eventID = indica os eventos únicos de amostragem \* eventDate = data da amostragem no formato YYYY-MM-DD (ano com 4 dígitos, mês com 2 dígitos e dia com 2 dígitos) \* decimalLongitude = longitude indicada em graus decimais \* decimalLatitude = latitude indicada em graus decimais \* verbatimCoordinateSystem = tipo de coordenadas \* geodeticDatum = Datum das coordenadas
 
 Os termos padronizados do DwC podem ser encontrados no site do [DwC](https://dwc.tdwg.org/terms/)
+
+------------------------------------------------------------------------
 
 ##### Planilha de eventos
 
@@ -146,7 +150,6 @@ occurrences <- iris_1 %>%
 
 Por fim, podemos associar atributos a cada ocorrência, neste caso, medidas morfométricas das flores das espécies indicadas. Aqui também devem ser adicionados os campos onde são detalhados os tipos de atributos associados às ocorrências, por exemplo, indicar que as medidas foram tomadas de indivíduos e medidas em centímetros. Os nomes das medidas foram renomeados para seguir padrões de boas práticas.
 
-
 ```{r eMOF}
 ## create measurementsOrFacts
 eMOF <- iris_1 %>% 
@@ -160,10 +163,11 @@ eMOF <- iris_1 %>%
                                            to = c("sepal length", "sepal width", "petal width", "petal length")))
 ```
 
+------------------------------------------------------------------------
+
 #### Controle de qualidade
 
 O penúltimo passo é um rápido controle de qualidade para checar se todas as planilhas tem os mesmos valores de `eventID`. Afinal, este campo é o elo entre todas as planilhas.
-
 
 ```{r last check}
 
@@ -181,11 +185,11 @@ occurrences %>%
 
 ```
 
+------------------------------------------------------------------------
+
 #### Escrevendo as matrizes como arquivos de texto
 
-Tudo parece OK!
-Agora podemos remover os arquivos intermediários e deixar apenas os que serão publicados, para então salvá-los como arquivo `*.csv`.
-
+Tudo parece OK! Agora podemos remover os arquivos intermediários e deixar apenas os que serão publicados, para então salvá-los como arquivo `*.csv`.
 
 ```{r writing files, eval=FALSE}
 
@@ -202,6 +206,5 @@ for(i in 1:length(files)) {
 }
 
 ```
-
 
 Agora já está tudo pronto para subir os dados para o repositório ou compartilhar diretamente. Só não esqueça dos metadados!!
