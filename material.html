@@ -11,7 +11,7 @@
 
 
 
-<title>Atividade 1</title>
+<title>Atividade 2</title>
 
 <script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -33,7 +33,6 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
@@ -209,9 +208,6 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
-<style type="text/css">
-.code-folding-btn { margin-bottom: 4px; }
-</style>
 
 
 
@@ -351,97 +347,23 @@ div.tocify {
 
 <div id="header">
 
-<div class="btn-group pull-right float-right">
-<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
-<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
-<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
-<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+
+
+
+</div>
+
+
+<style>
+body {
+text-align: justify}
+</style>
+<div id="materiais" class="section level1 unnumbered">
+<h1 class="unnumbered">Materiais</h1>
+<ul>
+<li>slides</li>
+<li>dados</li>
+<li>referencias</li>
 </ul>
-</div>
-
-
-
-
-</div>
-
-
-<div id="atividade-1" class="section level1 unnumbered">
-<h1 class="unnumbered">Atividade 1</h1>
-</div>
-<div id="planilhamento-de-dados" class="section level1" number="1">
-<h1 number="2"><span class="header-section-number">2</span> Planilhamento de dados</h1>
-<div id="fonte-dos-dados" class="section level2" number="1.1">
-<h2 number="2.1"><span class="header-section-number">2.1</span> Fonte dos dados</h2>
-<p>Para a primeira atividade do curso vamos utilizar dados amplamente conhecidos dos usuários de R no campo da ecologia.</p>
-<p>Estes dados foram derivados do trabalho de Edgar Anderson (Anderson E. 1935. The irises of the Gaspe Peninsula, <em>Bulletin of the American Iris Society</em>, 59: 2–5) realizado com medições morfológicas das flores de três espécies de plantas do gênero <em>Iris</em> coletadas em áreas gramadas na Península de Gaspé (EUA) em 1935. Este conjunto de dados ficou famoso por ter sido utilizado por Ronald Fisher <a href="https://digital.library.adelaide.edu.au/dspace/bitstream/2440/15227/1/138.pdf">(Fisher R. 1936. The Use of Multiple Measurements in Taxonomic Problems, <em>Annals of Eugenics</em>, 7:179 - 188)</a>.</p>
-<p>Vale indicar que, as coordenadas indicadas nas fichas de campo foram obtidas com a avaliação de imagem ortomosaico do serviço <em>Google Earth</em> com propósito ilustrativo, mas não correspondem às coordenadas originais dos locais de coleta.</p>
-<hr />
-</div>
-<div id="instruções" class="section level2" number="1.2">
-<h2 number="2.2"><span class="header-section-number">2.2</span> Instruções</h2>
-<p>A atividade 1 consiste em transferir os dados indicados nas fichas de campo para o formato de planilha. As fichas encontram-se na pasta compartilhada do <a href="link_pasta">Google Drive da disciplina</a>.</p>
-<ol style="list-style-type: decimal">
-<li>Esta atividade deve ser realizada de modo individual e cada participante deverá baixar as amostras (i.e., fichas de campo) indicadas junto ao seu nome na tabela abaixo.</li>
-</ol>
-<table>
-<colgroup>
-<col width="12%" />
-<col width="87%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="right">participante</th>
-<th align="left">amostras</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right">1</td>
-<td align="left">A93 , A147, A132, A1 , A5 , A79 , A15 , A101, A23 , A128, A78 , A85 , A34 , A62 , A70</td>
-</tr>
-<tr class="even">
-<td align="right">2</td>
-<td align="left">A72 , A9 , A17 , A43 , A112, A2 , A92 , A29 , A109, A58 , A16 , A10 , A106, A148, A45</td>
-</tr>
-<tr class="odd">
-<td align="right">3</td>
-<td align="left">A99 , A61 , A36 , A111, A138, A66 , A115, A54 , A88 , A8 , A35 , A97 , A33 , A6 , A22</td>
-</tr>
-<tr class="even">
-<td align="right">4</td>
-<td align="left">A30 , A50 , A53 , A80 , A126, A124, A91 , A75 , A40 , A110, A19 , A89 , A139, A42 , A127</td>
-</tr>
-<tr class="odd">
-<td align="right">5</td>
-<td align="left">A98 , A135, A28 , A51 , A27 , A122, A149, A14 , A81 , A57 , A140, A113, A84 , A20 , A12</td>
-</tr>
-<tr class="even">
-<td align="right">6</td>
-<td align="left">A26 , A47 , A136, A131, A141, A60 , A137, A143, A38 , A95 , A150, A103, A69 , A133, A24</td>
-</tr>
-<tr class="odd">
-<td align="right">7</td>
-<td align="left">A125, A108, A21 , A56 , A104, A63 , A77 , A7 , A102, A145, A94 , A71 , A90 , A129, A52</td>
-</tr>
-<tr class="even">
-<td align="right">8</td>
-<td align="left">A120, A123, A41 , A118, A96 , A114, A119, A116, A134, A13 , A32 , A46 , A4 , A65 , A107</td>
-</tr>
-<tr class="odd">
-<td align="right">9</td>
-<td align="left">A3 , A82 , A31 , A59 , A67 , A142, A49 , A64 , A68 , A146, A73 , A117, A86 , A25 , A130</td>
-</tr>
-<tr class="even">
-<td align="right">10</td>
-<td align="left">A121, A37 , A76 , A105, A44 , A55 , A74 , A11 , A39 , A87 , A100, A48 , A83 , A144, A18</td>
-</tr>
-</tbody>
-</table>
-<ol start="2" style="list-style-type: decimal">
-<li><p>Ao finalizar o planilhamento das informações, o arquivo deverá ser salvo no formato <code>*.csv</code> (<em>comma separated values</em>) e nomeado seguindo o padrão: <strong>atividade1_NOME-DO-PARTICIPANTE.csv</strong></p></li>
-<li><p>Subir a planilha para no <a href="link">drive compartilhado</a></p></li>
-</ol>
-</div>
 </div>
 
 <p>
@@ -482,11 +404,6 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
-<script>
-$(document).ready(function () {
-  window.initializeCodeFolding("show" === "show");
-});
-</script>
 
 <script>
 $(document).ready(function ()  {
