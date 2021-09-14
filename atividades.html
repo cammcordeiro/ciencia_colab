@@ -11,7 +11,7 @@
 
 
 
-<title>index.utf8</title>
+<title>Atividade 2</title>
 
 <script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
@@ -208,6 +211,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -215,6 +281,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
 
 
 
@@ -281,38 +357,45 @@ $(document).ready(function () {
 body {
 text-align: justify}
 </style>
-<div id="teern-ferramentas-em-ciência-colaborativa-e-bancos-de-dados-abertos" class="section level2">
-<h2>TEERN: Ferramentas em ciência colaborativa e bancos de dados abertos</h2>
-<blockquote>
-<p>UENF - CBB - Laboratório de Ciências Ambientais (LCA)</p>
-<p>Professor: Cesar A. M. M. Cordeiro</p>
-</blockquote>
-<hr />
-<div id="sobre-o-curso" class="section level3">
-<h3>Sobre o curso…</h3>
-<p>Neste curso, serão explorados os usos de ferramentas em ciência colaborativa e construção de bases de dados abertos em estudos ecológicos, desde a aquisição de dados em repositórios existentes até a inserção de dados novos nestes repositórios. Tópicos contemplando as principais ferramentas aplicadas a controle de versão em documentos e roteiros de análises (e.g. plataformas Git e GitHub), modelos de bancos de dados e repositórios mais utilizados no campo da ecologia serão debatidos durante o curso. Também serão abordados padrões de construção de bases de dados (e.g. Darwin Core), etapas de verificação de qualidade de dados, noções de compartilhamento de arquivos e utilização de ferramentas para publicação e visualização de dados online.</p>
-<p><strong>Pré-requisitos</strong>: Espera-se que os estudantes matriculados tenham familiaridade com a linguagem R. <br><br></p>
+<div id="atividade-1" class="section level2 unnumbered">
+<h2 class="unnumbered">Atividade 1</h2>
+<br><br>
+<center>
+<img src= "figs/amostra.png" style= "width:60%">
+</center>
+<p><br><br></p>
+<p>A atividade 1 consiste em um exercício de construção de uma base de dados (planilha) a partir de dados coletados em campo descritos em <em>fichas de campo</em> simuladas com dados derivados do trabalho de Edgar Anderson (Anderson E. 1935. The irises of the Gaspe Peninsula, <em>Bulletin of the American Iris Society</em>, 59: 2–5). <br><br></p>
 </div>
-<div id="mais-informações" class="section level3">
-<h3>Mais informações</h3>
-<p>A disciplina será conduzida por meio de plataforma digital com todas as aulas expositivas sendo realizadas de forma síncrona permitindo a interação em tempo real com o professor. Esta parte da disciplina contará como 70% da carga horária indicada. Atividades assíncronas somarão 30% da disciplina sendo associadas à análise crítica de artigos científicos para a preparação de apresentação em forma de seminário, a ser utilizado como a primeira avaliação. Os estudantes serão separados em grupos para a apresentação dos seminários a partir do segundo dia do curso, sendo o número de apresentações dividida igualmente entre os dias restantes da disciplina. A ordem de apresentação será sorteada no dia anterior à apresentação, tendo cada grupo 24 horas para preparação da apresentação. Os temas dos seminários incluirão: metodologia de organização de dados, data papers, big data e política de uso de dados, sendo os artigos selecionados pelos participantes dentre os fornecidos pelo professor em plataforma compartilhada (Google drive). Os dados utilizados durante a disciplina serão adquiridos diretamente de servidores abertos durante as aulas síncronas, e as rotinas de exemplo serão compartilhadas com os estudantes também via plataforma digital (Google drive).</p>
-<p>A segunda avaliação consistirá em um trabalho final autoral confeccionado como um roteiro reprodutível de aquisição, polimento e visualização de dados públicos ou dos participantes. Todas as práticas realizadas serão acompanhadas na rotina comentada utilizada nas práticas adicionada das observações dos participantes. A frequência dos estudantes será contabilizada ao início de cada período das aulas. <br><br></p>
+<div id="atividade-2" class="section level2 unnumbered">
+<h2 class="unnumbered">Atividade 2</h2>
+<center>
+<img src= "figs/git_4.png" style= "width:50%">
+</center>
+<p>A atividade 2 será realizada para padronizar os dados gerados na atividade 1 usando o sistema <a href="https://dwc.tdwg.org/">Darwin Core</a> e criar os arquivos necessários para distribuição dos dados como <a href="https://classroom.oceanteacher.org/pluginfile.php/15953/mod_resource/content/1/OBIS%20standards%20and%20formating.pdf">Darwin Core Arquive</a>. <br><br></p>
 </div>
-<div id="referências-recomendadas" class="section level3">
-<h3>Referências recomendadas</h3>
-<ul>
-<li><p>Baker K, Millerand F (2012) Infrastructuring ecology: challenges in achieving data sharing. In: Collaboration in the New Life Sciences. (eds) Parker J, Vermeulen N, Penders B. Ashgate. Disponível em: <a href="http://interoperability.ucsd.edu/docs/10BakerMillerand_InfrastructuringEcology_old.pdf" class="uri">http://interoperability.ucsd.edu/docs/10BakerMillerand_InfrastructuringEcology_old.pdf</a></p></li>
-<li><p>Chapman AD (2015). Princípios de Qualidade de Dados. Versão 1.0 pt em Português lançada em abril 2015 e traduzida para pelo Nó Português do GBIF (www.gbif.pt) e pelo representante brasileiro do GBIF, SiBBr (Sistema de Informação sobre a Biodiversidade Brasileira, www.sibbr.gov.br). Versão original em Inglês lançada em jul 2005. Copenhagen: Global Biodiversity Information Facility. 81 pp. ISBN: 87-92020-58-5. Disponível on-line em <a href="http://www.gbif.org/orc/?doc_id=5990" class="uri">http://www.gbif.org/orc/?doc_id=5990</a>.</p></li>
-<li><p>Cooper N, Hsing PY (2019) Reproducible code – guides to better science. British Ecological Society. Disponível em: <a href="https://www.britishecologicalsociety.org/wp-content/uploads/2019/06/BES-Guide-Reproducible-Code-2019.pdf" class="uri">https://www.britishecologicalsociety.org/wp-content/uploads/2019/06/BES-Guide-Reproducible-Code-2019.pdf</a></p></li>
-<li><p>Hampton SE et al. (2013) Big data and the future of ecology. Front Ecol Environ 2013; 11(3): 156–162, <a href="doi:10.1890/120103" class="uri">doi:10.1890/120103</a></p></li>
-<li><p>Harisson K (2019) A Guide to Data Management in Ecology and Evolution - guides to better science. British Ecological Society. Disponível em: <a href="https://www.britishecologicalsociety.org/wp-content/uploads/Publ_Data-Management-Booklet.pdf" class="uri">https://www.britishecologicalsociety.org/wp-content/uploads/Publ_Data-Management-Booklet.pdf</a></p></li>
-<li><p>König C, Weigelt P, Schrader J, Taylor A, Kattge J, Kreft H (2019) Biodiversity data integration—the significance of data resolution and domain. PLoS Biol 17(3): e3000183. <a href="https://doi" class="uri">https://doi</a>. org/10.1371/journal.pbio.3000183</p></li>
-<li><p>Powers SM, Hampton SE (2019). Open science, reproducibility, and trans- parency in ecology. Ecological Applications 29(1):e01822. 10.1002/eap.1822</p></li>
-<li><p>Wieczorek J, Bloom D, Guralnick R, Blum S, Do ̈ring M, et al. (2012) Darwin Core: An Evolving Community-Developed Biodiversity Data Standard. PLoS ONE 7(1): e29715. <a href="doi:10.1371/journal.pone.0029715" class="uri">doi:10.1371/journal.pone.0029715</a></p></li>
-<li><p>Version Control with Git - <a href="http://swcarpentry.github.io/git-novice/" class="uri">http://swcarpentry.github.io/git-novice/</a></p></li>
-<li><p>Darwin Core Archive - <a href="https://obis.org/manual/dataformat/" class="uri">https://obis.org/manual/dataformat/</a></p></li>
-</ul>
+<div id="atividade-3" class="section level2 unnumbered">
+<h2 class="unnumbered">Atividade 3</h2>
+<center>
+<img src= "atividade3_files/figure-html/unnamed-chunk-13-1.png" style= "width:70%">
+</center>
+<p><br><br></p>
+<p>A atividade 3 inclui exercícios para a criação de uma rotina em R para a aquisição de dados em bases abertas, neste caso, utilizando-se o <a href="https://www.gbif.org/">GBIF</a>. <br><br></p>
 </div>
+<div id="atividade-4" class="section level2 unnumbered">
+<h2 class="unnumbered">Atividade 4</h2>
+<center>
+<img src= "figs/rmarkdown_icon.png" style= "width:30%">
+</center>
+<p><br><br></p>
+<p>A atividade 4 é uma extensão da atividade 3, onde os participantes terão de traduzir a rotina criada em R para uma rotina comentada em RMarkdown indicando detalhes a respeito do processo de aquisição e limpeza dos dados. <br><br></p>
+</div>
+<div id="atividade-5" class="section level2 unnumbered">
+<h2 class="unnumbered">Atividade 5</h2>
+<center>
+<img src= "figs/data_cycle.png" style= "width:50%">
+</center>
+<p><br><br></p>
+<p>A atividade 5 finaliza o processo de ferramentas básicas de compartilhamento e reprodutibilidade de dados científicos. Nesta atividade, os participantes irão tranformar as rotinas criadas nas atividades anteriores em um website além de incluir alguns <code>chunck</code> de código interativo. <br><br></p>
 </div>
 
 <p>
@@ -320,6 +403,8 @@ text-align: justify}
 </p>
 
 
+</div>
+</div>
 
 </div>
 
@@ -352,6 +437,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

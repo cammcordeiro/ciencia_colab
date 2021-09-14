@@ -6,13 +6,17 @@ navbar:
       href: index.html
     - text: "Aulas"
       href: aulas.html
+      icon: fas fa-book
     - text: "Materiais"
       href: materiais.html
+      icon: fa-folder fa-lg
     - text: "Atividades"
       href: atividades.html
+      icon: fas fa-chart-bar
   right:
     - text: "GitHub Repo"
       href: https://github.com/cammcordeiro/ciencia_colab
+      icon: "fab fa-github"
       
 output_dir: "."
 output:

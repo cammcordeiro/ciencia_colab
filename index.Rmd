@@ -4,6 +4,10 @@ output:
     theme: united
     highlight: tango
 ---
+<style>
+body {
+text-align: justify}
+</style>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -11,79 +15,47 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## TEERN: Ferramentas em ciência colaborativa e bancos de dados abertos
 
+> UENF - CBB - Laboratório de Ciências Ambientais (LCA)
 >
-UENF - CBB - Laboratório de Ciências Ambientais (LCA)
->
-Professor: Cesar A. M. M. Cordeiro
+> Professor: Cesar A. M. M. Cordeiro
 
-***
+------------------------------------------------------------------------
 
 ### Sobre o curso...
 
 Neste curso, serão explorados os usos de ferramentas em ciência colaborativa e construção de bases de dados abertos em estudos ecológicos, desde a aquisição de dados em repositórios existentes até a inserção de dados novos nestes repositórios. Tópicos contemplando as principais ferramentas aplicadas a controle de versão em documentos e roteiros de análises (e.g. plataformas Git e GitHub), modelos de bancos de dados e repositórios mais utilizados no campo da ecologia serão debatidos durante o curso. Também serão abordados padrões de construção de bases de dados (e.g. Darwin Core), etapas de verificação de qualidade de dados, noções de compartilhamento de arquivos e utilização de ferramentas para publicação e visualização de dados online.
-  
-  
+
 **Pré-requisitos**: Espera-se que os estudantes matriculados tenham familiaridade com a linguagem R.
-
-***
-
-### Cronograma
-
-[**Aula 1**](index.html) (20/09)
-
-* *Open Science* e *Open Data*: o que são?
-
-* Bancos de dados: histórico, conceitos e estrutura
-
-* Princípios **F.A.I.R.** em dados abertos
-
-* [Atividade 1](atividade1.html)
+<br><br>
 
 
-[**Aula 2**](slides) (21/09)
+### Mais informações
 
-* Padrões e boas práticas no compartilhamento de dados
+A disciplina será conduzida por meio de plataforma digital com todas as aulas expositivas sendo realizadas de forma síncrona permitindo a interação em tempo real com o professor. Esta parte da disciplina contará como 70% da carga horária indicada. Atividades assíncronas somarão 30% da disciplina sendo associadas à análise crítica de artigos científicos para a preparação de apresentação em forma de seminário, a ser utilizado como a primeira avaliação. Os estudantes serão separados em grupos para a apresentação dos seminários a partir do segundo dia do curso, sendo o número de apresentações dividida igualmente entre os dias restantes da disciplina. A ordem de apresentação será sorteada no dia anterior à apresentação, tendo cada grupo 24 horas para preparação da apresentação. Os temas dos seminários incluirão: metodologia de organização de dados, data papers, big data e política de uso de dados, sendo os artigos selecionados pelos participantes dentre os fornecidos pelo professor em plataforma compartilhada (Google drive). Os dados utilizados durante a disciplina serão adquiridos diretamente de servidores abertos durante as aulas síncronas, e as rotinas de exemplo serão compartilhadas com os estudantes também via plataforma digital (Google drive).  
 
-* Sistema Darwin Core
-
-* Alimentando um banco de dados
-
-* Análise crítica de artigos científicos
-
-* [Atividade 2](atividade2.html)
+A segunda avaliação consistirá em um trabalho final autoral confeccionado como um roteiro reprodutível de aquisição, polimento e visualização de dados públicos ou dos participantes. Todas as práticas realizadas serão acompanhadas na rotina comentada utilizada nas práticas adicionada das observações dos participantes. A frequência dos estudantes será contabilizada ao início de cada período das aulas.
+<br><br>
 
 
-**Aula 3** (22/09)
+### Referências recomendadas
 
-* Repositórios de dados ecológicos
++ Baker K, Millerand F (2012) Infrastructuring ecology: challenges in achieving data sharing. In: Collaboration in the New Life Sciences. (eds) Parker J, Vermeulen N, Penders B. Ashgate. Disponível em: http://interoperability.ucsd.edu/docs/10BakerMillerand_InfrastructuringEcology_old.pdf
 
-* Acesso a bancos de dados abertos
++ Chapman AD (2015). Princípios de Qualidade de Dados. Versão 1.0 pt em Português lançada em abril 2015 e traduzida para pelo Nó Português do GBIF (www.gbif.pt) e pelo representante brasileiro do GBIF, SiBBr (Sistema de Informação sobre a Biodiversidade Brasileira, www.sibbr.gov.br). Versão original em Inglês lançada em jul 2005. Copenhagen: Global Biodiversity Information Facility. 81 pp. ISBN: 87-92020-58-5. Disponível on-line em http://www.gbif.org/orc/?doc_id=5990.
 
-* Métodos de conferência de qualidade de dados
++ Cooper N, Hsing PY (2019) Reproducible code – guides to better science. British Ecological Society. Disponível em: https://www.britishecologicalsociety.org/wp-content/uploads/2019/06/BES-Guide-Reproducible-Code-2019.pdf
 
-* Análise crítica de artigos científicos
++ Hampton SE et al. (2013) Big data and the future of ecology. Front Ecol Environ 2013; 11(3): 156–162, doi:10.1890/120103
 
-* [Atividade 3](atividade3.html)
++ Harisson K (2019) A Guide to Data Management in Ecology and Evolution - guides to better science. British Ecological Society. Disponível em: https://www.britishecologicalsociety.org/wp-content/uploads/Publ_Data-Management-Booklet.pdf
 
++ König C, Weigelt P, Schrader J, Taylor A, Kattge J, Kreft H (2019) Biodiversity data integration—the significance of data resolution and domain. PLoS Biol 17(3): e3000183. https://doi. org/10.1371/journal.pbio.3000183
 
-**Aula 4** (23/09)
++ Powers SM, Hampton SE (2019). Open science, reproducibility, and trans- parency in ecology. Ecological Applications 29(1):e01822. 10.1002/eap.1822
 
-* Compartilhamento e pesquisa reprodutível (Git e GitHub)
++ Wieczorek J, Bloom D, Guralnick R, Blum S, Do ̈ring M, et al. (2012) Darwin Core: An Evolving Community-Developed Biodiversity Data Standard. PLoS ONE 7(1): e29715. doi:10.1371/journal.pone.0029715
 
-* Construção de rotinas de aquisição de dados em bases abertas (RMarkdown) 
++ Version Control with Git - http://swcarpentry.github.io/git-novice/
 
-* Análise crítica de artigos científicos do tema na forma de seminário
-
-* Atividade 4
-
-
-**Aula 5** (24/09)
-
-* Ferramentas para disponibilização e visualização de dados online 
-
-* Análise crítica de artigos científicos do tema na forma de seminário
-
-* Considerações finais da disciplina
-
-* Atividade 5
++ Darwin Core Archive - https://obis.org/manual/dataformat/
 

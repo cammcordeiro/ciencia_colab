@@ -1,0 +1,77 @@
+---
+pagetitle: Aulas
+output: 
+  html_document:
+    theme: united
+    highlight: tango
+---
+<style>
+body {
+text-align: justify}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Aulas
+
+Todo o material das aulas pode ser acessados no cronograma baixo clicando-se os links correspondentes:
+
+------------------------------------------------------------------------
+
+### Cronograma
+
+[**Aula 1**](index.html) (20/09)
+
+-   *Open Science* e *Open Data*: o que são?
+
+-   Bancos de dados: histórico, conceitos e estrutura
+
+-   Princípios **F.A.I.R.** em dados abertos
+
+-   [Atividade 1](atividade1.html)
+
+[**Aula 2**](slides) (21/09)
+
+-   Padrões e boas práticas no compartilhamento de dados
+
+-   Sistema Darwin Core
+
+-   Alimentando um banco de dados
+
+-   Análise crítica de artigos científicos
+
+-   [Atividade 2](atividade2.html)
+
+**Aula 3** (22/09)
+
+-   Repositórios de dados ecológicos
+
+-   Acesso a bancos de dados abertos
+
+-   Métodos de conferência de qualidade de dados
+
+-   Análise crítica de artigos científicos
+
+-   [Atividade 3](atividade3.html)
+
+**Aula 4** (23/09)
+
+-   Compartilhamento e pesquisa reprodutível (Git e GitHub)
+
+-   Construção de rotinas de aquisição de dados em bases abertas (RMarkdown)
+
+-   Análise crítica de artigos científicos do tema na forma de seminário
+
+-   Atividade 4
+
+**Aula 5** (24/09)
+
+-   Ferramentas para disponibilização e visualização de dados online
+
+-   Análise crítica de artigos científicos do tema na forma de seminário
+
+-   Considerações finais da disciplina
+
+-   Atividade 5
