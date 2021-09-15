@@ -288,17 +288,29 @@ setdiff(names(dori_gbif_ok), names(dori_obis_ok))
 setdiff(names(dori_obis_ok), names(dori_gbif_ok))
 
 all_data <- bind_rows(dori_gbif_ok %>% 
-            mutate(repo = paste0("gbif", row.names(.))), 
-          dori_obis_ok%>% 
-            mutate(repo = paste0("obis", row.names(.)))) %>%
+                        mutate(repo = paste0("gbif", row.names(.))), 
+                      dori_obis_ok %>% 
+                        mutate(repo = paste0("obis", row.names(.)))) %>%
   column_to_rownames("repo") %>% 
   select(decimalLongitude, decimalLatitude, depth) %>% 
-  distinct() 
+  distinct() %>% 
+  rownames_to_column("occ") %>% 
+  separate(col = "occ", into = c("datasetName", "rn"), sep = 4) %>%
+  mutate(scientificName = "Paracanthurus hepatus") %>% 
+  select(-rn)
 
 # map the occurrence data:
-maps::map("world", main = "Paracanthurus hepatus")#, xlim = range(all_data$decimalLongitude), ylim = range(all_data$decimalLatitude))
+maps::map("world")#, xlim = range(all_data$decimalLongitude), ylim = range(all_data$decimalLatitude))
 points(all_data[ , c("decimalLongitude", "decimalLatitude")], pch = ".", cex = 4, col = "red")
 
 ```
+<br><br>
 
+O último passo é guardarmos os dados baixados e tratados para economizar tempo no próximo uso, mas o mais importante já está registrado, o passo-a-passo de como chegamos até os dados usados nas análises.
+
+```{r dados}
+
+write.csv(all_data, "data/occ_GBIF-OBIS_par_hepa.csv", row.names = FALSE)
+
+```
 

@@ -1,0 +1,86 @@
+---
+pagetitle: Atividade 4
+output:
+  html_document:
+    pandoc_args: [
+      "--number-offset=4"]
+    toc: yes
+    toc_float: true
+    number_sections: true
+    code_folding: "show"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(ggmap)
+library(maps)
+library(mapdata)
+
+```
+
+## Acesso a bancos de dados abertos
+
+```{r dados}
+
+ocorrencias <- read.csv("data/occ_GBIF-OBIS_par_hepa.csv", header = TRUE)
+
+```
+
+
+
+```{r}
+# investigar niveis suspeitos
+world <- map_data("world")
+
+head(world)
+
+
+# mapa
+ggplot() +
+  geom_polygon(data = world, aes(x = long, y = lat, group = group)) +
+    coord_fixed() +
+    theme_classic()
+
+```
+
+
+```{r}
+
+# mapa + ocorrencias
+ggplot() +
+  geom_polygon(data = world, aes(x = long, y = lat, group = group)) +
+  coord_fixed() +
+  theme_classic() +
+  geom_point(data = ocorrencias, aes(x = decimalLongitude, y = decimalLatitude, color = datasetName)) +
+  theme(legend.title = element_blank()) +
+  labs(x = "longitude", y = "latitude", title = expression(italic("Paracanthurus hepatus")))
+
+```
+
+
+```{r}
+
+ggplot() +
+  geom_polygon(data = world, aes(x = long, y = lat, group = group)) +
+  coord_fixed() +
+  theme_classic() +
+  geom_point(data = ocorrencias, aes(x = decimalLongitude, y = decimalLatitude, color = datasetName, size = depth)) +
+  #theme(legend.title = element_blank()) +
+  labs(x = "longitude", y = "latitude", title = expression(italic("Paracanthurus hepatus")))
+
+```
+
+
+
+```{r}
+
+ggplot() +
+  theme_classic() +
+  geom_point(data = ocorrencias, aes(x = decimalLatitude, y = depth, color = datasetName)) #+
+  #theme(legend.title = element_blank()) +
+  #labs(x = "longitude", y = "latitude", title = expression(italic("Paracanthurus hepatus")))
+
+```
+
