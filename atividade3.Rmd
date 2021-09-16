@@ -31,7 +31,9 @@ O [GBIF (*Global Biodiversity Information Facility*)](https://www.gbif.org/) é 
 
 ### Exemplo: *Finding Dori*
 
-A espécie-alvo será o peixe marinho *Paracanthurus hepatus*, também conhecido como *Blue Tang* e, mais recentemente como ![**Dori**](figs/dori.png).
+A espécie-alvo será o peixe marinho *Paracanthurus hepatus*, também conhecido como *Blue Tang* e, mais recentemente como **Dori**!.
+
+<center><img src= "figs/dori.png" style= "width:60%"></center>
 
 Nosso primeiro exemplor será com as ocorrencias do **GBIF** e, para tal, vamos utilizar o pacote `rgbif`.
 

@@ -22,7 +22,7 @@ Todo o material das aulas pode ser acessados no cronograma baixo clicando-se os 
 
 ### Cronograma
 
-[**Aula 1**](index.html) (20/09)
+[**Aula 1**](https://docs.google.com/presentation/d/18pVIS6xMx5tJCE9k8yKTV-lEYrMbzDPT6ZV4LuHzf7Y/edit?usp=sharing) (20/09)
 
 -   *Open Science* e *Open Data*: o que são?
 
@@ -32,7 +32,7 @@ Todo o material das aulas pode ser acessados no cronograma baixo clicando-se os 
 
 -   [Atividade 1](atividade1.html)
 
-[**Aula 2**](slides) (21/09)
+[**Aula 2**](https://docs.google.com/presentation/d/13qW7-0powKqSo4iYWSCgT3FtbY9GjHI9Bdxm7Tc4EgY/edit?usp=sharing) (21/09)
 
 -   Padrões e boas práticas no compartilhamento de dados
 
@@ -44,7 +44,7 @@ Todo o material das aulas pode ser acessados no cronograma baixo clicando-se os 
 
 -   [Atividade 2](atividade2.html)
 
-**Aula 3** (22/09)
+[**Aula 3**](https://docs.google.com/presentation/d/1ppkLQH-xbUCUTKV0N1Pz2BIs_lJfG_OMkwgtfmXaYf4/edit?usp=sharing) (22/09)
 
 -   Repositórios de dados ecológicos
 
@@ -56,7 +56,7 @@ Todo o material das aulas pode ser acessados no cronograma baixo clicando-se os 
 
 -   [Atividade 3](atividade3.html)
 
-**Aula 4** (23/09)
+[**Aula 4**](https://docs.google.com/presentation/d/1egVT15XCEXJP-OVosu0bY9VBfnavRWuBXjD1BrKPLwo/edit?usp=sharing) (23/09)
 
 -   Compartilhamento e pesquisa reprodutível (Git e GitHub)
 
@@ -66,7 +66,7 @@ Todo o material das aulas pode ser acessados no cronograma baixo clicando-se os 
 
 -   Atividade 4
 
-**Aula 5** (24/09)
+[**Aula 5**](https://docs.google.com/presentation/d/1egVT15XCEXJP-OVosu0bY9VBfnavRWuBXjD1BrKPLwo/edit?usp=sharing) (24/09)
 
 -   Ferramentas para disponibilização e visualização de dados online
 
