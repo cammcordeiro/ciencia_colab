@@ -64,7 +64,7 @@ Todo o material das aulas pode ser acessados no cronograma baixo clicando-se os 
 
 -   Análise crítica de artigos científicos do tema na forma de seminário
 
--   Atividade 4
+-   [Atividade 4](atividade4.html)
 
 [**Aula 5**](https://docs.google.com/presentation/d/1egVT15XCEXJP-OVosu0bY9VBfnavRWuBXjD1BrKPLwo/edit?usp=sharing) (24/09)
 
@@ -74,4 +74,4 @@ Todo o material das aulas pode ser acessados no cronograma baixo clicando-se os 
 
 -   Considerações finais da disciplina
 
--   Atividade 5
+-   [Atividade 5](atividade5.html)
