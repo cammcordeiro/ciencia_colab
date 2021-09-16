@@ -15,6 +15,13 @@ iris <- read.csv("~/github/cursodados/data/iris_mod.csv", header = T)
 lapply(iris, unique)
 
 # dados dos participantes
+setwd("~/Google Drive/PARCERIAS/POLE to POLE/data/spreadsheets/loggers/Fortaleza/Envlogger files/2021/")
+files21 <- list.files(pattern = '\\.csv', recursive = T) # includes all subfolders
+dados21 <- plyr::adply(files21, 1, read.csv, header = T)
+
+# tags21 <- cbind(headers1[c(11),], 
+#                 headers1[c(10), 3])
+# names(tags21) <- c("X1", "x", "sensor", "serial")
 
 
 # checar taxa
