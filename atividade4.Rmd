@@ -72,7 +72,12 @@ ggplot() +
 
 ```
 
-
+leaflet() %>% 
+  addTiles() %>% 
+  addMarkers(~decimalLongitude, ~decimalLatitude, 
+             popup = ~as.character(datasetName), 
+             label = ~as.character(scientificName),
+             clusterOptions = markerClusterOptions())
 
 ```{r}
 
@@ -84,3 +89,55 @@ ggplot() +
 
 ```
 
+### Datasets form Bio-Oracle
+layers_BO <- sdmpredictors::list_layers("Bio-ORACLE") 
+layers_BO %>% 
+  dplyr::select(name, layer_code) %>% 
+  filter(name %in% c("Phosphate concentration (mean at max depth)",
+                     "Nitrate concentration (mean at max depth)",
+                     "Light at bottom (mean at max depth)",
+                     "Iron concentration (mean at max depth)",
+                     "Dissolved oxygen concentration (range at max depth)",
+                     "Dissolved oxygen concentration (minimum at max depth)",
+                     "Dissolved oxygen concentration (mean at max depth)",
+                     "Current velocity (mean at max depth)",
+                     "Sea water temperature (mean at max depth)",
+                     "Primary production (mean at max depth)",
+                     "Sea water salinity (mean at max depth)",
+                     "Silicate concentration (mean at max depth)",
+                     "Sea surface temperature (mean)"))
+
+options(sdmpredictors_datadir = "data/Bio-Oracle/")
+
+### Download environmental data layers (Max. Temperature, Min. Salinity and Min. Nitrates at the sea bottom)
+## load from server
+# environment.bottom <- load_layers(layercodes = c("BO2_curvelmean_bdmax", "BO2_dissoxltmax_bdmax", "BO2_salinitymean_bdmax", "BO2_tempmean_ss", "BO_calcite", "BO21_tempmean_bdmax"), 
+#             equalarea=FALSE, rasterstack=TRUE)
+
+## load local source
+environment.bottom <- sdmpredictors::load_layers(c("BO_bathymean", "BO2_curvelmean_bdmax", "BO2_dissoxltmax_bdmax", "BO2_salinitymean_bdmax", "BO2_tempmean_ss", "BO_calcite", "BO21_tempmean_bdmax"), rasterstack=TRUE)
+
+### SITES
+### extract from rasters
+
+##
+library(sp)
+my.sites1 <- ocorrencias
+coordinates(my.sites1)=~decimalLongitude+decimalLatitude
+SpatialPoints(my.sites1, proj4string = CRS("+proj=longlat +datum=WGS84"))
+points <- SpatialPoints(my.sites1, proj4string=CRS(proj4string(environment.bottom)))
+
+# environmental
+library(raster)
+store_data1 <- list()
+for (i in 1:nlayers(environment.bottom)){
+  store_data1[[i]] = extract(environment.bottom[[i]], points, buffer = 10,
+                                     fun=mean,         # what to value to extract
+                                     df=F)
+}
+
+names(store_data1) = names(environment.bottom)
+marine_data <- bind_cols(ocorrencias, as_tibble(store_data1)) %>% 
+  mutate(BO_bathymean = ifelse(BO_bathymean > 0, BO_bathymean*-1, BO_bathymean))
+
+write.csv(marine_data, "data/raster_data_par_hepa.csv", row.names = FALSE)
