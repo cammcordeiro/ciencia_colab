@@ -11,7 +11,7 @@
 
 
 
-<title>Atividade 2</title>
+<title>Atividades</title>
 
 <script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -33,6 +33,7 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
@@ -208,6 +209,9 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 
 
 
@@ -347,6 +351,14 @@ div.tocify {
 
 <div id="header">
 
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
 
 
 
@@ -364,7 +376,8 @@ text-align: justify}
 <img src= "figs/amostra.png" style= "width:60%">
 </center>
 <p><br><br></p>
-<p>A atividade 1 consiste em um exercício de construção de uma base de dados (planilha) a partir de dados coletados em campo descritos em <em>fichas de campo</em> simuladas com dados derivados do trabalho de Edgar Anderson (Anderson E. 1935. The irises of the Gaspe Peninsula, <em>Bulletin of the American Iris Society</em>, 59: 2–5). <br><br></p>
+<p>A <a href="atividade1.html"><strong>atividade 1</strong></a> consiste em um exercício de construção de uma base de dados (planilha) a partir de dados coletados em campo descritos em <em>fichas de campo</em> simuladas com dados derivados do trabalho de Edgar Anderson (Anderson E. 1935. The irises of the Gaspe Peninsula, <em>Bulletin of the American Iris Society</em>, 59: 2–5). <br><br></p>
+<hr />
 </div>
 <div id="atividade-2" class="section level2 unnumbered">
 <h2 class="unnumbered">Atividade 2</h2>
@@ -372,6 +385,7 @@ text-align: justify}
 <img src= "figs/git_4.png" style= "width:50%">
 </center>
 <p>A atividade 2 será realizada para padronizar os dados gerados na atividade 1 usando o sistema <a href="https://dwc.tdwg.org/">Darwin Core</a> e criar os arquivos necessários para distribuição dos dados como <a href="https://classroom.oceanteacher.org/pluginfile.php/15953/mod_resource/content/1/OBIS%20standards%20and%20formating.pdf">Darwin Core Arquive</a>. <br><br></p>
+<hr />
 </div>
 <div id="atividade-3" class="section level2 unnumbered">
 <h2 class="unnumbered">Atividade 3</h2>
@@ -380,6 +394,7 @@ text-align: justify}
 </center>
 <p><br><br></p>
 <p>A atividade 3 inclui exercícios para a criação de uma rotina em R para a aquisição de dados em bases abertas, neste caso, utilizando-se o <a href="https://www.gbif.org/">GBIF</a>. <br><br></p>
+<hr />
 </div>
 <div id="atividade-4" class="section level2 unnumbered">
 <h2 class="unnumbered">Atividade 4</h2>
@@ -388,6 +403,7 @@ text-align: justify}
 </center>
 <p><br><br></p>
 <p>A atividade 4 é uma extensão da atividade 3, onde os participantes terão de traduzir a rotina criada em R para uma rotina comentada em RMarkdown indicando detalhes a respeito do processo de aquisição e limpeza dos dados. <br><br></p>
+<hr />
 </div>
 <div id="atividade-5" class="section level2 unnumbered">
 <h2 class="unnumbered">Atividade 5</h2>
@@ -396,6 +412,7 @@ text-align: justify}
 </center>
 <p><br><br></p>
 <p>A atividade 5 finaliza o processo de ferramentas básicas de compartilhamento e reprodutibilidade de dados científicos. Nesta atividade, os participantes irão tranformar as rotinas criadas nas atividades anteriores em um website além de incluir alguns <code>chunck</code> de código interativo. <br><br></p>
+<hr />
 </div>
 
 <p>
@@ -436,6 +453,11 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
 
 <script>
 $(document).ready(function ()  {

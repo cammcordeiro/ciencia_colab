@@ -32,7 +32,7 @@ Todo o material das aulas pode ser acessados no cronograma baixo clicando-se os 
 
 -   [Atividade 1](atividade1.html)
 
-[**Aula 2**](https://docs.google.com/presentation/d/13qW7-0powKqSo4iYWSCgT3FtbY9GjHI9Bdxm7Tc4EgY/edit?usp=sharing) (21/09)
+[**Aula 2**] (21/09)
 
 -   Padrões e boas práticas no compartilhamento de dados
 
@@ -42,9 +42,9 @@ Todo o material das aulas pode ser acessados no cronograma baixo clicando-se os 
 
 -   Análise crítica de artigos científicos
 
--   [Atividade 2](atividade2.html)
+-   [Atividade 2]()
 
-[**Aula 3**](https://docs.google.com/presentation/d/1ppkLQH-xbUCUTKV0N1Pz2BIs_lJfG_OMkwgtfmXaYf4/edit?usp=sharing) (22/09)
+[**Aula 3**] (22/09)
 
 -   Repositórios de dados ecológicos
 
@@ -54,9 +54,9 @@ Todo o material das aulas pode ser acessados no cronograma baixo clicando-se os 
 
 -   Análise crítica de artigos científicos
 
--   [Atividade 3](atividade3.html)
+-   [Atividade 3]()
 
-[**Aula 4**](https://docs.google.com/presentation/d/1egVT15XCEXJP-OVosu0bY9VBfnavRWuBXjD1BrKPLwo/edit?usp=sharing) (23/09)
+[**Aula 4**] (23/09)
 
 -   Compartilhamento e pesquisa reprodutível (Git e GitHub)
 
@@ -64,9 +64,9 @@ Todo o material das aulas pode ser acessados no cronograma baixo clicando-se os 
 
 -   Análise crítica de artigos científicos do tema na forma de seminário
 
--   [Atividade 4](atividade4.html)
+-   [Atividade 4]()
 
-[**Aula 5**](https://docs.google.com/presentation/d/1egVT15XCEXJP-OVosu0bY9VBfnavRWuBXjD1BrKPLwo/edit?usp=sharing) (24/09)
+[**Aula 5**] (24/09)
 
 -   Ferramentas para disponibilização e visualização de dados online
 
@@ -74,4 +74,4 @@ Todo o material das aulas pode ser acessados no cronograma baixo clicando-se os 
 
 -   Considerações finais da disciplina
 
--   [Atividade 5](atividade5.html)
+-   [Atividade 5]()

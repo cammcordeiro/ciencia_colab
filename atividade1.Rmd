@@ -3,7 +3,7 @@ pagetitle: Atividade 1
 output:
   html_document:
     pandoc_args: [
-      "--number-offset=1"]
+      "--number-offset=0"]
     toc: yes
     toc_float: true
     number_sections: true

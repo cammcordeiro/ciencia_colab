@@ -200,6 +200,8 @@ library(ggmap)
 library(maps)
 library(mapdata)
 
+world <- map_data('world')
+  
 # checar pontos
  
 ggplot() +
@@ -300,7 +302,6 @@ ggplot() +
   coord_fixed() +
   theme_classic() +
   geom_point(data = dori_obis_ok, aes(x = decimalLongitude, y = decimalLatitude, color = waterBody)) +
-  #theme(legend.title = element_blank()) +
   labs(x = "longitude", y = "latitude", title = expression(italic("Paracanthurus hepatus")))
 
 ```
@@ -312,8 +313,6 @@ Por fim, vamos unir todas as ocorrências, checar se existem duplicatas e plotar
 ```{r}
 
 # unir GBIF e OBIS
-
-rm(list = setdiff(ls(), c("dori_obis_ok", "dori_gbif_ok")))
 
 # ver diferencas
 setdiff(names(dori_gbif_ok), names(dori_obis_ok))
@@ -399,6 +398,8 @@ O pacote `scrubr` possui algumas funções úteis para indicar problemas com coo
 
 ```{r scrubr}
 
+library(scrubr)
+
 # usando os dados com flag
 data_scrubr <- marcados %>% 
   dframe() %>% 
@@ -436,16 +437,16 @@ Note que as ocorrências indicadas com uma cruz foram mantidas pelo `scrubr`, e 
 
 Vale lembrar que o `OBIS` é um repositório de dados marinhos, então as ferramentas tem melhor uso para dados desta natureza. Inclusive uma das funções do pacote (`check_onland`) checa coordenadas em terra, sejam ilhas ou continentes.
 Aqui vamos testar a função `check_outliers_species` que tem um princípio semelhante à nossa função caseira `flag_outliers`, mas é baseada no **median absolute deviation (MAD)** e no **interquartile range (IQR)**, parâmetros que podem ser ajustados na função.
-
+OBS: Algumas vezes pode ocorrer uma falha de conexão com o servidor, então deve-se insistir um pouco.
 
 ```{r}
 
 library(obistools)
 
-dori_obis %>% 
-  dplyr::select(decimalLongitude, decimalLatitude, scientificNameID) %>% 
-  distinct() %>% 
-  check_outliers_species(., report=TRUE)
+# dori_obis %>% 
+#   dplyr::select(decimalLongitude, decimalLatitude, scientificNameID) %>% 
+#   distinct() %>% 
+#   check_outliers_species(., report=TRUE)
 
 
 # usando essa configuração chegamos a valores próximos aos da limpeza manual

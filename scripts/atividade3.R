@@ -99,6 +99,8 @@ library(ggmap)
 library(maps)
 library(mapdata)
 
+world <- map_data('world')
+
 # checar pontos
 ggplot() +
   geom_polygon(data = world, aes(x = long, y = lat, group = group)) +

@@ -1,12 +1,13 @@
 ---
-pagetitle: Atividade 2
+pagetitle: Atividades
 output:
   html_document:
     pandoc_args: [
-      "--number-offset=2"]
+      "--number-offset=0"]
     toc: yes
     toc_float: true
     number_sections: true
+    code_folding: "show"
 ---
 
 <style>
@@ -19,14 +20,18 @@ text-align: justify}
 <center><img src= "figs/amostra.png" style= "width:60%"></center>
 <br><br>
 
-A atividade 1 consiste em um exercício de construção de uma base de dados (planilha) a partir de dados coletados em campo descritos em *fichas de campo* simuladas com dados derivados do trabalho de Edgar Anderson (Anderson E. 1935. The irises of the Gaspe Peninsula, *Bulletin of the American Iris Society*, 59: 2--5).
+A [**atividade 1**](atividade1.html) consiste em um exercício de construção de uma base de dados (planilha) a partir de dados coletados em campo descritos em *fichas de campo* simuladas com dados derivados do trabalho de Edgar Anderson (Anderson E. 1935. The irises of the Gaspe Peninsula, *Bulletin of the American Iris Society*, 59: 2--5).
 <br><br>
+
+***
 
 ## Atividade 2 {.unnumbered}
 <center><img src= "figs/git_4.png" style= "width:50%"></center>
 
 A atividade 2 será realizada para padronizar os dados gerados na atividade 1 usando o sistema [Darwin Core](https://dwc.tdwg.org/) e criar os arquivos necessários para distribuição dos dados como [Darwin Core Arquive](https://classroom.oceanteacher.org/pluginfile.php/15953/mod_resource/content/1/OBIS%20standards%20and%20formating.pdf).
 <br><br>
+
+***
 
 ## Atividade 3 {.unnumbered}
 <center><img src= "atividade3_files/figure-html/unnamed-chunk-13-1.png" style= "width:70%"></center>
@@ -35,6 +40,7 @@ A atividade 2 será realizada para padronizar os dados gerados na atividade 1 us
 A atividade 3 inclui exercícios para a criação de uma rotina em R para a aquisição de dados em bases abertas, neste caso, utilizando-se o [GBIF](https://www.gbif.org/).
 <br><br>
 
+***
 
 ## Atividade 4 {.unnumbered}
 <center><img src= "figs/rmarkdown_icon.png" style= "width:30%"></center>
@@ -43,6 +49,7 @@ A atividade 3 inclui exercícios para a criação de uma rotina em R para a aqui
 A atividade 4 é uma extensão da atividade 3, onde os participantes terão de traduzir a rotina criada em R para uma rotina comentada em RMarkdown indicando detalhes a respeito do processo de aquisição e limpeza dos dados.
 <br><br>
 
+***
 
 ## Atividade 5 {.unnumbered}
 <center><img src= "figs/data_cycle.png" style= "width:50%"></center>
@@ -50,3 +57,5 @@ A atividade 4 é uma extensão da atividade 3, onde os participantes terão de t
 
 A atividade 5 finaliza o processo de ferramentas básicas de compartilhamento e reprodutibilidade de dados científicos. Nesta atividade, os participantes irão tranformar as rotinas criadas nas atividades anteriores em um website além de incluir alguns `chunck` de código interativo.
 <br><br>
+
+***

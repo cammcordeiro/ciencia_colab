@@ -1,0 +1,22 @@
+---
+pagetitle: Materiais
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+
+## **Materiais**
+***
+
+<center>
+<img src="figs/curso_pg.png" style="width:100%"/> <br><br>
+</center>
+
+#### O link a seguir leva ao Google Drive da disciplina e contém o material de apoio ao curso.
+
+#### Clique [aqui](https://drive.google.com/drive/folders/1S_yTN8DfdS1l6RtB8McWUoEeaBZLAJuGGqQdUkMkUD87ARpeelck2iyXv_c1tR4qnQWQhArk?usp=sharing) para acessar o material.
+
+***
