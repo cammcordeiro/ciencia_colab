@@ -492,6 +492,6 @@ flags <-
 <br><br>
 
 Neste caso, nenhuma ocorrência foi marcada como suspeita. Moral da história, sempre temos que conferir todos os dados, mas as ferramentas ajudam muito nesta tarefa!
-
+***
 
 

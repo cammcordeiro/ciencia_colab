@@ -561,14 +561,19 @@ div.tocify {
 <h3 number="4.2.3"><span class="header-section-number">4.2.3</span> Criando repositório (ou REPO) no GitHub</h3>
 <p>Após a instalação e configuração do <strong>Git/R/RStudio</strong> e criar uma conta no <strong>Github</strong>, o próximo passo é criar repositório.</p>
 <p>Logo após fazer o login no <strong>Github</strong> você deverá ver a página inicial de seu perfil como abaixo.</p>
-<p><img src="figs/git_5.png" style="width:100%"/> <br><br></p>
+<center>
+<img src="figs/git_5.png" style="width:100%"/>
+</center>
+<p><br><br></p>
 <p>À esquerda você poderá ver a lista com alguns repositórios e o botão <strong>New</strong>. Clique neste botão para criarmos um novo repositório. Nesta página você vai configurar o seu repositório:</p>
 <ol style="list-style-type: decimal">
 <li>Dê um nome para seu repositório</li>
 <li>Especifique se será público ou privado</li>
 <li>Especifique se você quer adicionar um aquivo README, <strong>.gitignore</strong> e o tipo de licença (caso seja público. Mais detalhes no link “learn more”)</li>
 </ol>
-<p><img src="figs/git_6.png" style="width:70%"/></p>
+<center>
+<img src="figs/git_6.png" style="width:70%"/>
+</center>
 <p>Depois de configurado você pode clicar em <strong>Create repository</strong>.</p>
 <p>Agora que temos o repositório no Github, o próximo passo é cloná-lo com um projeto de controle de versão no RStudio. Deixe a página acima aberta no seu navegador, pois vamos precisar dela no próximo passo. <br><br></p>
 </div>
@@ -578,19 +583,27 @@ div.tocify {
 <li><p>Abra o RStudio e clique em <strong>File -&gt; New Project</strong></p></li>
 <li><p>Uma caixa irá abrir, selecione <strong>Version Control</strong></p></li>
 </ol>
-<p><img src="figs/git_7.png" style="width:70%"/> <br><br></p>
+<center>
+<img src="figs/git_7.png" style="width:70%"/> <br><br>
+</center>
 <ol start="3" style="list-style-type: decimal">
 <li>Logo após abrirá em outra janela, selecione <strong>Git</strong>. Uma nova janela abrirá.</li>
 </ol>
-<p><img src="figs/git_8.png" style="width:70%"/> <br><br></p>
+<center>
+<img src="figs/git_8.png" style="width:70%"/> <br><br>
+</center>
 <ol start="4" style="list-style-type: decimal">
 <li>Volte ao Github, copie a URL do repo que você criou em <strong>4.2 Criando repositório no GitHub</strong></li>
 </ol>
-<p><img src="figs/git_9.png" style="width:100%"/> <br><br></p>
+<center>
+<img src="figs/git_9.png" style="width:100%"/> <br><br>
+</center>
 <ol start="5" style="list-style-type: decimal">
 <li>Volte ao RStudio e cole a URL do repo em <strong>Repository URL</strong></li>
 </ol>
-<p><img src="figs/git_10.png" style="width:70%"/> <br><br></p>
+<center>
+<img src="figs/git_10.png" style="width:70%"/> <br><br>
+</center>
 <ol start="6" style="list-style-type: decimal">
 <li><p>Na mesma janela digite o nome do diretório em <strong>Project directory name</strong></p></li>
 <li><p>Ainda na mesma janela, selecione a pasta onde colocar o repositório clonado do github no campo <strong>Create project as subdirectory of</strong> <br><br></p></li>
@@ -602,8 +615,8 @@ div.tocify {
 </div>
 <div id="workflow-rstudiogithub" class="section level2" number="0.3">
 <h2 number="4.3"><span class="header-section-number">4.3</span> Workflow RStudio/Github</h2>
-<div id="básico-commit-e-push" class="section level3" number="0.3.1">
-<h3 number="4.3.1"><span class="header-section-number">4.3.1</span> Básico: <code>commit</code> e <code>push</code></h3>
+<div id="controle-de-versão-commit-e-push" class="section level3" number="0.3.1">
+<h3 number="4.3.1"><span class="header-section-number">4.3.1</span> Controle de versão: <code>commit</code> e <code>push</code></h3>
 <p>Agora podemos criar um script teste para fazermos o primeiro <code>commit</code> e <code>push</code>, abaixo um resumo do será realizado:</p>
 <table>
 <thead>
@@ -624,19 +637,89 @@ div.tocify {
 </tbody>
 </table>
 <p>Observando o painel <strong>Files</strong> no <strong>RStudio</strong> você verá que alguns arquivos foram adicionados. Temos um <strong>.gitignore</strong>, <strong>.Rhistory</strong> e <strong>teste_repositorio.Rproj</strong>. Criando um novo script e salvando (script_teste.R), o painel <strong>Files</strong> ficará como abaixo.</p>
-<p><img src="figs/git_11.png" style="width:70%"/> <br><br></p>
+<center>
+<img src="figs/git_11.png" style="width:70%"/> <br><br>
+</center>
 <p>Após a criar e salvar um script teste, o painel <strong>Git</strong> deve estar parecido como o abaixo:</p>
-<p><img src="figs/git_12.png" style="width:70%"/> <br><br></p>
+<center>
+<img src="figs/git_12.png" style="width:70%"/> <br><br>
+</center>
 <p>Veja que estão listados alguns arquivos, toda e qualquer alteração salva neste diretório será listada neste painel. Se você selecionar <strong>Staged</strong> você está aprovando a mundança no arquivo. Em <strong>Status</strong> pode ser <strong>A</strong> de “added”, <strong>M</strong> significa “modified” e ainda não adicionado.</p>
-<p><img src="figs/git_13.png" style="width:70%"/> <br><br></p>
+<center>
+<img src="figs/git_13.png" style="width:70%"/> <br><br>
+</center>
 <p>Com todos os arquivos marcados <strong>Staged</strong>, o próximo passo é fazer um <code>commit</code>, ou seja, registrar (ou anotar) todas as alterações realizadas, pois podo o <code>commit</code> deve ter uma mensagem indicando o que foi realizado. Clicando em <strong>commit</strong> você registra as alterações e pode comentar as principais mudanças no campo <strong>Commit message</strong>, por exemplo. Clique em <code>commit</code> nesta janela <strong>Review Changes</strong>.</p>
-<p><img src="figs/git_14.png" style="width:70%"/> <br><br></p>
+<center>
+<img src="figs/git_14.png" style="width:70%"/> <br><br>
+</center>
 <p>Após isso você verá a janela abaixo mostrando a execução do comando <code>commit</code>.</p>
-<p><img src="figs/git_15.png" style="width:70%"/> <br><br></p>
+<center>
+<img src="figs/git_15.png" style="width:70%"/> <br><br>
+</center>
 <p>Após isso estamos aptos para fazer o <code>push</code>. Clicando em <code>push</code> você envia de fato a nova versão para o seu repo no Github.</p>
-<p><img src="figs/git_16.png" style="width:70%"/> <br><br></p>
+<center>
+<img src="figs/git_16.png" style="width:70%"/> <br><br>
+</center>
 <p>Depois de chegar até aqui, confira seu repositório no <strong>Github</strong> e veja a versão atualizada. Deve estar similar a figura abaixo.</p>
-<p><img src="figs/git_17.png" style="width:70%"/> <br><br></p>
+<center>
+<img src="figs/git_17.png" style="width:70%"/> <br><br>
+</center>
+</div>
+<div id="colaboração-fork-branch-pull-request-e-merge" class="section level3" number="0.3.2">
+<h3 number="4.3.2"><span class="header-section-number">4.3.2</span> Colaboração: <code>fork</code>, <code>branch</code>, <code>pull request</code> e <code>merge</code></h3>
+<p>Agora que já vimos como fazer as principais ações usando o <strong>Git</strong> e <strong>Github</strong>, a partir deste ponto podemos executar um grupo de comandos que consiste na grande vantagem de se usar o <strong>Github</strong>: a colaboração com controle de versão. Abaixo um resumo dos comandos abordados:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Comando</th>
+<th align="center">Ação</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><code>fork</code></td>
+<td align="center">Copia um diretório do Github</td>
+</tr>
+<tr class="even">
+<td align="center"><code>branch</code></td>
+<td align="center">Cria um novo “ramo” em seu repositório</td>
+</tr>
+<tr class="odd">
+<td align="center"><code>pull request</code></td>
+<td align="center">Solitação de contribuição</td>
+</tr>
+<tr class="even">
+<td align="center"><code>merge</code></td>
+<td align="center">Incorporar um ramo criado ao ramo “master”</td>
+</tr>
+</tbody>
+</table>
+<p><br><br></p>
+<p>Para colaborar em um repositório você antes de mais nada copiar os arquivos para o seu <strong>Github</strong>. Essa ação é executada com o comando <code>fork</code>. Por exemplo, se dirija ao <a href="https://github.com/cammcordeiro/CCBD_atividade4">respositório de teste - <strong>CCBD_atividade4</strong></a> e localize no alto da página o botão <code>fork</code>. Depois escolha onde você gostaria de colocar, escolha seu usuário. No canto esquerdo da página mostrará que o reposotório está em seu usuário também.</p>
+<center>
+<img src="figs/git_22.png" style="width:60%"/> <br><br>
+</center>
+<p>Agora faça novamente os passos descritos em <strong>Criando repositório no GitHub</strong>. Tenha certeza de criar uma nova pasta fora das pastas que você já está trabalhando.</p>
+<p>Abra o projeto do repositório clonado (CCBD_atividade4) no RStudio. Agora o repositório deve ser acessado pelo <a href="https://github.com/SEU_USUÁRIO/CCBD_atividade4" class="uri">https://github.com/SEU_USUÁRIO/CCBD_atividade4</a>. Abra o arquivo <code>partipantes.csv</code>, e edite adicionando seu nome e nome de usuário do <code>GitHub</code>. Salve, faça o <code>commit</code> e o <code>push</code>.</p>
+<p>Agora navegue até o <a href="https://github.com/cammcordeiro/CCBD_atividade4">respositório da atividade 4</a> recém clonado e clique em <strong>Contribute</strong>.</p>
+<center>
+<img src="figs/git_23.png" style="width:60%"/> <br><br>
+</center>
+<p>Aparecerá uma nova página comparando o script antigo com o novo.</p>
+<center>
+<img src="figs/git_24.png" style="width:60%"/> <br><br>
+</center>
+<p>Clique em <strong>Create pull request</strong>. Com o objetivo de facilitar a colaboração, é necessário que você comente o objetivo da sua contribuição.</p>
+<center>
+<img src="figs/git_25.png" style="width:60%"/> <br><br>
+</center>
+<p>Clique novamente no botão <strong>Create pull request</strong> para confirmar sua contribuição. Visualize a página <a href="https://github.com/cammcordeiro/CCBD_atividade4" class="uri">https://github.com/cammcordeiro/CCBD_atividade4</a> e veja como ficou.</p>
+<center>
+<img src="figs/git_26.png" style="width:60%"/> <br><br>
+</center>
+<p>Agora que você fez um <code>pull request</code>, e basta aguardar o administrador do repositório analisar sua sugestão e fazer o <code>merge</code> no ramo <strong>master</strong>.</p>
+<p>Para mais informações sobre o workflow usando o Github, acesse <a href="https://guides.github.com/introduction/flow/">Github Guides</a>. Um guia muito útil também é o <a href="https://happygitwithr.com/">Happy Git and Github for the useR</a>.</p>
+<hr />
 </div>
 </div>
 </div>

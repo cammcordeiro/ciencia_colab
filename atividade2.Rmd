@@ -208,3 +208,5 @@ for(i in 1:length(files)) {
 ```
 
 Agora já está tudo pronto para subir os dados para o repositório ou compartilhar diretamente. Só não esqueça dos metadados!!
+
+***

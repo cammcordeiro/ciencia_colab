@@ -197,7 +197,7 @@ no **Github**, o próximo passo é criar repositório.
 Logo após fazer o login no **Github** você deverá ver a página inicial
 de seu perfil como abaixo.
 
-<img src="figs/git_5.png" style="width:100%"/> <br><br>
+<center><img src="figs/git_5.png" style="width:100%"/></center><br><br>
 
 À esquerda você poderá ver a lista com alguns repositórios e o botão
 **New**. Clique neste botão para criarmos um novo repositório. Nesta
@@ -209,7 +209,9 @@ página você vai configurar o seu repositório:
     o tipo de licença (caso seja público. Mais detalhes no link "learn
     more")
 
+<center>
 <img src="figs/git_6.png" style="width:70%"/>
+</center>
 
 Depois de configurado você pode clicar em **Create repository**.
 
@@ -224,21 +226,29 @@ aberta no seu navegador, pois vamos precisar dela no próximo passo.
 
 2.  Uma caixa irá abrir, selecione **Version Control**
 
+<center>
 <img src="figs/git_7.png" style="width:70%"/> <br><br>
+</center>
 
 3.  Logo após abrirá em outra janela, selecione **Git**. Uma nova janela
     abrirá.
 
+<center>
 <img src="figs/git_8.png" style="width:70%"/> <br><br>
+</center>
 
 4.  Volte ao Github, copie a URL do repo que você criou em **4.2 Criando
     repositório no GitHub**
 
+<center>
 <img src="figs/git_9.png" style="width:100%"/> <br><br>
+</center>
 
 5.  Volte ao RStudio e cole a URL do repo em **Repository URL**
 
+<center>
 <img src="figs/git_10.png" style="width:70%"/> <br><br>
+</center>
 
 6.  Na mesma janela digite o nome do diretório em **Project directory
     name**
@@ -273,19 +283,25 @@ arquivos foram adicionados. Temos um **.gitignore**, **.Rhistory** e
 **teste_repositorio.Rproj**. Criando um novo script e salvando
 (script_teste.R), o painel **Files** ficará como abaixo.
 
+<center>
 <img src="figs/git_11.png" style="width:70%"/> <br><br>
+</center>
 
 Após a criar e salvar um script teste, o painel **Git** deve estar
 parecido como o abaixo:
 
+<center>
 <img src="figs/git_12.png" style="width:70%"/> <br><br>
+</center>
 
 Veja que estão listados alguns arquivos, toda e qualquer alteração salva
 neste diretório será listada neste painel. Se você selecionar **Staged** você está aprovando a mundança no arquivo. Em **Status**
 pode ser **A** de "added", **M** significa "modified" e ainda não
 adicionado.
 
+<center>
 <img src="figs/git_13.png" style="width:70%"/> <br><br>
+</center>
 
 Com todos os arquivos marcados **Staged**, o próximo
 passo é fazer um `commit`, ou seja, registrar (ou
@@ -294,24 +310,31 @@ mensagem indicando o que foi realizado. Clicando em **commit** você registra as
 exemplo. Clique em `commit` nesta janela **Review
 Changes**.
 
+<center>
 <img src="figs/git_14.png" style="width:70%"/> <br><br>
+</center>
 
 Após isso você verá a janela abaixo mostrando a execução do comando
 `commit`.
 
+<center>
 <img src="figs/git_15.png" style="width:70%"/> <br><br>
+</center>
 
 Após isso estamos aptos para fazer o `push`. Clicando em
 `push` você envia de fato a nova versão para o seu repo no
 Github.
 
+<center>
 <img src="figs/git_16.png" style="width:70%"/> <br><br>
+</center>
 
 Depois de chegar até aqui, confira seu repositório no **Github** e veja
 a versão atualizada. Deve estar similar a figura abaixo.
 
+<center>
 <img src="figs/git_17.png" style="width:70%"/> <br><br>
-
+</center>
 
 ### Colaboração: `fork`, `branch`, `pull request` e `merge`
 
@@ -334,43 +357,51 @@ arquivos para o seu **Github**. Essa ação é executada com o comando
 `fork`. Por exemplo, se dirija ao [respositório de
 teste - **CCBD_atividade4**](https://github.com/cammcordeiro/CCBD_atividade4) e localize no alto da página o botão `fork`. Depois escolha onde você gostaria
 de colocar, escolha seu usuário. No canto esquerdo da página mostrará
-que o repo está em seu usuário também.
+que o reposotório está em seu usuário também.
 
+<center>
 <img src="figs/git_22.png" style="width:60%"/> <br><br>
+</center>
 
-Agora faça novamente os passos descritos em **4.2 Criando repositório no
-GitHub (ou REPO)**. Tenha certeza de criar uma nova pasta fora das
+Agora faça novamente os passos descritos em **Criando repositório no
+GitHub**. Tenha certeza de criar uma nova pasta fora das
 pastas que você já está trabalhando.
 
-Faça alguma alteração no script, insira uma linha de código, depois faça
-`commit`  e `push` . Note que seu
-repositório será atualizado. Navegue até o [respositório de
-teste](https://github.com/peld-iloc/repo_test) recém clonado e clique em
+Abra o projeto do repositório clonado (CCBD_atividade4) no RStudio. Agora o repositório deve ser acessado pelo <https://github.com/SEU_USUÁRIO/CCBD_atividade4>. Abra o arquivo `partipantes.csv`, e edite adicionando seu nome e nome de usuário do `GitHub`. Salve, faça o `commit` e o `push`.
+
+Agora navegue até o [respositório da atividade 4](https://github.com/cammcordeiro/CCBD_atividade4) recém clonado e clique em
 **Contribute**.
 
+<center>
 <img src="figs/git_23.png" style="width:60%"/> <br><br>
+</center>
 
 Aparecerá uma nova página comparando o script antigo com o novo.
 
+<center>
 <img src="figs/git_24.png" style="width:60%"/> <br><br>
+</center>
 
 Clique em **Create pull request**. Com o objetivo de facilitar a
-colaboração, é eficiente você comentar o objetivo da sua contribuição.
+colaboração, é necessário que você comente o objetivo da sua contribuição.
 
+<center>
 <img src="figs/git_25.png" style="width:60%"/> <br><br>
+</center>
 
 Clique novamente no botão **Create pull request** para confirmar sua
 contribuição. Visualize a página
-<https://github.com/peld-iloc/repo_test> e veja como ficou.
+<https://github.com/cammcordeiro/CCBD_atividade4> e veja como ficou.
 
+<center>
 <img src="figs/git_26.png" style="width:60%"/> <br><br>
+</center>
 
-Agora que você fez um `pull request`, basta você aguardar o
-adminstrador do repositório analisar sua sugestão e fazer o `merge`
+Agora que você fez um `pull request`, e basta aguardar o
+administrador do repositório analisar sua sugestão e fazer o `merge`
 no ramo **master**.
 
-Esse foi um exercício simples de colaboração usando Git e Github. Para
-mais informações sobre o workflow usando o Github, acesse [Github
+Para mais informações sobre o workflow usando o Github, acesse [Github
 Guides](https://guides.github.com/introduction/flow/). Um guia muito
 útil também é o [Happy Git and Github for the
 useR](https://happygitwithr.com/).
