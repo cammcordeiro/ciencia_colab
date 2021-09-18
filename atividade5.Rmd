@@ -8,6 +8,9 @@ output:
     toc_float: true
     number_sections: true
     code_folding: "show"
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 ```{r setup, include=FALSE}
@@ -22,38 +25,51 @@ library(mapdata)
 
 ## Website no GitHub
 
-[Github Pages](https://pages.github.com) allows you to serve up simple websites from your Github repo. Let's turn on this feature by visiting the **Settings** tab in `https://github.com/USER/r3-exercises`. Then click the **Pages** menu from the left navbar, choose Branch: **main**, folder **/ (root)**:
+O [Github Pages] (<https://pages.github.com>) permite que você construa
+websites simples a partir de seu repositório Github. Para ativar esse
+recurso, acesse a guia **Settings** em
+`https://github.com/SEU_USUÁRIO/ciencia_colab`. Em seguida, clique no
+menu **Pages** na barra de navegação do lado esquerdo.
 
-`r img(src='figs/github_settings-pages.png', width=700)`
+`r img(src='figs/github_pages1.png', width=700)`
 
-Click **Save**. You should now see that the site is "ready to be published":
+No botão abaixo de **Source**, escolha o **Branch** **main** e folder
+**/(root)**:
 
-`r img(src='figs/github_settings-pages-saved.png', width=700)`
+`r img(src='figs/github_pages2.png', width=700)`
 
-You should now be able to visit the website URL:
+Click **Save**. You should now see that the site is "ready to be
+published":
 
--   `https://USER.github.io/r3-exercises`
+`r img(src='figs/github_pages2a.png', width=700)`
 
-Notice how the URL is a slight rearrangement of your Github repo URL:
+Olhando no menu principal do repositório, você poderá confirmar que o repositório está ativo na forma de website
 
--   `https://github.com/USER/r3-exercises`
+`r img(src='figs/github_pages3.png', width=700)`
 
-For easily referencing the website, I recommend returning to the Github repo `https://github.com/USER/r3-exercises`, clicking the upper right **About** cog and adding it to the **Website** entry:
+E também poderá acessar a página no endereço:
 
-`r img(src='figs/github_about-website.png', width=500)`
+-   `https://SEU_USUÁRIO.github.io/ciencia_colab`
+
+Repare que o URL é apenas uma reordenação do endereço do repositório no Github:
+
+-   `https://github.com/SEU_USUÁRIO/ciencia_colab`
+
+Para ficar mais fácil de encontrarem o website, clique na ícone de engrenagem em frente a palavra **About** no menu do lado direito e uma janela irá abrir:
+
+`r img(src='figs/github_pages4.png', width=500)`
+
+O endereço do website irá aparecer em cinza, mas você terá que digitar ou copiar e colar o endereço neste campo. Basta salvar e já poderá ver o endereço na página principal do repositório.
 
 You should now see a handy link to get to your website similar to this:
 
-`r img(src='figs/github_about-website-saved.png', width=300)`
-
+`r img(src='figs/github_pages5.png', width=300)`
 
 ```{r dados}
 
 # ocorrencias <- read.csv("data/occ_GBIF-OBIS_par_hepa.csv", header = TRUE)
 
 ```
-
-
 
 ```{r}
 # # investigar niveis suspeitos
@@ -70,7 +86,6 @@ You should now see a handy link to get to your website similar to this:
 
 ```
 
-
 ```{r}
 
 # mapa + ocorrencias
@@ -84,7 +99,6 @@ You should now see a handy link to get to your website similar to this:
 
 ```
 
-
 ```{r}
 
 # ggplot() +
@@ -97,12 +111,9 @@ You should now see a handy link to get to your website similar to this:
 
 ```
 
-leaflet() %>% 
-  addTiles() %>% 
-  addMarkers(~decimalLongitude, ~decimalLatitude, 
-             popup = ~as.character(datasetName), 
-             label = ~as.character(scientificName),
-             clusterOptions = markerClusterOptions())
+leaflet() %\>% addTiles() %\>% addMarkers(\~decimalLongitude,
+\~decimalLatitude, popup = \~as.character(datasetName), label =
+\~as.character(scientificName), clusterOptions = markerClusterOptions())
 
 ```{r}
 
@@ -115,79 +126,91 @@ leaflet() %>%
 ```
 
 ### Datasets form Bio-Oracle
-layers_BO <- sdmpredictors::list_layers("Bio-ORACLE") 
-layers_BO %>% 
-  dplyr::select(name, layer_code) %>% 
-  filter(name %in% c("Phosphate concentration (mean at max depth)",
-                     "Nitrate concentration (mean at max depth)",
-                     "Light at bottom (mean at max depth)",
-                     "Iron concentration (mean at max depth)",
-                     "Dissolved oxygen concentration (range at max depth)",
-                     "Dissolved oxygen concentration (minimum at max depth)",
-                     "Dissolved oxygen concentration (mean at max depth)",
-                     "Current velocity (mean at max depth)",
-                     "Sea water temperature (mean at max depth)",
-                     "Primary production (mean at max depth)",
-                     "Sea water salinity (mean at max depth)",
-                     "Silicate concentration (mean at max depth)",
-                     "Sea surface temperature (mean)"))
+
+layers_BO \<- sdmpredictors::list_layers("Bio-ORACLE") layers_BO %\>%
+dplyr::select(name, layer_code) %\>% filter(name %in% c("Phosphate
+concentration (mean at max depth)", "Nitrate concentration (mean at max
+depth)", "Light at bottom (mean at max depth)", "Iron concentration
+(mean at max depth)", "Dissolved oxygen concentration (range at max
+depth)", "Dissolved oxygen concentration (minimum at max depth)",
+"Dissolved oxygen concentration (mean at max depth)", "Current velocity
+(mean at max depth)", "Sea water temperature (mean at max depth)",
+"Primary production (mean at max depth)", "Sea water salinity (mean at
+max depth)", "Silicate concentration (mean at max depth)", "Sea surface
+temperature (mean)"))
 
 options(sdmpredictors_datadir = "data/Bio-Oracle/")
 
 ### Download environmental data layers (Max. Temperature, Min. Salinity and Min. Nitrates at the sea bottom)
+
 ## load from server
-# environment.bottom <- load_layers(layercodes = c("BO2_curvelmean_bdmax", "BO2_dissoxltmax_bdmax", "BO2_salinitymean_bdmax", "BO2_tempmean_ss", "BO_calcite", "BO21_tempmean_bdmax"), 
-#             equalarea=FALSE, rasterstack=TRUE)
+
+# environment.bottom \<- load_layers(layercodes = c("BO2_curvelmean_bdmax", "BO2_dissoxltmax_bdmax", "BO2_salinitymean_bdmax", "BO2_tempmean_ss", "BO_calcite", "BO21_tempmean_bdmax"),
+
+# equalarea=FALSE, rasterstack=TRUE)
 
 ## load local source
-environment.bottom <- sdmpredictors::load_layers(c("BO_bathymean", "BO2_curvelmean_bdmax", "BO2_dissoxltmax_bdmax", "BO2_salinitymean_bdmax", "BO2_tempmean_ss", "BO_calcite", "BO21_tempmean_bdmax"), rasterstack=TRUE)
+
+environment.bottom \<- sdmpredictors::load_layers(c("BO_bathymean",
+"BO2_curvelmean_bdmax", "BO2_dissoxltmax_bdmax",
+"BO2_salinitymean_bdmax", "BO2_tempmean_ss", "BO_calcite",
+"BO21_tempmean_bdmax"), rasterstack=TRUE)
 
 ### SITES
+
 ### extract from rasters
 
-##
-library(sp)
-my.sites1 <- ocorrencias
-coordinates(my.sites1)=~decimalLongitude+decimalLatitude
-SpatialPoints(my.sites1, proj4string = CRS("+proj=longlat +datum=WGS84"))
-points <- SpatialPoints(my.sites1, proj4string=CRS(proj4string(environment.bottom)))
+## 
+
+library(sp) my.sites1 \<- ocorrencias
+coordinates(my.sites1)=\~decimalLongitude+decimalLatitude
+SpatialPoints(my.sites1, proj4string = CRS("+proj=longlat
++datum=WGS84")) points \<- SpatialPoints(my.sites1,
+proj4string=CRS(proj4string(environment.bottom)))
 
 # environmental
-library(raster)
-store_data1 <- list()
-for (i in 1:nlayers(environment.bottom)){
-  store_data1[[i]] = extract(environment.bottom[[i]], points, buffer = 10,
-                                     fun=mean,         # what to value to extract
-                                     df=F)
-}
 
-names(store_data1) = names(environment.bottom)
-marine_data <- bind_cols(ocorrencias, as_tibble(store_data1)) %>% 
-  mutate(BO_bathymean = ifelse(BO_bathymean > 0, BO_bathymean*-1, BO_bathymean))
+library(raster) store_data1 \<- list() for (i in
+1:nlayers(environment.bottom)){ store_data1[[i]] =
+extract(environment.bottom[[i]], points, buffer = 10, fun=mean, \# what
+to value to extract df=F) }
 
-write.csv(marine_data, "data/raster_data_par_hepa.csv", row.names = FALSE)
+names(store_data1) = names(environment.bottom) marine_data \<-
+bind_cols(ocorrencias, as_tibble(store_data1)) %\>% mutate(BO_bathymean
+= ifelse(BO_bathymean \> 0, BO_bathymean\*-1, BO_bathymean))
 
+write.csv(marine_data, "data/raster_data_par_hepa.csv", row.names =
+FALSE)
 
+------------------------------------------------------------------------
 
-***
 ## Workflow RStudio/Github
 
-Nesta próxima etapa, vamos continuar a testar novas ferramentas do `GitHub` e usar comandos para testar novos caminhos sem alterar o repositório principal (`branch` e `merge`), além de começar a colaborar com outros usuários (`fork`, `branch`, `pull request` e `merge`).
-
+Nesta próxima etapa, vamos continuar a testar novas ferramentas do
+`GitHub` e usar comandos para testar novos caminhos sem alterar o
+repositório principal (`branch` e `merge`), além de começar a colaborar
+com outros usuários (`fork`, `branch`, `pull request` e `merge`).
 
 PS: este tutorial de Git e GitHub foi adaptado do material criado pelos
-colegas [Thiago Silveira](https://peld-iloc.github.io/Peld_Iloc_Data_WS/github.html#4_Git) e [Ben Best](https://noaa-iea.github.io/r3-train/collaborate.html).
+colegas [Thiago
+Silveira](https://peld-iloc.github.io/Peld_Iloc_Data_WS/github.html#4_Git)
+e [Ben Best](https://noaa-iea.github.io/r3-train/collaborate.html).
 <br><br>
-
 
 ### Intermediário: `branch` e `merge`
 
-Os comandos `branch` e `merge` são muito úteis quando queremos testar diferentes caminhos. Imagine que você quer fazer uma figura e segue uma linha de raciocínio. Depois de se deparar com o resultado final, você percebe que poderia seguir um caminho diferente. Para não perder a primeira versão, que está no ramo **master**, você pode criar um `branch` , uma diferente abordagem em paralelo. Abaixo um resumo que que será realizado nesta seção:
+Os comandos `branch` e `merge` são muito úteis quando queremos testar
+diferentes caminhos. Imagine que você quer fazer uma figura e segue uma
+linha de raciocínio. Depois de se deparar com o resultado final, você
+percebe que poderia seguir um caminho diferente. Para não perder a
+primeira versão, que está no ramo **master**, você pode criar um
+`branch` , uma diferente abordagem em paralelo. Abaixo um resumo que que
+será realizado nesta seção:
 
-|         Comando          |                    Ação                    |
-|:------------------------:|:------------------------------------------:|
-| `branch`  |   Cria um novo "ramo" em seu repositório   |
-|  `merge`  | Incorporar um ramo criado ao ramo "master" |
+| Comando  |                    Ação                    |
+|:--------:|:------------------------------------------:|
+| `branch` |   Cria um novo "ramo" em seu repositório   |
+| `merge`  | Incorporar um ramo criado ao ramo "master" |
 
 <br><br>
 
@@ -196,10 +219,14 @@ novo `branch` clicando botão como indicadoi abaixo.
 
 <img src="figs/git_18.png" style="width:70%"/> <br><br>
 
-Depois de criar o novo `branch`  nomeado **Caminho_2**,
-foram realizadas algumas mudanças no script, fazendo um `commit` e `push` neste ramo. Depois disso, será feito um `merge` incorporando as modificações ao ramo
+Depois de criar o novo `branch` nomeado **Caminho_2**, foram realizadas
+algumas mudanças no script, fazendo um `commit` e `push` neste ramo.
+Depois disso, será feito um `merge` incorporando as modificações ao ramo
 principal **master**. No RStudio é possível somente criar os ramos pela
-aba **Git**, para fazer o `merge` você terá que usar linha de comando no **Terminal**. Note que na interface de `commit`, temos sempre que preencher o campo **commit message**. Abaixo, em verde, são destacadas as mudanças realizadas, vermelho a versão anterior.
+aba **Git**, para fazer o `merge` você terá que usar linha de comando no
+**Terminal**. Note que na interface de `commit`, temos sempre que
+preencher o campo **commit message**. Abaixo, em verde, são destacadas
+as mudanças realizadas, vermelho a versão anterior.
 
 <img src="figs/git_19.png" style="width:70%"/> <br><br>
 
@@ -226,7 +253,6 @@ atualizada, mais **upstream** do repositório no ramo `master`.
 
 <img src="figs/git_21.png" style="width:60%"/> <br><br>
 
-
 ### Avançado: `fork`, `branch`, `pull request` e `merge`
 
 Agora que já vimos como fazer as principais ações usando o **Git** e
@@ -234,12 +260,12 @@ Agora que já vimos como fazer as principais ações usando o **Git** e
 que consiste na grande vantagem de se usar o **Github**: a colaboração
 com controle de versão. Abaixo um resumo dos comandos abordados:
 
-|          Comando           |                    Ação                    |
-|:--------------------------:|:------------------------------------------:|
-|    `fork`     |        Copia um diretório do Github        |
-|  `branch`   |   Cria um novo "ramo" em seu repositório   |
-| `pull request`  |         Solitação de contribuição          |
-|   `merge`   | Incorporar um ramo criado ao ramo "master" |
+|    Comando     |                    Ação                    |
+|:--------------:|:------------------------------------------:|
+|     `fork`     |        Copia um diretório do Github        |
+|    `branch`    |   Cria um novo "ramo" em seu repositório   |
+| `pull request` |         Solitação de contribuição          |
+|    `merge`     | Incorporar um ramo criado ao ramo "master" |
 
 <br><br>
 
@@ -247,9 +273,9 @@ Para colaborar em um repositório você antes de mais nada copiar os
 arquivos para o seu **Github**. Essa ação é executada com o comando
 `fork`. Por exemplo, se dirija ao [respositório de
 teste](https://github.com/peld-iloc/repo_test) e localize no alto da
-página o botão `fork`. Depois escolha onde você gostaria
-de colocar, escolha seu usuário. No canto esquerdo da página mostrará
-que o repo está em seu usuário também.
+página o botão `fork`. Depois escolha onde você gostaria de colocar,
+escolha seu usuário. No canto esquerdo da página mostrará que o repo
+está em seu usuário também.
 
 <img src="figs/git_22.png" style="width:60%"/> <br><br>
 
@@ -258,10 +284,9 @@ GitHub (ou REPO)**. Tenha certeza de criar uma nova pasta fora das
 pastas que você já está trabalhando.
 
 Faça alguma alteração no script, insira uma linha de código, depois faça
-`commit`  e `push` . Note que seu
-repositório será atualizado. Navegue até o [respositório de
-teste](https://github.com/peld-iloc/repo_test) recém clonado e clique em
-**Contribute**.
+`commit` e `push` . Note que seu repositório será atualizado. Navegue
+até o [respositório de teste](https://github.com/peld-iloc/repo_test)
+recém clonado e clique em **Contribute**.
 
 <img src="figs/git_23.png" style="width:60%"/> <br><br>
 
@@ -280,9 +305,9 @@ contribuição. Visualize a página
 
 <img src="figs/git_26.png" style="width:60%"/> <br><br>
 
-Agora que você fez um `pull request`, basta você aguardar o
-adminstrador do repositório analisar sua sugestão e fazer o `merge`
-no ramo **master**.
+Agora que você fez um `pull request`, basta você aguardar o adminstrador
+do repositório analisar sua sugestão e fazer o `merge` no ramo
+**master**.
 
 Esse foi um exercício simples de colaboração usando Git e Github. Para
 mais informações sobre o workflow usando o Github, acesse [Github
@@ -291,4 +316,3 @@ Guides](https://guides.github.com/introduction/flow/). Um guia muito
 useR](https://happygitwithr.com/).
 
 ------------------------------------------------------------------------
-
