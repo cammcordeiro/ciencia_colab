@@ -467,8 +467,29 @@ div.tocify {
 </div>
 
 
-<div id="construir-documento-comentado-com-os-dados-das-bases-abertas-da-atividade-3" class="section level2" number="0.1">
-<h2 number="5.1"><span class="header-section-number">5.1</span> Construir documento comentado com os dados das bases abertas da atividade 3</h2>
+<div id="website-no-github" class="section level2" number="0.1">
+<h2 number="5.1"><span class="header-section-number">5.1</span> Website no GitHub</h2>
+<p>O [Github Pages] (<a href="https://pages.github.com" class="uri">https://pages.github.com</a>) permite que você construa websites simples a partir de seu repositório Github. Para ativar esse recurso, acesse a guia <strong>Settings</strong> em <code>https://github.com/SEU_USUÁRIO/ciencia_colab</code>. Em seguida, clique no menu <strong>Pages</strong> na barra de navegação do lado esquerdo.</p>
+<p><img src="figs/github_pages1.png" style="width:100%"/> <br><br></p>
+<p>No botão abaixo de <strong>Source</strong>, escolha o <strong>Branch</strong> <strong>main</strong> e folder <strong>/(root)</strong>:</p>
+<p><img src="figs/github_pages2.png" style="width:100%"/> <br><br></p>
+<p>Click <strong>Save</strong>. You should now see that the site is “ready to be published”:</p>
+<p><img src="figs/github_pages2a.png" style="width:100%"/> <br><br></p>
+<p>Olhando no menu principal do repositório, você poderá confirmar que o repositório está ativo na forma de website</p>
+<p><img src="figs/github_pages3.png" style="width:100%"/> <br><br></p>
+<p>E também poderá acessar a página no endereço:</p>
+<ul>
+<li><code>https://SEU_USUÁRIO.github.io/ciencia_colab</code></li>
+</ul>
+<p>Repare que o URL é apenas uma reordenação do endereço do repositório no Github:</p>
+<ul>
+<li><code>https://github.com/SEU_USUÁRIO/ciencia_colab</code></li>
+</ul>
+<p>Para ficar mais fácil de encontrarem o website, clique na ícone de engrenagem em frente a palavra <strong>About</strong> no menu do lado direito e uma janela irá abrir:</p>
+<p><img src="figs/github_pages4.png" style="width:100%"/> <br><br></p>
+<p>O endereço do website irá aparecer em cinza, mas você terá que digitar ou copiar e colar o endereço neste campo. Basta salvar e já poderá ver o endereço na página principal do repositório.</p>
+<p>You should now see a handy link to get to your website similar to this:</p>
+<p><img src="figs/github_pages5.png" style="width:100%"/> <br><br></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ocorrencias &lt;- read.csv(&quot;data/occ_GBIF-OBIS_par_hepa.csv&quot;, header = TRUE)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># # investigar niveis suspeitos</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># world &lt;- map_data(&quot;world&quot;)</span></span>

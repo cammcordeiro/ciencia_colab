@@ -13,6 +13,11 @@ editor_options:
     wrap: 72
 ---
 
+<style>
+body {
+text-align: justify}
+</style>
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
@@ -31,39 +36,45 @@ recurso, acesse a guia **Settings** em
 `https://github.com/SEU_USUÁRIO/ciencia_colab`. Em seguida, clique no
 menu **Pages** na barra de navegação do lado esquerdo.
 
-`r img(src='figs/github_pages1.png', width=700)`
+<img src="figs/github_pages1.png" style="width:100%"/> <br><br>
 
 No botão abaixo de **Source**, escolha o **Branch** **main** e folder
 **/(root)**:
 
-`r img(src='figs/github_pages2.png', width=700)`
+<img src="figs/github_pages2.png" style="width:100%"/> <br><br>
 
 Click **Save**. You should now see that the site is "ready to be
 published":
 
-`r img(src='figs/github_pages2a.png', width=700)`
+<img src="figs/github_pages2a.png" style="width:100%"/> <br><br>
 
-Olhando no menu principal do repositório, você poderá confirmar que o repositório está ativo na forma de website
+Olhando no menu principal do repositório, você poderá confirmar que o
+repositório está ativo na forma de website
 
-`r img(src='figs/github_pages3.png', width=700)`
+<img src="figs/github_pages3.png" style="width:100%"/> <br><br>
 
 E também poderá acessar a página no endereço:
 
 -   `https://SEU_USUÁRIO.github.io/ciencia_colab`
 
-Repare que o URL é apenas uma reordenação do endereço do repositório no Github:
+Repare que o URL é apenas uma reordenação do endereço do repositório no
+Github:
 
 -   `https://github.com/SEU_USUÁRIO/ciencia_colab`
 
-Para ficar mais fácil de encontrarem o website, clique na ícone de engrenagem em frente a palavra **About** no menu do lado direito e uma janela irá abrir:
+Para ficar mais fácil de encontrarem o website, clique na ícone de
+engrenagem em frente a palavra **About** no menu do lado direito e uma
+janela irá abrir:
 
-`r img(src='figs/github_pages4.png', width=500)`
+<img src="figs/github_pages4.png" style="width:100%"/> <br><br>
 
-O endereço do website irá aparecer em cinza, mas você terá que digitar ou copiar e colar o endereço neste campo. Basta salvar e já poderá ver o endereço na página principal do repositório.
+O endereço do website irá aparecer em cinza, mas você terá que digitar
+ou copiar e colar o endereço neste campo. Basta salvar e já poderá ver o
+endereço na página principal do repositório.
 
 You should now see a handy link to get to your website similar to this:
 
-`r img(src='figs/github_pages5.png', width=300)`
+<img src="figs/github_pages5.png" style="width:100%"/> <br><br>
 
 ```{r dados}
 
