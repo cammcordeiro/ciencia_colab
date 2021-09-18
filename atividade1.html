@@ -47,6 +47,108 @@
     </style>
 
 
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+.sourceCode .row {
+  width: 100%;
+}
+.sourceCode {
+  overflow-x: auto;
+}
+.code-folding-btn {
+  margin-right: -30px;
+}
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 
@@ -387,6 +489,19 @@ text-align: justify}
 <ol style="list-style-type: decimal">
 <li>Esta atividade deve ser realizada de modo individual e cada participante deverá baixar as amostras (i.e., fichas de campo) indicadas junto ao seu nome na tabela abaixo.</li>
 </ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">participante =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">1</span>),</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">fichas =</span> <span class="fu">c</span>(<span class="fu">read.csv</span>(<span class="st">&quot;~/github/cursodados/data/iris_mod.csv&quot;</span>, <span class="at">header =</span> T) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">distinct</span>(amostra) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">pull</span>()<span class="sc">%&gt;%</span> </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">sample</span>()),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="st">&#39;amostras&#39;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> <span class="st">&quot;n&quot;</span>, </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> <span class="st">&quot;fichas&quot;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
 <table>
 <colgroup>
 <col width="12%" />
@@ -401,43 +516,43 @@ text-align: justify}
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="left">A127, A137, A125, A81 , A16 , A3 , A11 , A34 , A107, A126, A139, A143, A122, A57 , A33</td>
+<td align="left">A33 , A136, A83 , A2 , A69 , A148, A59 , A47 , A63 , A106, A137, A132, A100, A80 , A86</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="left">A79 , A41 , A50 , A119, A145, A102, A65 , A37 , A23 , A55 , A63 , A25 , A103, A54 , A61</td>
+<td align="left">A75 , A44 , A111, A121, A124, A45 , A12 , A101, A56 , A123, A99 , A21 , A90 , A93 , A41</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="left">A134, A91 , A104, A96 , A88 , A40 , A24 , A13 , A113, A128, A64 , A106, A45 , A131, A112</td>
+<td align="left">A67 , A3 , A27 , A104, A82 , A32 , A89 , A19 , A22 , A60 , A131, A103, A28 , A119, A91</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="left">A123, A39 , A35 , A129, A114, A70 , A31 , A136, A4 , A148, A111, A18 , A44 , A109, A108</td>
+<td align="left">A51 , A87 , A36 , A74 , A133, A122, A23 , A73 , A52 , A126, A54 , A77 , A55 , A150, A129</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="left">A150, A118, A68 , A75 , A80 , A69 , A86 , A100, A38 , A62 , A9 , A6 , A59 , A5 , A32</td>
+<td align="left">A127, A10 , A1 , A64 , A113, A81 , A9 , A7 , A143, A72 , A48 , A105, A98 , A107, A70</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="left">A146, A21 , A124, A28 , A30 , A71 , A140, A121, A94 , A48 , A1 , A142, A2 , A46 , A72</td>
+<td align="left">A138, A125, A39 , A135, A115, A58 , A94 , A116, A35 , A42 , A149, A142, A85 , A40 , A114</td>
 </tr>
 <tr class="odd">
 <td align="right">7</td>
-<td align="left">A138, A89 , A26 , A78 , A60 , A133, A17 , A19 , A97 , A73 , A58 , A67 , A8 , A27 , A95</td>
+<td align="left">A17 , A134, A5 , A16 , A13 , A88 , A128, A109, A57 , A43 , A92 , A76 , A34 , A4 , A18</td>
 </tr>
 <tr class="even">
 <td align="right">8</td>
-<td align="left">A115, A99 , A14 , A42 , A22 , A53 , A120, A92 , A132, A15 , A141, A98 , A77 , A29 , A52</td>
+<td align="left">A66 , A46 , A120, A140, A117, A84 , A146, A71 , A95 , A78 , A14 , A96 , A26 , A8 , A102</td>
 </tr>
 <tr class="odd">
 <td align="right">9</td>
-<td align="left">A56 , A93 , A117, A144, A101, A66 , A83 , A12 , A76 , A110, A105, A47 , A7 , A135, A82</td>
+<td align="left">A29 , A118, A20 , A108, A65 , A112, A38 , A37 , A145, A139, A110, A61 , A68 , A97 , A11</td>
 </tr>
 <tr class="even">
 <td align="right">10</td>
-<td align="left">A74 , A51 , A149, A36 , A147, A87 , A84 , A85 , A20 , A116, A10 , A49 , A130, A90 , A43</td>
+<td align="left">A144, A6 , A25 , A24 , A49 , A53 , A15 , A141, A31 , A79 , A130, A30 , A50 , A147, A62</td>
 </tr>
 </tbody>
 </table>
@@ -450,7 +565,7 @@ text-align: justify}
 </div>
 
 <p>
-    <i>Colabore, espalhe a palavra, mas cite as fontes!</i>
+    <i>Colabore, compartilhe, e cite as fontes!</i>
 </p>
 
 

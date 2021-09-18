@@ -19,7 +19,7 @@ text-align: justify}
 </style>
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
 ```
 
@@ -31,22 +31,30 @@ recurso, acesse a guia **Settings** em
 `https://github.com/SEU_USUÁRIO/ciencia_colab`. Em seguida, clique no
 menu **Pages** na barra de navegação do lado esquerdo.
 
+<center>
 <img src="figs/github_pages1.png" style="width:100%"/> <br><br>
+</center>
 
 No botão abaixo de **Source**, escolha o **Branch** **main** e folder
 **/(root)**:
 
+<center>
 <img src="figs/github_pages2.png" style="width:100%"/> <br><br>
+</center>
 
 Click **Save**. You should now see that the site is "ready to be
 published":
 
+<center>
 <img src="figs/github_pages2a.png" style="width:100%"/> <br><br>
+</center>
 
 Olhando no menu principal do repositório, você poderá confirmar que o
 repositório está ativo na forma de website
 
-<img src="figs/github_pages3.png" style="width:100%"/> <br><br>
+<center>
+<img src="figs/github_pages3.png" style="width:50%"/> <br><br>
+</center>
 
 E também poderá acessar a página no endereço:
 
@@ -61,7 +69,9 @@ Para ficar mais fácil de encontrarem o website, clique na ícone de
 engrenagem em frente a palavra **About** no menu do lado direito e uma
 janela irá abrir:
 
-<img src="figs/github_pages4.png" style="width:100%"/> <br><br>
+<center>
+<img src="figs/github_pages4.png" style="width:50%"/> <br><br>
+</center>
 
 O endereço do website irá aparecer em cinza, mas você terá que digitar
 ou copiar e colar o endereço neste campo. Basta salvar e já poderá ver o
@@ -69,7 +79,9 @@ endereço na página principal do repositório.
 
 Ao final, você deve ver algo como isso:
 
-<img src="figs/github_pages5.png" style="width:100%"/> <br><br>
+<center>
+<img src="figs/github_pages5.png" style="width:50%"/> <br><br>
+</center>
 
 ***
 
@@ -105,7 +117,9 @@ será realizado nesta seção:
 O comando git no terminal é `git branch`. No RStudio você pode criar um
 novo `branch` clicando botão como indicado abaixo.
 
+<center>
 <img src="figs/git_18.png" style="width:70%"/> <br><br>
+</center>
 
 Depois de criar o novo `branch` nomeado **Caminho_2**, foram realizadas
 algumas mudanças na rotina, fazendo um `commit` e `push` neste ramo.
@@ -116,7 +130,9 @@ aba **Git**, para fazer o `merge` você terá que usar linha de comando no
 preencher o campo **commit message**. Abaixo, em verde, são destacadas
 as mudanças realizadas, vermelho a versão anterior.
 
+<center>
 <img src="figs/git_19.png" style="width:70%"/> <br><br>
+</center>
 
 Para fazer o merge do ramo **Caminho_2**, primeiro você precisa voltar
 para o ramo **master**. Na aba git do RStudio troque de **Caminho_2**
@@ -134,196 +150,156 @@ git push
 
 Você verá na aba **Terminal** algo semelhante a figura abaixo.
 
+<center>
 <img src="figs/git_20.png" style="width:100%"/> <br><br>
+</center>
 
 Voltando para o repositório no **Github** podemos visualizar a versão
 atualizada, mais **upstream** do repositório no ramo `master`.
 
+<center>
 <img src="figs/git_21.png" style="width:60%"/> <br><br>
+</center>
 
-### Avançado: `fork`, `branch`, `pull request` e `merge`
+***
 
-Agora que já vimos como fazer as principais ações usando o **Git** e
-**Github**, a partir deste ponto podemos executar um grupo de comandos
-que consiste na grande vantagem de se usar o **Github**: a colaboração
-com controle de versão. Abaixo um resumo dos comandos abordados:
+## Ferramentas extra
 
-|    Comando     |                    Ação                    |
-|:--------------:|:------------------------------------------:|
-|     `fork`     |        Copia um diretório do Github        |
-|    `branch`    |   Cria um novo "ramo" em seu repositório   |
-| `pull request` |         Solitação de contribuição          |
-|    `merge`     | Incorporar um ramo criado ao ramo "master" |
+### Gráficos dinâmicos
 
-<br><br>
+#### Leaflet
 
-Para colaborar em um repositório você antes de mais nada copiar os
-arquivos para o seu **Github**. Essa ação é executada com o comando
-`fork`. Por exemplo, se dirija ao [respositório de
-teste](https://github.com/peld-iloc/repo_test) e localize no alto da
-página o botão `fork`. Depois escolha onde você gostaria de colocar,
-escolha seu usuário. No canto esquerdo da página mostrará que o repo
-está em seu usuário também.
+O pacote `leaflet` permite adicionar mapas interativos nos documentos em `html`, permitindo que o usuário possa investigar com maior detalhe os detalhes plotados no mapa. Abaixo, vamos criar um mapa utilizando os dados de ocorrência do gênero *Corvus* (apenas para mudar do ambiente marinho um pouco).
+As etapas de aquisição e filtragem dos dados são as mesmas da [atividade 3](atividade3.html), então não serão detalhadas novamente. 
 
-<img src="figs/git_22.png" style="width:60%"/> <br><br>
-
-Agora faça novamente os passos descritos em **4.2 Criando repositório no
-GitHub (ou REPO)**. Tenha certeza de criar uma nova pasta fora das
-pastas que você já está trabalhando.
-
-Faça alguma alteração no script, insira uma linha de código, depois faça
-`commit` e `push` . Note que seu repositório será atualizado. Navegue
-até o [respositório de teste](https://github.com/peld-iloc/repo_test)
-recém clonado e clique em **Contribute**.
-
-<img src="figs/git_23.png" style="width:60%"/> <br><br>
-
-Aparecerá uma nova página comparando o script antigo com o novo.
-
-<img src="figs/git_24.png" style="width:60%"/> <br><br>
-
-Clique em **Create pull request**. Com o objetivo de facilitar a
-colaboração, é eficiente você comentar o objetivo da sua contribuição.
-
-<img src="figs/git_25.png" style="width:60%"/> <br><br>
-
-Clique novamente no botão **Create pull request** para confirmar sua
-contribuição. Visualize a página
-<https://github.com/peld-iloc/repo_test> e veja como ficou.
-
-<img src="figs/git_26.png" style="width:60%"/> <br><br>
-
-Agora que você fez um `pull request`, basta você aguardar o adminstrador
-do repositório analisar sua sugestão e fazer o `merge` no ramo
-**master**.
 ```{r dados}
 
 library(tidyverse)
-library(ggmap)
-library(maps)
-library(mapdata)
+library(rgbif)
 
-# ocorrencias <- read.csv("data/occ_GBIF-OBIS_par_hepa.csv", header = TRUE)
+# ocorrencias
+corvus_gbif <- occ_data(scientificName = "Corvus", 
+                      hasCoordinate = TRUE,
+                      hasGeospatialIssue = FALSE)
+# checar issues
+issues_gbif <- corvus_gbif$data$issues %>% 
+  unique() %>% 
+  strsplit(., "[,]") %>% 
+  unlist()
 
-```
+gbif_issues() %>% 
+  data.frame() %>% 
+  filter(code %in% issues_gbif)
 
-```{r}
-# # investigar niveis suspeitos
-# world <- map_data("world")
-# 
-# head(world)
-# 
-# 
-# # mapa
-# ggplot() +
-#   geom_polygon(data = world, aes(x = long, y = lat, group = group)) +
-#     coord_fixed() +
-#     theme_classic()
-
-```
-
-```{r}
-
-# mapa + ocorrencias
-# ggplot() +
-#   geom_polygon(data = world, aes(x = long, y = lat, group = group)) +
-#   coord_fixed() +
-#   theme_classic() +
-#   geom_point(data = ocorrencias, aes(x = decimalLongitude, y = decimalLatitude, color = datasetName)) +
-#   theme(legend.title = element_blank()) +
-#   labs(x = "longitude", y = "latitude", title = expression(italic("Paracanthurus hepatus")))
+# selecionar variaveis
+corvus <- corvus_gbif$data %>%
+  dplyr::select(scientificName, decimalLatitude, decimalLongitude) %>% 
+  distinct()
 
 ```
+<br><br>
+
+Depois de carregar os dados, basta criar um mapa seguindo a sintaxe abaixo. Nela, indicamos um `data.frame` com dados de coordenadas geográficas em graus decimais. A função `addTiles` é responsável por indicar o tipo de mapa base utilizado. Aqui vamos utilizar o fundo padrão, mas para mais opções acesse este [tutorial](https://rstudio.github.io/leaflet/basemaps.html). Vamos plotar o mapa e dar uma conferida nas ocorrências.
 
 ```{r}
 
-# ggplot() +
-#   geom_polygon(data = world, aes(x = long, y = lat, group = group)) +
-#   coord_fixed() +
-#   theme_classic() +
-#   geom_point(data = ocorrencias, aes(x = decimalLongitude, y = decimalLatitude, color = datasetName, size = depth)) +
-#   #theme(legend.title = element_blank()) +
-#   labs(x = "longitude", y = "latitude", title = expression(italic("Paracanthurus hepatus")))
+library(leaflet)
+
+# conferir no mapa
+corvus %>% 
+  leaflet() %>% 
+  addTiles() %>% 
+  addMarkers(~decimalLongitude,
+             ~decimalLatitude)
 
 ```
 
-leaflet() %\>% addTiles() %\>% addMarkers(\~decimalLongitude,
-\~decimalLatitude, popup = \~as.character(datasetName), label =
-\~as.character(scientificName), clusterOptions = markerClusterOptions())
+Podemos também dar uma incrementada mudando o tipo de marcador e incluir diferenças de acordo com os níveis de um fator, neste caso `datasetName`. Também é importante adicionar uma legenda ao mapa para indicar o significado das cores dos marcadores. Novamente, acesse o tutorial indicado para aprender como explorar ainda mais os recursos desta ferramenta.
+<br>br>
+
+```{r leaflet1}
+
+pal <- colorFactor(palette = "viridis", domain = unique(corvus$scientificName))
+
+corvus %>% 
+  leaflet() %>% 
+  addTiles() %>% 
+  addCircleMarkers(~decimalLongitude,
+                   ~decimalLatitude,
+                   radius = 5,
+                   label = ~as.character(scientificName),
+                   color = ~pal(corvus$scientificName),
+                   stroke = FALSE, fillOpacity = 0.5) %>% 
+  addLegend('bottomright', 
+            colors = unique(pal(corvus$scientificName)), 
+            labels = unique(corvus$scientificName),
+            title = 'Espécie',
+            opacity = 0.5)
+```
+
+***
+
+#### Plotly
+
+A biblioteca `Plotly` cria gráficos interativos customizáveis dos mais diversos tipos: gráficos de linha, gráficos de dispersão, gráficos de área, gráficos de barras, *boxplot*, histogramas, *heatmaps*, gráficos 3D (baseados em WebGL) e até gráficos animados.
+
+A seguir, vamos utilizar um exemplo simples utilizando os mesmos dados dos corvos. Em princípio, vamos plotar os dados de ocorrência e relação à latitude, uma vez que a maioria deles está concentrada no hemisfério norte.
+
 
 ```{r}
 
-# ggplot() +
-#   theme_classic() +
-#   geom_point(data = ocorrencias, aes(x = decimalLatitude, y = depth, color = datasetName)) #+
-#   #theme(legend.title = element_blank()) +
-#   #labs(x = "longitude", y = "latitude", title = expression(italic("Paracanthurus hepatus")))
+corvus %>% 
+  mutate(lat = round(decimalLatitude)) %>% 
+  group_by(lat, scientificName) %>%
+  summarise(occ = length(scientificName)) %>%
+  ggplot(aes(y = occ, x = lat, color = scientificName)) +
+    geom_point() +
+    geom_smooth() +
+    theme_classic() +
+    labs(x = "latitude", y = 'ocorrências')
 
 ```
+<br><br>
 
-### Datasets form Bio-Oracle
+Acima observamos que existe apenas uma ocorrência (*Corvus coronoides*) no hemisfério sul (latitude < 0) e isso dificulta a visualização do restante dos dados. Podemos limitar a escala do eixo para focar na área de maior concentração de dados.
 
-layers_BO \<- sdmpredictors::list_layers("Bio-ORACLE") layers_BO %\>%
-dplyr::select(name, layer_code) %\>% filter(name %in% c("Phosphate
-concentration (mean at max depth)", "Nitrate concentration (mean at max
-depth)", "Light at bottom (mean at max depth)", "Iron concentration
-(mean at max depth)", "Dissolved oxygen concentration (range at max
-depth)", "Dissolved oxygen concentration (minimum at max depth)",
-"Dissolved oxygen concentration (mean at max depth)", "Current velocity
-(mean at max depth)", "Sea water temperature (mean at max depth)",
-"Primary production (mean at max depth)", "Sea water salinity (mean at
-max depth)", "Silicate concentration (mean at max depth)", "Sea surface
-temperature (mean)"))
+```{r}
 
-options(sdmpredictors_datadir = "data/Bio-Oracle/")
+corvus %>% 
+  mutate(lat = round(decimalLatitude)) %>% 
+  group_by(lat, scientificName) %>%
+  summarise(occ = length(scientificName)) %>%
+  ggplot(aes(y = occ, x = lat, color = scientificName)) +
+    geom_point() +
+    geom_smooth() +
+    theme_classic() +
+    labs(x = "latitude", y = 'ocorrências') +
+    xlim(40, 75)
 
-### Download environmental data layers (Max. Temperature, Min. Salinity and Min. Nitrates at the sea bottom)
+```
+<br><br>
 
-## load from server
+Uma das vantagens do `Plotly` é permitir interagir com os gráficos e isso inclui selecionar alguns dados, verificar valores passando a cursor do *mouse* sobre os elementos gráficos e dar *zoom* em partes do gráfico. Veja o exemplo abaixo. Nele é possível ter uma ideia de todos os valores e investigar os valores na região com maior concentração de dados.
 
-# environment.bottom \<- load_layers(layercodes = c("BO2_curvelmean_bdmax", "BO2_dissoxltmax_bdmax", "BO2_salinitymean_bdmax", "BO2_tempmean_ss", "BO_calcite", "BO21_tempmean_bdmax"),
+```{r}
 
-# equalarea=FALSE, rasterstack=TRUE)
+library(plotly)
 
-## load local source
+cc <- corvus %>% 
+  mutate(lat = round(decimalLatitude)) %>% 
+  group_by(lat, scientificName) %>%
+  summarise(occ = length(scientificName)) %>%
+  ggplot(aes(y = occ, x = lat, color = scientificName)) +
+    geom_point() +
+    geom_smooth() +
+    theme_classic() +
+    labs(x = "latitude", y = 'ocorrências')
 
-environment.bottom \<- sdmpredictors::load_layers(c("BO_bathymean",
-"BO2_curvelmean_bdmax", "BO2_dissoxltmax_bdmax",
-"BO2_salinitymean_bdmax", "BO2_tempmean_ss", "BO_calcite",
-"BO21_tempmean_bdmax"), rasterstack=TRUE)
+ggplotly(cc)
 
-### SITES
+```
+<br><br>
 
-### extract from rasters
+Este foi apenas um exemplo, para mais funções, acesse o tutorial do [`Plotly`](https://plotly.com/r/).
 
-## 
-
-library(sp) my.sites1 \<- ocorrencias
-coordinates(my.sites1)=\~decimalLongitude+decimalLatitude
-SpatialPoints(my.sites1, proj4string = CRS("+proj=longlat
-+datum=WGS84")) points \<- SpatialPoints(my.sites1,
-proj4string=CRS(proj4string(environment.bottom)))
-
-# environmental
-
-library(raster) store_data1 \<- list() for (i in
-1:nlayers(environment.bottom)){ store_data1[[i]] =
-extract(environment.bottom[[i]], points, buffer = 10, fun=mean, \# what
-to value to extract df=F) }
-
-names(store_data1) = names(environment.bottom) marine_data \<-
-bind_cols(ocorrencias, as_tibble(store_data1)) %\>% mutate(BO_bathymean
-= ifelse(BO_bathymean \> 0, BO_bathymean\*-1, BO_bathymean))
-
-write.csv(marine_data, "data/raster_data_par_hepa.csv", row.names =
-FALSE)
-
-
-
-Esse foi um exercício simples de colaboração usando Git e Github. Para
-mais informações sobre o workflow usando o Github, acesse [Github
-Guides](https://guides.github.com/introduction/flow/). Um guia muito
-útil também é o [Happy Git and Github for the
-useR](https://happygitwithr.com/).
-
-------------------------------------------------------------------------
+***

@@ -9,9 +9,6 @@ body {
 text-align: justify}
 </style>
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
 ## TEERN: Ferramentas em ciência colaborativa e bancos de dados abertos
 
