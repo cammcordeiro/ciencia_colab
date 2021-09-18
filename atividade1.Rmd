@@ -38,7 +38,7 @@ Vale indicar que, as coordenadas indicadas nas fichas de campo foram obtidas com
 
 ## Instruções
 
-A atividade 1 consiste em transferir os dados indicados nas fichas de campo para o formato de planilha. As fichas encontram-se na pasta compartilhada do [Google Drive da disciplina](link_pasta).
+A atividade 1 consiste em transferir os dados indicados nas fichas de campo para o formato de planilha. As fichas encontram-se na pasta compartilhada do [Google Drive da disciplina](https://drive.google.com/drive/folders/1S_yTN8DfdS1l6RtB8McWUoEeaBZLAJuGGqQdUkMkUD87ARpeelck2iyXv_c1tR4qnQWQhArk?usp=sharing).
 
 1.  Esta atividade deve ser realizada de modo individual e cada participante deverá baixar as amostras (i.e., fichas de campo) indicadas junto ao seu nome na tabela abaixo.
 
@@ -62,6 +62,6 @@ data.frame(
 
 2.  Ao finalizar o planilhamento das informações, o arquivo deverá ser salvo no formato `*.csv` (*comma separated values*) e nomeado seguindo o padrão: **atividade1_NOME-DO-PARTICIPANTE.csv**
 
-3.  Subir a planilha para no [drive compartilhado](link)
+3.  Subir a planilha para no [drive compartilhado](https://drive.google.com/drive/folders/1S_yTN8DfdS1l6RtB8McWUoEeaBZLAJuGGqQdUkMkUD87ARpeelck2iyXv_c1tR4qnQWQhArk?usp=sharing)
 
 ***
