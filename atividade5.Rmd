@@ -20,7 +20,32 @@ library(mapdata)
 
 ```
 
-## Construir documento comentado com os dados das bases abertas da atividade 3
+## Website no GitHub
+
+[Github Pages](https://pages.github.com) allows you to serve up simple websites from your Github repo. Let's turn on this feature by visiting the **Settings** tab in `https://github.com/USER/r3-exercises`. Then click the **Pages** menu from the left navbar, choose Branch: **main**, folder **/ (root)**:
+
+`r img(src='figs/github_settings-pages.png', width=700)`
+
+Click **Save**. You should now see that the site is "ready to be published":
+
+`r img(src='figs/github_settings-pages-saved.png', width=700)`
+
+You should now be able to visit the website URL:
+
+-   `https://USER.github.io/r3-exercises`
+
+Notice how the URL is a slight rearrangement of your Github repo URL:
+
+-   `https://github.com/USER/r3-exercises`
+
+For easily referencing the website, I recommend returning to the Github repo `https://github.com/USER/r3-exercises`, clicking the upper right **About** cog and adding it to the **Website** entry:
+
+`r img(src='figs/github_about-website.png', width=500)`
+
+You should now see a handy link to get to your website similar to this:
+
+`r img(src='figs/github_about-website-saved.png', width=300)`
+
 
 ```{r dados}
 

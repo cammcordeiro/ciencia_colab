@@ -258,7 +258,7 @@ versão no nosso repo recém criado.
 
 ## Workflow RStudio/Github
 
-### Básico: `commit` e `push`
+### Controle de versão: `commit` e `push`
 
 Agora podemos criar um script teste para fazermos o primeiro `commit` e `push`, abaixo um resumo do será
 realizado:
@@ -313,3 +313,66 @@ a versão atualizada. Deve estar similar a figura abaixo.
 <img src="figs/git_17.png" style="width:70%"/> <br><br>
 
 
+### Colaboração: `fork`, `branch`, `pull request` e `merge`
+
+Agora que já vimos como fazer as principais ações usando o **Git** e
+**Github**, a partir deste ponto podemos executar um grupo de comandos
+que consiste na grande vantagem de se usar o **Github**: a colaboração
+com controle de versão. Abaixo um resumo dos comandos abordados:
+
+|          Comando           |                    Ação                    |
+|:--------------------------:|:------------------------------------------:|
+|    `fork`     |        Copia um diretório do Github        |
+|  `branch`   |   Cria um novo "ramo" em seu repositório   |
+| `pull request`  |         Solitação de contribuição          |
+|   `merge`   | Incorporar um ramo criado ao ramo "master" |
+
+<br><br>
+
+Para colaborar em um repositório você antes de mais nada copiar os
+arquivos para o seu **Github**. Essa ação é executada com o comando
+`fork`. Por exemplo, se dirija ao [respositório de
+teste - **CCBD_atividade4**](https://github.com/cammcordeiro/CCBD_atividade4) e localize no alto da página o botão `fork`. Depois escolha onde você gostaria
+de colocar, escolha seu usuário. No canto esquerdo da página mostrará
+que o repo está em seu usuário também.
+
+<img src="figs/git_22.png" style="width:60%"/> <br><br>
+
+Agora faça novamente os passos descritos em **4.2 Criando repositório no
+GitHub (ou REPO)**. Tenha certeza de criar uma nova pasta fora das
+pastas que você já está trabalhando.
+
+Faça alguma alteração no script, insira uma linha de código, depois faça
+`commit`  e `push` . Note que seu
+repositório será atualizado. Navegue até o [respositório de
+teste](https://github.com/peld-iloc/repo_test) recém clonado e clique em
+**Contribute**.
+
+<img src="figs/git_23.png" style="width:60%"/> <br><br>
+
+Aparecerá uma nova página comparando o script antigo com o novo.
+
+<img src="figs/git_24.png" style="width:60%"/> <br><br>
+
+Clique em **Create pull request**. Com o objetivo de facilitar a
+colaboração, é eficiente você comentar o objetivo da sua contribuição.
+
+<img src="figs/git_25.png" style="width:60%"/> <br><br>
+
+Clique novamente no botão **Create pull request** para confirmar sua
+contribuição. Visualize a página
+<https://github.com/peld-iloc/repo_test> e veja como ficou.
+
+<img src="figs/git_26.png" style="width:60%"/> <br><br>
+
+Agora que você fez um `pull request`, basta você aguardar o
+adminstrador do repositório analisar sua sugestão e fazer o `merge`
+no ramo **master**.
+
+Esse foi um exercício simples de colaboração usando Git e Github. Para
+mais informações sobre o workflow usando o Github, acesse [Github
+Guides](https://guides.github.com/introduction/flow/). Um guia muito
+útil também é o [Happy Git and Github for the
+useR](https://happygitwithr.com/).
+
+------------------------------------------------------------------------
