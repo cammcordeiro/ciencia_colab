@@ -12,7 +12,7 @@ text-align: justify}
 ***
 
 <center>
-<img src="figs/curso_pg.png" style="width:100%"/> <br><br>
+<img src="figs/curso_pg.png" style="width:80%"/> <br><br>
 </center>
 
 #### O link a seguir leva ao Google Drive da disciplina e contém o material de apoio ao curso.

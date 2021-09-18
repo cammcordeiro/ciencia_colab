@@ -37,7 +37,7 @@ A atividade 2 será realizada para padronizar os dados gerados na atividade 1 us
 <center><img src= "atividade3_files/figure-html/unnamed-chunk-13-1.png" style= "width:70%"></center>
 <br><br>
 
-A atividade 3 inclui exercícios para a criação de uma rotina em R para a aquisição de dados em bases abertas, neste caso, utilizando-se o [GBIF](https://www.gbif.org/).
+A atividade 3 inclui exercícios para a criação de uma rotina em R para a aquisição de dados em bases abertas, neste caso, utilizando-se o [GBIF](https://www.gbif.org/). Além disso, serão apresentadas ferramentas para conferência e limpeza de dados.
 <br><br>
 
 ***
@@ -47,6 +47,7 @@ A atividade 3 inclui exercícios para a criação de uma rotina em R para a aqui
 <br><br>
 
 A atividade 4 é uma extensão da atividade 3, onde os participantes terão de traduzir a rotina criada em R para uma rotina comentada em RMarkdown indicando detalhes a respeito do processo de aquisição e limpeza dos dados.
+Na segunda parte da atividade, serão testadas ferramentas de compartilhamento no [GitHub](https://github.com/).
 <br><br>
 
 ***
@@ -55,7 +56,7 @@ A atividade 4 é uma extensão da atividade 3, onde os participantes terão de t
 <center><img src= "figs/data_cycle.png" style= "width:50%"></center>
 <br><br>
 
-A atividade 5 finaliza o processo de ferramentas básicas de compartilhamento e reprodutibilidade de dados científicos. Nesta atividade, os participantes irão tranformar as rotinas criadas nas atividades anteriores em um website além de incluir alguns `chunck` de código interativo.
+A atividade 5 finaliza o processo de ferramentas básicas de compartilhamento e reprodutibilidade de dados científicos. Nesta atividade, os participantes irão tranformar as rotinas criadas nas atividades anteriores em um website além de incluir alguns `chunck` de recursos interativos.
 <br><br>
 
 ***

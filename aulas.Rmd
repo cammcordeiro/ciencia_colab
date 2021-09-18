@@ -15,7 +15,7 @@ text-align: justify}
 
 Todo o material das aulas pode ser acessados no cronograma baixo clicando-se os links correspondentes:
 
-------------------------------------------------------------------------
+***
 
 ### Cronograma
 
@@ -72,3 +72,5 @@ Todo o material das aulas pode ser acessados no cronograma baixo clicando-se os 
 -   Considerações finais da disciplina
 
 -   [Atividade 5]()
+
+***
