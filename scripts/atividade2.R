@@ -10,12 +10,12 @@ library(taxize)
 ## carregar dados
 
 # dados prontos
-iris <- read.csv("~/github/cursodados/data/iris_mod.csv", header = T)
+iris <- read.csv("data/iris_mod.csv", header = T)
 
 lapply(iris, unique)
 
 # dados dos participantes
-setwd("~/Google Drive/PARCERIAS/POLE to POLE/data/spreadsheets/loggers/Fortaleza/Envlogger files/2021/")
+setwd("output/atividade1/")
 files21 <- list.files(pattern = '\\.csv', recursive = T) # includes all subfolders
 dados21 <- plyr::adply(files21, 1, read.csv, header = T)
 
@@ -56,11 +56,18 @@ iris_1 <- iris %>%
          basisOfRecord = "Human observation")
 
 
+#
+head(iris_1)
+
+
 ### criando o eventCore ###
+
 eventCore <- iris_1 %>% 
   select(eventID, eventDate, decimalLongitude, decimalLatitude, locality, site,
          geodeticDatum, verbatimCoordinateSystem, georeferenceProtocol) %>% 
   distinct() 
+
+head(eventCore)
 
 
 ### criando o occurrence ###
@@ -68,6 +75,9 @@ occurrences <- iris_1 %>%
   select(eventID, occurrenceID, scientificName, scientificNameID,
          recordedBy, taxonRank, organismQuantityType, basisOfRecord) %>%
   distinct() 
+
+
+head(occurrences)
 
 
 ## criando o measurementsOrFacts
@@ -80,6 +90,8 @@ eMOF <- iris_1 %>%
          measurementType = plyr::mapvalues(measurementType,
                                            from = c("Sepal.Length", "Sepal.Width", "Petal.Width", "Petal.Length"), 
                                            to = c("sepal length", "sepal width", "petal width", "petal length")))
+
+head(eMOF)
 
 ### controle de qualidade
 
