@@ -43,11 +43,3 @@ c("Vanessa", "Gustavo", "Pedro", "Isabella", "Carlos", "Gabriel", "Nilson") %>%
   sample(3)
 
 
-
-temp <- list.files(pattern="*.csv")
-for(i in 1:length(temp)) {                              # Head of for-loop
-  assign(paste0("data", i),                                   # Read and store data frames
-         read.csv2(paste0("/Users/cesarcordeiro/github/ciencia_colab/output/atividade1/",
-                          temp[i])))
-}
-
