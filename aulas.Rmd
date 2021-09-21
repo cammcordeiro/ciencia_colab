@@ -29,7 +29,7 @@ Todo o material das aulas pode ser acessados no cronograma baixo clicando-se os 
 
 -   [Atividade 1](atividade1.html)
 
-[**Aula 2**] (21/09)
+[**Aula 2**](https://docs.google.com/presentation/d/13qW7-0powKqSo4iYWSCgT3FtbY9GjHI9Bdxm7Tc4EgY/edit?usp=sharing) (21/09)
 
 -   Padrões e boas práticas no compartilhamento de dados
 
@@ -39,7 +39,7 @@ Todo o material das aulas pode ser acessados no cronograma baixo clicando-se os 
 
 -   Análise crítica de artigos científicos
 
--   [Atividade 2]()
+-   [Atividade 2](atividade2.html)
 
 [**Aula 3**] (22/09)
 
