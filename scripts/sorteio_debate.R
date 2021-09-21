@@ -1,0 +1,53 @@
+############################
+### Sorteio apresentacao ###
+############################
+
+set.seed(13)
+
+#############
+## 21-07-2021
+# "Marina", "Carolina" -> não incluídas
+
+# Sorteio de 3 = (1) apresentar, 2 e 3 (debater)
+c("Vanessa", "Gustavo", "Pedro", "Isabella", "Carlos", "Gabriel", "Nilson") %>% 
+  sample(3)
+
+# [1] "Gustavo"  "Carlos"   "Isabella"
+# - governança de dados de origem de conhecimento de povos indígenas 
+
+
+#############
+## 22-07-2021
+# "Carolina" -> não incluídas
+
+# Sorteio de 3 = (1) apresentar, 2 e 3 (debater)
+c("Vanessa", "Pedro", "Gabriel", "Nilson", "Marina") %>% 
+  sample(3)
+
+
+#############
+## 23-07-2021
+# "Carolina" -> não incluída
+
+# Ultimos 3 = (1) apresentar, 2 e 3 (debater)
+c("Carolina")
+
+
+
+#############
+## 24-07-2021
+# "Marina", "Carolina" -> não incluídas
+
+# Sorteio de 3 = (1) apresentar, 2 e 3 (debater)
+c("Vanessa", "Gustavo", "Pedro", "Isabella", "Carlos", "Gabriel", "Nilson") %>% 
+  sample(3)
+
+
+
+temp <- list.files(pattern="*.csv")
+for(i in 1:length(temp)) {                              # Head of for-loop
+  assign(paste0("data", i),                                   # Read and store data frames
+         read.csv2(paste0("/Users/cesarcordeiro/github/ciencia_colab/output/atividade1/",
+                          temp[i])))
+}
+
