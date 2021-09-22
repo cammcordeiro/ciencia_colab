@@ -5,6 +5,7 @@
 ## Exemplo: *Finding Dori*
 
 # carregar pacotes
+
 library(tidyverse)
 
 
@@ -18,7 +19,7 @@ library(rgbif)
 # baixar ocorrencias
 dori_gbif <- occ_data(scientificName = "Paracanthurus hepatus", 
                       hasCoordinate = TRUE,
-                      hasGeospatialIssue=FALSE)
+                      hasGeospatialIssue = FALSE)
 
 # dimensoes
 dim(dori_gbif)
@@ -37,13 +38,14 @@ gbif_issues()
 
 # checar problemas reportados
 issues_gbif <- dori_gbif$data$issues %>% 
-  unique() %>% 
+  # unique() %>% 
   strsplit(., "[,]") %>% 
-  unlist()
+  unlist() %>% 
+  unique()
 
 
 # ver quais os problemas encontrados no dataset baixado
-gbif_issues() %>% 
+gbif_issues() %>%
   data.frame() %>% 
   filter(code %in% issues_gbif)
 
@@ -106,7 +108,7 @@ ggplot() +
   geom_polygon(data = world, aes(x = long, y = lat, group = group)) +
   coord_fixed() +
   theme_classic() +
-  geom_point(data = dori_gbif_ok, aes(x = decimalLongitude, y = decimalLatitude), color = "red") +
+  geom_point(data = dori_gbif1, aes(x = decimalLongitude, y = decimalLatitude), color = "red") +
   labs(x = "longitude", y = "latitude", title = expression(italic("Paracanthurus hepatus")))
 
 
@@ -310,6 +312,8 @@ all_data <- bind_rows(dori_gbif_ok %>%
   mutate(scientificName = "Paracanthurus hepatus") %>% 
   dplyr::select(-rn)
 
+#
+world <- map_data('world')
 
 # mapear ocorrencias
 ggplot() +

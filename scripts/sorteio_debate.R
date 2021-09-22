@@ -21,8 +21,10 @@ c("Vanessa", "Gustavo", "Pedro", "Isabella", "Carlos", "Gabriel", "Nilson") %>%
 # "Carolina" -> não incluídas
 
 # Sorteio de 3 = (1) apresentar, 2 e 3 (debater)
-c("Vanessa", "Pedro", "Gabriel", "Nilson", "Marina") %>% 
+c("Vanessa", "Pedro", "Gabriel", "Nilson") %>% 
   sample(3)
+
+# "Gabriel" "Pedro"   "Nilson"
 
 
 #############

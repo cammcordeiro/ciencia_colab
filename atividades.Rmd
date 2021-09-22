@@ -28,7 +28,7 @@ A [**atividade 1**](atividade1.html) consiste em um exercício de construção d
 ## Atividade 2 {.unnumbered}
 <center><img src= "figs/git_4.png" style= "width:50%"></center>
 
-A atividade 2 será realizada para padronizar os dados gerados na atividade 1 usando o sistema [Darwin Core](https://dwc.tdwg.org/) e criar os arquivos necessários para distribuição dos dados como [Darwin Core Arquive](https://classroom.oceanteacher.org/pluginfile.php/15953/mod_resource/content/1/OBIS%20standards%20and%20formating.pdf).
+A [**atividade 2**](atividade2.html) será realizada para padronizar os dados gerados na atividade 1 usando o sistema [Darwin Core](https://dwc.tdwg.org/) e criar os arquivos necessários para distribuição dos dados como [Darwin Core Arquive](https://classroom.oceanteacher.org/pluginfile.php/15953/mod_resource/content/1/OBIS%20standards%20and%20formating.pdf).
 <br><br>
 
 ***
@@ -37,7 +37,7 @@ A atividade 2 será realizada para padronizar os dados gerados na atividade 1 us
 <center><img src= "atividade3_files/figure-html/unnamed-chunk-13-1.png" style= "width:70%"></center>
 <br><br>
 
-A atividade 3 inclui exercícios para a criação de uma rotina em R para a aquisição de dados em bases abertas, neste caso, utilizando-se o [GBIF](https://www.gbif.org/). Além disso, serão apresentadas ferramentas para conferência e limpeza de dados.
+A [**atividade 3**](atividade3.html) inclui exercícios para a criação de uma rotina em R para a aquisição de dados em bases abertas, neste caso, utilizando-se o [GBIF](https://www.gbif.org/). Além disso, serão apresentadas ferramentas para conferência e limpeza de dados.
 <br><br>
 
 ***
