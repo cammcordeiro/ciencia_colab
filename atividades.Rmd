@@ -20,7 +20,7 @@ text-align: justify}
 <center><img src= "figs/amostra.png" style= "width:60%"></center>
 <br><br>
 
-A [**atividade 1**](atividade1.html) consiste em um exercício de construção de uma base de dados (planilha) a partir de dados coletados em campo descritos em *fichas de campo* simuladas com dados derivados do trabalho de Edgar Anderson (Anderson E. 1935. The irises of the Gaspe Peninsula, *Bulletin of the American Iris Society*, 59: 2--5).
+A [**atividade 1**](atividade1.html) consiste em um exercício de construção de uma base de dados (planilha) a partir de dados coletados em campo descritos em [*fichas de campo*](https://drive.google.com/drive/folders/1a1x8tgpXuw28rEm8CdUYaOJqJxcjLBVH?usp=sharing) simuladas com dados derivados do trabalho de Edgar Anderson (Anderson E. 1935. The irises of the Gaspe Peninsula, *Bulletin of the American Iris Society*, 59: 2--5).
 <br><br>
 
 ***
@@ -46,7 +46,7 @@ A [**atividade 3**](atividade3.html) inclui exercícios para a criação de uma 
 <center><img src= "figs/rmarkdown_icon.png" style= "width:30%"></center>
 <br><br>
 
-A atividade 4 é uma extensão da atividade 3, onde os participantes terão de traduzir a rotina criada em R para uma rotina comentada em RMarkdown indicando detalhes a respeito do processo de aquisição e limpeza dos dados.
+A [**atividade 4**](atividade4.html) é uma extensão da [**atividade 3**](atividade3.html), onde os participantes terão de traduzir a rotina criada em R para uma rotina comentada em RMarkdown indicando detalhes a respeito do processo de aquisição e limpeza dos dados.
 Na segunda parte da atividade, serão testadas ferramentas de compartilhamento no [GitHub](https://github.com/).
 <br><br>
 
