@@ -24,6 +24,10 @@ library(taxize)
 
 ```
 
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy(position = c('top', 'right'))
+```
+
 # Atividade 2 {.unnumbered}
 
 ------------------------------------------------------------------------
@@ -44,7 +48,7 @@ O primeiro passo é identificar os campos presentes no dataset:
 2.  Aplicar a função `unique` a cada coluna usando a outra função de *loop* `lapply`
 
 ```{r load data}
-iris <- read.csv("~/github/cursodados/data/iris_mod.csv", header = T)
+iris <- read.csv("data/iris_mod.csv", header = T)
 
 lapply(iris, unique)
 

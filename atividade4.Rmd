@@ -18,6 +18,10 @@ body {
 text-align: justify}
 </style>
 
+```{r klippy, echo=FALSE, include=TRUE}
+klippy::klippy(position = c('top', 'right'))
+```
+
 # Atividade 4 {.unnumbered}
 
 A atividade 4 vai incluir algumas subatividades para podermos interagir
