@@ -360,11 +360,44 @@ Podemos usar outras ferramentas mais refinadas para nos ajudar a detectar ocorr�
 
 Abaixo, vamos utilizar os dados baixados do `GBIF` antes da limpeza já realizada acima. Aqui vou começar a exemplificar com uma função simples criada por mim. Esta função utiliza as coordenadas para calcular o centróide (ponto médio de todas as ocorrências) e, a partir dele, a distância de cada ponto até o centróide. Esse princípio se baseia em propriedades de conectividade de populações contíguas, então quanto mais distantes (neste caso as muito distantes) maior a chance de termos uma ocorrência suspeita da mesma espécie. *Atenção: isso é apenas uma ferramenta para classificar as ocorrências! A decisão de filtrar ou não os pontos suspeitos vai depender do seu conhecimento ou da literatura a respeito dos habitats e regiões de ocorrência da espécie-alvo*.
 
-Inicialmente, vamos carregar a função `flag_outlier` que está em uma rotina auxiliar separada usando a função `source`. E, em seguida, aplicaremos a função e vamos plotar um mapa para avaliar as ocorrências com *flag* de *outlier*. 
+Inicialmente, vamos carregar a função `flag_outlier`. E, em seguida, aplicaremos a função e vamos plotar um mapa para avaliar as ocorrências com *flag* de *outlier*. 
 
 ```{r}
 
-source('functions/aux_functions.R')
+# funcao para classificar ocorrencias suspeitas
+flag_outlier <- function(df, species){
+  
+  # funcao para classificar ocorrencias suspeitas
+  # baseada no calculo do centroide de todas ocorrencias
+  # indica como 'check' as ocorrencias que tem distancias até o centroide
+  # acima do 90th quantil (default) das distancias calculadas
+  
+  dados <- df %>% 
+    dplyr::filter(scientificName == species); 
+  
+  dados2 <- geosphere::distVincentyEllipsoid(
+    dados %>%
+      summarise(centr_lon = median(decimalLongitude),
+                centr_lat = median(decimalLatitude)),
+    dados %>% 
+      dplyr::select(decimalLongitude, decimalLatitude)
+  ) %>% 
+    bind_cols(dados) %>% 
+    rename(dist_centroid = '...1') %>% 
+    mutate(flag = ifelse(dist_centroid < quantile(dist_centroid, probs = 0.9), "OK",
+                         ifelse(dist_centroid >= quantile(dist_centroid, probs = 0.90) & dist_centroid < quantile(dist_centroid, probs = 0.95), "check > Q90",
+                                ifelse(dist_centroid >= quantile(dist_centroid, probs = 0.95), "check > Q95", "OK"))))
+  
+    # mutate(flag = ifelse(dist_centroid > quantile(dist_centroid, probs = prob), "check", "OK"))
+  
+  print(dados2)
+  
+}
+
+```
+
+
+```{r}
 
 # classificar ocorrências
 marcados <- dori_gbif$data %>% 
