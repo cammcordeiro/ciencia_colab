@@ -30,7 +30,7 @@ klippy::klippy(position = c('top', 'right'))
 
 ## Website no GitHub
 
-O [Github Pages] (<https://pages.github.com>) permite que você construa
+O [Github Pages](<https://pages.github.com>) permite que você construa
 websites simples a partir de seu repositório Github. Para ativar esse
 recurso, acesse a guia **Settings** em
 `https://github.com/SEU_USUÁRIO/ciencia_colab`. Em seguida, clique no
