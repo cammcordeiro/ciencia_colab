@@ -8,7 +8,7 @@ set.seed(13)
 ## 21-07-2021
 # "Marina", "Carolina" -> não incluídas
 
-# Sorteio de 3 = (1) apresentar, 2 e 3 (debater)
+# Sorteio de 3 = (1) apresentar, (2) e (3) debater
 c("Vanessa", "Gustavo", "Pedro", "Isabella", "Carlos", "Gabriel", "Nilson") %>% 
   sample(3)
 
@@ -18,9 +18,9 @@ c("Vanessa", "Gustavo", "Pedro", "Isabella", "Carlos", "Gabriel", "Nilson") %>%
 
 #############
 ## 22-07-2021
-# "Carolina" -> não incluídas
+# "Carolina" "Gustavo"  "Carlos"   "Isabella" -> não incluídos
 
-# Sorteio de 3 = (1) apresentar, 2 e 3 (debater)
+# Sorteio de 3 = (1) apresentar, (2) e (3) debater
 c("Vanessa", "Pedro", "Gabriel", "Nilson") %>% 
   sample(3)
 
@@ -29,19 +29,24 @@ c("Vanessa", "Pedro", "Gabriel", "Nilson") %>%
 
 #############
 ## 23-07-2021
-# "Carolina" -> não incluída
+# "Gustavo"  "Carlos"  "Isabella" "Gabriel" "Pedro"   "Nilson" -> não incluídos
 
-# Ultimos 3 = (1) apresentar, 2 e 3 (debater)
-c("Carolina")
+# Ultimos 3 = (1) apresentar ("Vanessa"), (2) debater
+c("Gustavo", "Pedro", "Carlos", "Nilson") %>% 
+  sample(2)
 
-
+"Carlos" "Nilson"
 
 #############
 ## 24-07-2021
-# "Marina", "Carolina" -> não incluídas
 
-# Sorteio de 3 = (1) apresentar, 2 e 3 (debater)
+# Sem sorteio
+
 c("Vanessa", "Gustavo", "Pedro", "Isabella", "Carlos", "Gabriel", "Nilson") %>% 
-  sample(3)
+  sample(2)
+
+# (1) apresentar ("Marina"), (2) debater
+
+
 
 

@@ -56,7 +56,10 @@ Na segunda parte da atividade, serão testadas ferramentas de compartilhamento n
 <center><img src= "figs/data_cycle.png" style= "width:50%"></center>
 <br><br>
 
-A atividade 5 finaliza o processo de ferramentas básicas de compartilhamento e reprodutibilidade de dados científicos. Nesta atividade, os participantes irão tranformar as rotinas criadas nas atividades anteriores em um website além de incluir alguns `chunck` de recursos interativos.
+A [**atividade 5**](atividade5.html) finaliza o processo de ferramentas básicas de compartilhamento e reprodutibilidade de dados científicos. Nesta atividade, os participantes irão tranformar as rotinas criadas nas atividades anteriores em um website além de incluir alguns `chunck` de recursos interativos.
 <br><br>
+
+## **Extra** {.unnumbered}
+[Um exemplo usando gráficos interativos.](extra_dashboard.html)
 
 ***
