@@ -151,10 +151,56 @@ lapply(dori_gbif1, unique)
 
 ## Problemas não reportados
 
-Agora iniciamos o processo de checagem mais fina que não é realizada pelo algoritmo, por apresenta especificidades que vão além de sua programação.
-Podemos iniciar checando a distribuição das ocorrências em relação às regiões oceanográficas indicadas nos dados (`waterBody`).
+Agora iniciamos o processo de checagem mais fina que não é realizada pelo algoritmo, por apresentar especificidades que vão além de sua programação. Inicialmente, podemos verificar se as coordenadas são válidas (e.g., latitudes > 90 ou longitude > 180) utilizando funções dos pacotes [`CoordinateCleaner`](https://docs.ropensci.org/CoordinateCleaner/index.html) e [`bcd`](https://brunobrr.github.io/bdc/index.html). Clicando nos links dos pacotes vocês podem checar diversas outras funcionalidades oferecidas.
+
+```{r coords}
+
+library(bdc)
+
+# checar coordenadas válidas
+check_pf <- 
+  bdc::bdc_coordinates_outOfRange(
+    data = dori_gbif1,
+    lat = "decimalLatitude",
+    lon = "decimalLongitude")
+
+# checar coordenadas válidas e próximas a capitais (muitas vezes as coordenadas são erroneamente associadas a capitais dos países)
+
+cl <- dori_gbif1 %>%
+  select(acceptedScientificName, decimalLatitude, decimalLongitude) %>%
+  rename(decimallongitude = decimalLongitude,
+         decimallatitude = decimalLatitude,
+         scientificName = acceptedScientificName) %>% 
+  as_tibble() %>% 
+  mutate(val = cc_val(., value = "flagged"),
+         sea = cc_sea(., value = "flagged"),
+         capital = cc_cap(., value = "flagged"))
+
+```
+
+Na imagem abaixo podemos dar uma rápida conferida nos alertas indicados pelas funções. Não tivemos nenhuma coordenada inválida, mas algumas ocorrências parecem estar muito próximas a capitais. No entanto, todas as capitais estão em terra e, nesse caso, temos que investigar se as ocorrências estão em terra (lembre-se a Dori vive no mar!) ou apenas próximas a países insulares.
 
 ```{r}
+# verificar coordenadas com flags
+
+# capitais (padrão é um raio de 10km)
+cl %>% 
+  rename(decimalLongitude = decimallongitude,
+         decimalLatitude = decimallatitude) %>% 
+  bdc::bdc_quickmap(., col_to_map = "capital")  
+
+
+cl %>% 
+  rename(decimalLongitude = decimallongitude,
+         decimalLatitude = decimallatitude) %>% 
+  bdc::bdc_quickmap(., col_to_map = "sea")  
+
+
+```
+
+Uma maneira fácil de excluir dados em terra é checar a distribuição das ocorrências em relação às regiões oceanográficas indicadas nos dados (`waterBody`). Isso vale apenas para o OBIS, mas e o objetivo é avaliar espécies terrestres, basta excluir as espécies com *flags* **TRUE** na coluna *sea* criada pela função `cc_sea`.
+
+```{r coords1}
 
 # investigar niveis suspeitos
 dori_gbif1 %>% 
@@ -435,6 +481,7 @@ Podemos notar no mapa acima que as ocorrencias acima do 90ésimo quantil são mu
 O pacote `scrubr` possui algumas funções úteis para indicar problemas com coordenadas com elementos faltantes (`coord_incomplete`), coordenadas impossíveis (`coord_impossible`) e coordenadas duplicadas (`dedup`). Este último é estimado em um raio de tolerância e mais útil para análises em escala mais grosseira ou quando o informações a serem correlacionadas estão em escala maior. Podemos inclusive aplicá-las sequencialmente, pois o padrão das funções é excluir as ocorrências suspeitas, mas **não recomendo seguir cegamente métodos automáticos de exclusão de dados!**
 
 ```{r scrubr}
+if (!require("scrubr")) install.packages("scrubr")
 
 library(scrubr)
 
