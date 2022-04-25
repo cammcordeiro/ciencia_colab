@@ -156,6 +156,7 @@ Agora iniciamos o processo de checagem mais fina que não é realizada pelo algo
 ```{r coords}
 
 library(bdc)
+library(CoordinateCleaner)
 
 # checar coordenadas válidas
 check_pf <- 
@@ -198,7 +199,7 @@ cl %>%
 
 ```
 
-Uma maneira fácil de excluir dados em terra é checar a distribuição das ocorrências em relação às regiões oceanográficas indicadas nos dados (`waterBody`). Isso vale apenas para o OBIS, mas e o objetivo é avaliar espécies terrestres, basta excluir as espécies com *flags* **TRUE** na coluna *sea* criada pela função `cc_sea`.
+Uma maneira fácil de excluir dados em terra é checar a distribuição das ocorrências em relação às regiões oceanográficas indicadas nos dados (`waterBody`). Isso vale apenas para o OBIS, mas se o objetivo é avaliar espécies terrestres, basta excluir as espécies com *flags* **TRUE** na coluna *sea* criada pela função `cc_sea`.
 
 ```{r coords1}
 
@@ -525,6 +526,7 @@ Aqui vamos testar a função `check_outliers_species` que tem um princípio seme
 OBS: Algumas vezes pode ocorrer uma falha de conexão com o servidor, então deve-se insistir um pouco.
 
 ```{r}
+if (!require("obistools")) install.packages("obistools")
 
 library(obistools)
 
@@ -566,8 +568,6 @@ ggplot() +
 Por fim, vamos testar o pacote `CoordinateCleaner`. Nele devemos especificar os campos correspondentes na função `clean_coordinates`.
 
 ```{r}
-
-library(CoordinateCleaner)
 
 flags <-
   clean_coordinates(
