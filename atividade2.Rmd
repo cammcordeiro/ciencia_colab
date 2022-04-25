@@ -93,13 +93,13 @@ plot(out)
 ```
 
 
-Por fim, avaliando os dados, podemos ver que possuímos quase todos os campos obrigatórios para o sistema Darwin Core (DwC).
-
 ------------------------------------------------------------------------
 
 ### Taxóns
 
-Em seguida, é importante checar se os nomes utilizados dos táxons são válidos.
+Avaliando os dados, podemos ver que não existem inconsistências e que já possuímos quase todos os campos obrigatórios para o sistema Darwin Core (DwC).
+
+Em seguida, um passo importante é checar se os nomes utilizados dos táxons são válidos.
 
 1.  Para isso podemos utilizar a função `get_tsn` do pacote `taxize`. Esta função permite investigar na base de dados do [*Integrated Taxonomic Information System*](https://www.itis.gov/) se a nomenclatura aplicada aos táxons é válida ou se necessita de atualização.
 
