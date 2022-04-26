@@ -1,0 +1,232 @@
+---
+title: "Extra!"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    social: menu
+    source_code: embed
+---
+
+library(rgbif)
+
+teste <- occ_search(pred_gte('decimalLatitude', 65))
+uns <- occ_search(pred_within("POLYGON((-14 42, 9 38, -7 26, -14 42))"))
+
+install.packages("usethis")
+usethis::edit_r_environ()
+
+teste <- occ_download(pred_within("POLYGON((-14 42, 9 38, -7 26, -14 42))"),
+             user = "cammcordeiro",
+             email = "cammcordeiro@gmail.com",
+             pwd = "dicodico")
+
+tested <- occ_download_get('0246562-210914110416597') %>%
+  occ_download_import()
+
+
+## https://docs.ropensci.org/rgbif/articles/getting_occurrence_data.html
+# read shapefile
+library(rgdal)
+data.shape <- readOGR(dsn="/Users/cesarcordeiro/Meu Drive/LECAR/dados/mapas/rj_municipios")
+
+data.shape@data %>% distinct(NM_MUNICIP)
+
+NORFLU <- subset(data.shape, NM_MUNICIP %in% c("BOM JESUS DO ITABAPOANA", 
+                                     "CAMPOS DOS GOYTACAZES",
+                                     "CARAPEBUS",
+                                     "CARDOSO MOREIRA",
+                                     "CONCEIÇÃO DE MACABU",
+                                     "MACAÉ",
+                                     "QUISSAMÃ",
+                                     "SÃO JOÃO DA BARRA",
+                                     "SÃO FRANCISCO DE ITABAPOANA",
+                                     "SÃO FIDÉLIS"))
+
+###
+
+campos <- subset(data.shape, NM_MUNICIP %in% c("CAMPOS DOS GOYTACAZES")) %>% 
+  writeOGR(., dsn = "/Users/cesarcordeiro/Meu Drive/LECAR/dados/mapas/rj_municipios/CG", 
+           layer = "campos", driver = "ESRI Shapefile" )
+
+large_wkt <- sf::st_read(dsn="/Users/cesarcordeiro/Meu Drive/LECAR/dados/mapas/rj_municipios/CG") %>%
+  sf::st_geometry() %>%
+  sf::st_as_text()                                               
+
+# get download key                                               
+ooc_campos <- occ_download(pred_within(large_wkt),
+                           user = "cammcordeiro",
+                           email = "cammcordeiro@gmail.com",
+                           pwd = "dicodico")
+
+# get occurrences
+campoxxx <- occ_download_get('0246638-210914110416597') %>%
+  occ_download_import()
+
+campoxxx %>% 
+  group_by(kingdom, phylum) %>% 
+  summarise(n_distinct(paste(genus, species))) 
+  
+# write.csv(campoxxx, "campos_gbif_25apr2022.csv", row.names = FALSE)
+
+####
+NORFLU %>% 
+  leaflet() %>% 
+  addTiles() %>% 
+  addPolygons(fillColor = "grey",
+              highlight = highlightOptions(weight = 1,
+                                           color = "red",
+                                           fillOpacity = 0.7,
+                                           bringToFront = TRUE),
+              label = ~NM_MUNICIP) %>% 
+  addCircleMarkers(data = dori,
+                   ~decimalLongitude,
+                   ~decimalLatitude,
+                   radius = 5,
+                   label = ~as.character(datasetName),
+                   color = ~pal(dori$datasetName),
+                   stroke = FALSE, fillOpacity = 0.5) %>%
+  addLegend('bottomright',
+          colors = unique(pal(dori$datasetName)),
+          labels = unique(dori$datasetName),
+          title = 'Dataset',
+          opacity = 0.5)
+
+
+rank <- campoxxx %>% 
+  group_by(kingdom, phylum, family) %>% 
+  summarise(richness = n_distinct(paste(genus, species))) %>% 
+  arrange(-richness) %>% 
+  pull(family)
+
+
+campoxxx %>% 
+  group_by(kingdom, phylum, class) %>% 
+  summarise(richness = n_distinct(paste(genus, species))) %>% 
+  mutate(phylum = factor(phylum, levels = phylum)) %>% 
+  ggplot(aes(y = richness, x = class, fill = kingdom)) +
+    geom_bar(stat = 'identity') +
+    theme_classic() +
+    coord_flip() +
+    facet_grid(~kingdom, scales = "free")
+
+
+### IUCN redlist
+# https://www.youtube.com/watch?v=4T6GXtptmj4
+
+# https://bdj.pensoft.net/article/20530/
+
+# https://bookdown.org/yihui/rmarkdown/dashboard-components.html
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(plotly)
+library(leaflet)
+
+campos <- read.csv("data/campos_gbif_25apr2022.csv", header = T)
+```
+
+# Iris
+
+## Row
+
+### Scatterplot
+
+```{r}
+
+a1 <- campos %>% 
+  group_by(kingdom, phylum, order) %>% 
+  summarise(richness = n_distinct(paste(genus, species)))
+  ggplot(aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+    geom_point() +
+    theme_classic()
+
+ggplotly(a1)
+
+```
+
+### Boxplot
+
+```{r chart B}
+a2 <- iris %>% 
+  pivot_longer(cols = Sepal.Length:Petal.Width, names_to = "variable", values_to = "size") %>% 
+  ggplot(aes(x = variable, y = size, color = Species)) +
+    geom_boxplot() +
+    facet_grid(~ Species) +
+    theme_classic() +
+    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+    labs(y = "Size (cm)", x = "")
+
+ggplotly(a2)
+
+```
+
+### GAUGE
+
+```{r}
+gauge(91, min = 0, max = 100, symbol = '%', gaugeSectors(
+  success = c(80, 100), warning = c(40, 79), danger = c(0, 39)
+))
+```
+
+
+## Row
+
+### Scatterplot
+```{r}
+
+a3 <- iris %>% 
+  ggplot(aes(x = Petal.Length, y = Petal.Width, color = Species)) +
+    geom_point() +
+    theme_classic()
+
+ggplotly(a3)
+
+```
+
+
+### Locais de amostragem (Península de Gaspe) 
+
+```{r chart C}
+# conferir no mapa
+iris %>% 
+  leaflet() %>% 
+  addTiles() %>% 
+  addMarkers(~lon,
+             ~lat)
+```
+
+# Dori
+
+## Row
+
+### Ocorrências de *Paracanthurus hepatus*
+
+```{r mapa_dori}
+
+dori <- read.csv("data/occ_GBIF-OBIS_par_hepa.csv", header = TRUE)
+
+pal <- colorFactor(palette = "viridis", domain = unique(dori$datasetName))
+
+dori %>% 
+  leaflet() %>% 
+  addTiles() %>% 
+  addCircleMarkers(~decimalLongitude,
+                   ~decimalLatitude,
+                   radius = 5,
+                   label = ~as.character(datasetName),
+                   color = ~pal(dori$datasetName),
+                   stroke = FALSE, fillOpacity = 0.5) %>% 
+  addLegend('bottomright', 
+            colors = unique(pal(dori$datasetName)), 
+            labels = unique(dori$datasetName),
+            title = 'Dataset',
+            opacity = 0.5) %>% 
+  addPolygons(fillColor = "grey",
+              highlight = highlightOptions(weight = 5,
+                                           color = "red",
+                                           fillOpacity = 0.7,
+                                           bringToFront = TRUE),
+              label = ~NAME)
+
+```
