@@ -7,6 +7,60 @@ output:
     source_code: embed
 ---
 
+
+####
+NORFLU %>% 
+  leaflet() %>% 
+  addTiles() %>% 
+  addPolygons(fillColor = "grey",
+              highlight = highlightOptions(weight = 1,
+                                           color = "red",
+                                           fillOpacity = 0.7,
+                                           bringToFront = TRUE),
+              label = ~NM_MUNICIP) %>% 
+  addCircleMarkers(data = dori,
+                   ~decimalLongitude,
+                   ~decimalLatitude,
+                   radius = 5,
+                   label = ~as.character(datasetName),
+                   color = ~pal(dori$datasetName),
+                   stroke = FALSE, fillOpacity = 0.5) %>%
+  addLegend('bottomright',
+          colors = unique(pal(dori$datasetName)),
+          labels = unique(dori$datasetName),
+          title = 'Dataset',
+          opacity = 0.5)
+
+
+rank <- campoxxx %>% 
+  group_by(kingdom, phylum, family) %>% 
+  summarise(richness = n_distinct(paste(genus, species))) %>% 
+  arrange(-richness) %>% 
+  pull(family)
+
+
+campoxxx %>% 
+  group_by(kingdom, phylum, class) %>% 
+  summarise(richness = n_distinct(paste(genus, species))) %>% 
+  mutate(phylum = factor(phylum, levels = phylum)) %>% 
+  ggplot(aes(y = richness, x = class, fill = kingdom)) +
+    geom_bar(stat = 'identity') +
+    theme_classic() +
+    coord_flip() +
+    facet_grid(~kingdom, scales = "free")
+
+
+### IUCN redlist
+# https://www.youtube.com/watch?v=4T6GXtptmj4
+
+# https://bdj.pensoft.net/article/20530/
+
+# https://bookdown.org/yihui/rmarkdown/dashboard-components.html
+
+
+
+
+
 ```{r setup, include=FALSE}
 library(flexdashboard)
 library(tidyverse)
