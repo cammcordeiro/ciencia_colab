@@ -65,3 +65,8 @@ data.frame(
 3.  Subir a planilha para no [drive compartilhado](https://drive.google.com/drive/folders/1C5LIx2rifGsHz22qwzjxDNwEQne3YRrT?usp=sharing) na pasta **atividade1_data** dentro da pasta **atividades** (i.e. *Ciencia Colab2022/atividades/atividade1_data/*).
 
 ***
+
+<ul class="pager"> <!--this is the style of the button-->
+<li><a href="#">Topo</a></li> <!--This button takes me to the table of contents-->
+<li><a href="atividade2.html">Próxima</a></li>
+</ul>
