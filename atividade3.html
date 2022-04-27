@@ -486,62 +486,26 @@ text-align: justify}
 </script>
 <div id="atividade-3" class="section level1 unnumbered">
 <h1 class="unnumbered">Atividade 3</h1>
-<div id="acesso-a-bancos-de-dados-abertos" class="section level2"
-number="0.1">
-<h2><span class="header-section-number">3.1</span> Acesso a bancos de
-dados abertos</h2>
-<p>O acesso pode ser feito de diferentes formas, seja diretamente no
-website do repositório, utilizando-se pacotes específicos que acessam os
-repositórios via R ou Python, ou através de API (Application Programming
-Interface). Nesta última opção, o repositório é acessado por outro
-aplicativo ou serviço web para automatização de tarefas, seja em
-servidor local ou remoto, mas requer conhecimento de programação em Java
-e outras linguagens e não será tratado aqui.</p>
-<p>Nesta atividade, temos como objetivo acessar um repositório de dados
-de ocorrência de espécies, inspecionar os dados, avaliar sua qualidade e
-fazer um mapa com as ocorrências.</p>
-<p>Para iniciar, vamos escolher um repositório e uma espécie de
-interesse. Vamos iniciar com uma única espécie para facilitar as demais
-etapas.</p>
-<p>O <a href="https://www.gbif.org/">GBIF (<em>Global Biodiversity
-Information Facility</em>)</a> é o maior repositório de ocorrências da
-biodiversidade da atualidade, então será nossa opção de repositório. No
-entanto, o <a href="https://obis.org/">OBIS (<em>Ocean Biodiversity
-Information System</em>)</a> é um repositório dedicado às espécies
-marinhas e espelhado no GBIF. Assim, espera-se que algumas ocorrências
-sejam duplicadas nos dois repositórios.</p>
+<div id="acesso-a-bancos-de-dados-abertos" class="section level2" number="0.1">
+<h2><span class="header-section-number">3.1</span> Acesso a bancos de dados abertos</h2>
+<p>O acesso pode ser feito de diferentes formas, seja diretamente no website do repositório, utilizando-se pacotes específicos que acessam os repositórios via R ou Python, ou através de API (Application Programming Interface). Nesta última opção, o repositório é acessado por outro aplicativo ou serviço web para automatização de tarefas, seja em servidor local ou remoto, mas requer conhecimento de programação em Java e outras linguagens e não será tratado aqui.</p>
+<p>Nesta atividade, temos como objetivo acessar um repositório de dados de ocorrência de espécies, inspecionar os dados, avaliar sua qualidade e fazer um mapa com as ocorrências.</p>
+<p>Para iniciar, vamos escolher um repositório e uma espécie de interesse. Vamos iniciar com uma única espécie para facilitar as demais etapas.</p>
+<p>O <a href="https://www.gbif.org/">GBIF (<em>Global Biodiversity Information Facility</em>)</a> é o maior repositório de ocorrências da biodiversidade da atualidade, então será nossa opção de repositório. No entanto, o <a href="https://obis.org/">OBIS (<em>Ocean Biodiversity Information System</em>)</a> é um repositório dedicado às espécies marinhas e espelhado no GBIF. Assim, espera-se que algumas ocorrências sejam duplicadas nos dois repositórios.</p>
 <div id="exemplo-finding-dori" class="section level3" number="0.1.1">
-<h3><span class="header-section-number">3.1.1</span> Exemplo:
-<em>Finding Dori</em></h3>
-<p>A espécie-alvo será o peixe marinho <em>Paracanthurus hepatus</em>,
-também conhecido como <em>Blue Tang</em> e, mais recentemente como
-<strong>Dori</strong>!.</p>
+<h3><span class="header-section-number">3.1.1</span> Exemplo: <em>Finding Dori</em></h3>
+<p>A espécie-alvo será o peixe marinho <em>Paracanthurus hepatus</em>, também conhecido como <em>Blue Tang</em> e, mais recentemente como <strong>Dori</strong>!.</p>
 <center>
 <img src= "figs/dori.png" style= "width:60%">
 </center>
-<p>Nosso primeiro exemplor será com as ocorrencias do
-<strong>GBIF</strong> e, para tal, vamos utilizar o pacote
-<code>rgbif</code>.</p>
+<p>Nosso primeiro exemplor será com as ocorrencias do <strong>GBIF</strong> e, para tal, vamos utilizar o pacote <code>rgbif</code>.</p>
 <hr />
 </div>
 <div id="gbif" class="section level3" number="0.1.2">
-<h3><span class="header-section-number">3.1.2</span>
-<strong>GBIF</strong></h3>
-<p>Vamos fazer uso do pacote <code>tidyverse</code> para manipular dos
-dados, então vamos carregar este pacote e o <code>rgbif</code>.</p>
-<p>É importante explorar as funções do pacote e pode-se fazer isto
-usando o comando <code>?rgbif</code> e, para ler sobre uma função em
-particular basta colocar <code>?</code> em frente ao nome da função. Se
-o pacote não estiver carregado ou instalada é preciso usar
-<code>??</code>.</p>
-<p>A função <code>occ_data</code> faz uma busca simplificada das
-ocorrências no repositório do <strong>GBIF</strong> por meio do nome
-científico, número de identificação, país e outros. Neste caso, vamos
-procurar diretamente pelo nome da espécie-alvo. Outros atributos podem
-ser adicionados à função para refinar a busca, leia o material de ajuda
-da função para ter uma ideia. Vamos aproveitar alguns destes atributos e
-selecionar apenas ocorrências que possuem coordenadas e sem problemas
-geoespaciais.</p>
+<h3><span class="header-section-number">3.1.2</span> <strong>GBIF</strong></h3>
+<p>Vamos fazer uso do pacote <code>tidyverse</code> para manipular dos dados, então vamos carregar este pacote e o <code>rgbif</code>.</p>
+<p>É importante explorar as funções do pacote e pode-se fazer isto usando o comando <code>?rgbif</code> e, para ler sobre uma função em particular basta colocar <code>?</code> em frente ao nome da função. Se o pacote não estiver carregado ou instalada é preciso usar <code>??</code>.</p>
+<p>A função <code>occ_data</code> faz uma busca simplificada das ocorrências no repositório do <strong>GBIF</strong> por meio do nome científico, número de identificação, país e outros. Neste caso, vamos procurar diretamente pelo nome da espécie-alvo. Outros atributos podem ser adicionados à função para refinar a busca, leia o material de ajuda da função para ter uma ideia. Vamos aproveitar alguns destes atributos e selecionar apenas ocorrências que possuem coordenadas e sem problemas geoespaciais.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># checar funcoes</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>?occ_data</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -711,27 +675,12 @@ geoespaciais.</p>
 ## [152] &quot;associatedSequences&quot;                
 ## [153] &quot;parentNameUsageID&quot;                  
 ## [154] &quot;organismID&quot;</code></pre>
-<p>Acima, vemos que o conjunto de dados tem ocorrências (uma por linha)
-e variáveis. As variáveis podem ser utilizadas para filtrar as
-ocorrências de acordo com o objetivo, além de fornecerem diversos dados
-a respeito das ocorrências, incluindo dados dos amostradores e
-detentores dos direitos. Vale notar que o conjunto de dados retornado
-pelo <strong>GBIF</strong> não é um <code>data frame</code> simples, mas
-sim um <code>list</code> que contém um conjunto de
-<code>data frames</code>. Para acessar estes <code>data frames</code> é
-necessário usar o operador <code>$</code>.</p>
+<p>Acima, vemos que o conjunto de dados tem ocorrências (uma por linha) e variáveis. As variáveis podem ser utilizadas para filtrar as ocorrências de acordo com o objetivo, além de fornecerem diversos dados a respeito das ocorrências, incluindo dados dos amostradores e detentores dos direitos. Vale notar que o conjunto de dados retornado pelo <strong>GBIF</strong> não é um <code>data frame</code> simples, mas sim um <code>list</code> que contém um conjunto de <code>data frames</code>. Para acessar estes <code>data frames</code> é necessário usar o operador <code>$</code>.</p>
 </div>
 </div>
 <div id="problemas-reportados" class="section level2" number="0.2">
-<h2><span class="header-section-number">3.2</span> Problemas
-reportados</h2>
-<p>Um dos campos mais úteis dos dados é a coluna <code>issues</code>,
-pois ela indica problema já identificados pelo validador automático do
-repositório. Os problemas (<em>issues</em>) possuem um código que pode
-ser conferido pela função <code>gbif_issues</code>. Ao usar a função não
-é preciso indicar nenhum atributo, pois ela retornará um dataframe com
-as abreviações usadas e a descrição dos problemas catalogados no
-GBIF.</p>
+<h2><span class="header-section-number">3.2</span> Problemas reportados</h2>
+<p>Um dos campos mais úteis dos dados é a coluna <code>issues</code>, pois ela indica problema já identificados pelo validador automático do repositório. Os problemas (<em>issues</em>) possuem um código que pode ser conferido pela função <code>gbif_issues</code>. Ao usar a função não é preciso indicar nenhum atributo, pois ela retornará um dataframe com as abreviações usadas e a descrição dos problemas catalogados no GBIF.</p>
 <pre><code>##           code                                             issue
 ## 1          bri                           BASIS_OF_RECORD_INVALID
 ## 2          ccm                        CONTINENT_COUNTRY_MISMATCH
@@ -1032,11 +981,7 @@ GBIF.</p>
 ## 97       name
 ## 98       name
 ## 99       name</code></pre>
-<p>Para checar os <code>issues</code> indicados na base baixada é
-necessário um pequeno tratamento, uma vez que algumas ocorrências
-possuem múltiplos problemas. Assim, utilizamos a função
-<code>strsplit</code> para individualizar os <code>issues</code> e poder
-conferí-los.</p>
+<p>Para checar os <code>issues</code> indicados na base baixada é necessário um pequeno tratamento, uma vez que algumas ocorrências possuem múltiplos problemas. Assim, utilizamos a função <code>strsplit</code> para individualizar os <code>issues</code> e poder conferí-los.</p>
 <pre><code>##        code                                            issue
 ## 1     conti                                CONTINENT_INVALID
 ## 2    cdreps               COORDINATE_REPROJECTION_SUSPICIOUS
@@ -1079,28 +1024,17 @@ conferí-los.</p>
 ## 11 occurrence
 ## 12 occurrence
 ## 13 occurrence</code></pre>
-<p>A maioria dos problemas reportados é relacionado com discrepancias
-entre informações indicadas pelos autores e as levantadas pelo algoritmo
-de checagem, mas nenhum parece invalidar as ocorrências, por
-enquanto.</p>
-<p>Prosseguimos selecionando algumas variáveis que serão úteis para a
-validação dos dados e futuras análises, como coordenadas, profundidade,
-nome da base de dados etc.</p>
+<p>A maioria dos problemas reportados é relacionado com discrepancias entre informações indicadas pelos autores e as levantadas pelo algoritmo de checagem, mas nenhum parece invalidar as ocorrências, por enquanto.</p>
+<p>Prosseguimos selecionando algumas variáveis que serão úteis para a validação dos dados e futuras análises, como coordenadas, profundidade, nome da base de dados etc.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>dori_gbif1 <span class="ot">&lt;-</span> dori_gbif<span class="sc">$</span>data <span class="sc">%&gt;%</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(scientificName, acceptedScientificName, decimalLatitude, decimalLongitude,</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>         issues, waterBody, basisOfRecord, occurrenceStatus, rightsHolder, </span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>         datasetName, recordedBy, depth, locality, habitat) </span></code></pre></div>
-<p>Note que temos 500 ocorrências, no entanto, vamos ver quantas são
-únicas aplicando a função <code>distinct</code> do pacote
-<code>dplyr</code>.</p>
+<p>Note que temos 500 ocorrências, no entanto, vamos ver quantas são únicas aplicando a função <code>distinct</code> do pacote <code>dplyr</code>.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>dori_gbif1 <span class="ot">&lt;-</span> dori_gbif1 <span class="sc">%&gt;%</span> </span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>() </span></code></pre></div>
-<p>No fim, observamos que ficamos com 378 ocorrências agora, e isso
-acontece por causa de diferenças em colunas que, neste caso, não serão
-usadas para o objetivo desta prática.</p>
-<p>Para identificar todos os valores únicos presented nos dados, vamos
-aplicar a função <code>unique</code> a cada coluna com um <em>loop</em>
-na função <code>lapply</code>.</p>
+<p>No fim, observamos que ficamos com 378 ocorrências agora, e isso acontece por causa de diferenças em colunas que, neste caso, não serão usadas para o objetivo desta prática.</p>
+<p>Para identificar todos os valores únicos presented nos dados, vamos aplicar a função <code>unique</code> a cada coluna com um <em>loop</em> na função <code>lapply</code>.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># checar niveis dos fatores</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(dori_gbif1, unique)</span></code></pre></div>
 <pre><code>## $scientificName
@@ -1267,7 +1201,7 @@ na função <code>lapply</code>.</p>
 ## $rightsHolder
 ##  [1] &quot;Peter&quot;               &quot;Jens Sommer-Knudsen&quot; &quot;Nigel Marsh&quot;        
 ##  [4] &quot;Michal&quot;              &quot;Wasini Tour Guide&quot;   &quot;John Sear&quot;          
-##  [7] &quot;顏水蛭&quot;              &quot;David R&quot;             &quot;Victor HOYEAU&quot;      
+##  [7] &quot;&lt;U+984F&gt;&lt;U+6C34&gt;&lt;U+86ED&gt;&quot; &quot;David R&quot;             &quot;Victor HOYEAU&quot;      
 ## [10] &quot;Hao Sen Liu&quot;         &quot;chloisf&quot;             &quot;Alastair Freeman&quot;   
 ## [13] &quot;Daniela Kupschus&quot;    &quot;Sophie Duc&quot;          &quot;tracc&quot;              
 ## [16] NA                    &quot;Jacek Pietruszewski&quot; &quot;calvin1976&quot;         
@@ -1307,7 +1241,7 @@ na função <code>lapply</code>.</p>
 ##   [4] &quot;Michal&quot;                                                                                                                          
 ##   [5] &quot;Wasini Tour Guide&quot;                                                                                                               
 ##   [6] &quot;John Sear&quot;                                                                                                                       
-##   [7] &quot;顏水蛭&quot;                                                                                                                          
+##   [7] &quot;&lt;U+984F&gt;&lt;U+6C34&gt;&lt;U+86ED&gt;&quot;                                                                                                        
 ##   [8] &quot;David R&quot;                                                                                                                         
 ##   [9] &quot;Victor HOYEAU&quot;                                                                                                                   
 ##  [10] &quot;Hao Sen Liu&quot;                                                                                                                     
@@ -1591,18 +1525,8 @@ na função <code>lapply</code>.</p>
 ## [13] &quot;Shallow coral reef : Forereef&quot;</code></pre>
 </div>
 <div id="problemas-não-reportados" class="section level2" number="0.3">
-<h2><span class="header-section-number">3.3</span> Problemas não
-reportados</h2>
-<p>Agora iniciamos o processo de checagem mais fina que não é realizada
-pelo algoritmo, por apresentar especificidades que vão além de sua
-programação. Inicialmente, podemos verificar se as coordenadas são
-válidas (e.g., latitudes &gt; 90 ou longitude &gt; 180) utilizando
-funções dos pacotes <a
-href="https://docs.ropensci.org/CoordinateCleaner/index.html"><code>CoordinateCleaner</code></a>
-e <a
-href="https://brunobrr.github.io/bdc/index.html"><code>bcd</code></a>.
-Clicando nos links dos pacotes vocês podem checar diversas outras
-funcionalidades oferecidas.</p>
+<h2><span class="header-section-number">3.3</span> Problemas não reportados</h2>
+<p>Agora iniciamos o processo de checagem mais fina que não é realizada pelo algoritmo, por apresentar especificidades que vão além de sua programação. Inicialmente, podemos verificar se as coordenadas são válidas (e.g., latitudes &gt; 90 ou longitude &gt; 180) utilizando funções dos pacotes <a href="https://docs.ropensci.org/CoordinateCleaner/index.html"><code>CoordinateCleaner</code></a> e <a href="https://brunobrr.github.io/bdc/index.html"><code>bcd</code></a>. Clicando nos links dos pacotes vocês podem checar diversas outras funcionalidades oferecidas.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bdc)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(CoordinateCleaner)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1625,15 +1549,10 @@ funcionalidades oferecidas.</p>
 <span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>         <span class="at">sea =</span> <span class="fu">cc_sea</span>(., <span class="at">value =</span> <span class="st">&quot;flagged&quot;</span>),</span>
 <span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>         <span class="at">capital =</span> <span class="fu">cc_cap</span>(., <span class="at">value =</span> <span class="st">&quot;flagged&quot;</span>))</span></code></pre></div>
 <pre><code>## OGR data source with driver: ESRI Shapefile 
-## Source: &quot;/private/var/folders/xx/6x1gs2p90qs1n_41pc68sd0m0000gn/T/RtmpmFmLU1&quot;, layer: &quot;ne_110m_land&quot;
+## Source: &quot;C:\Users\UENF\AppData\Local\Temp\RtmpsLzoRf&quot;, layer: &quot;ne_110m_land&quot;
 ## with 127 features
 ## It has 3 fields</code></pre>
-<p>Na imagem abaixo podemos dar uma rápida conferida nos alertas
-indicados pelas funções. Não tivemos nenhuma coordenada inválida, mas
-algumas ocorrências parecem estar muito próximas a capitais. No entanto,
-todas as capitais estão em terra e, nesse caso, temos que investigar se
-as ocorrências estão em terra (lembre-se a Dori vive no mar!) ou apenas
-próximas a países insulares.</p>
+<p>Na imagem abaixo podemos dar uma rápida conferida nos alertas indicados pelas funções. Não tivemos nenhuma coordenada inválida, mas algumas ocorrências parecem estar muito próximas a capitais. No entanto, todas as capitais estão em terra e, nesse caso, temos que investigar se as ocorrências estão em terra (lembre-se a Dori vive no mar!) ou apenas próximas a países insulares.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># verificar coordenadas com flags</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># capitais (padrão é um raio de 10km)</span></span>
@@ -1647,12 +1566,7 @@ próximas a países insulares.</p>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">decimalLatitude =</span> decimallatitude) <span class="sc">%&gt;%</span> </span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  bdc<span class="sc">::</span><span class="fu">bdc_quickmap</span>(., <span class="at">col_to_map =</span> <span class="st">&quot;sea&quot;</span>)  </span></code></pre></div>
 <p><img src="atividade3_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
-<p>Uma maneira fácil de excluir dados em terra é checar a distribuição
-das ocorrências em relação às regiões oceanográficas indicadas nos dados
-(<code>waterBody</code>). Isso vale apenas para o OBIS, mas se o
-objetivo é avaliar espécies terrestres, basta excluir as espécies com
-<em>flags</em> <strong>TRUE</strong> na coluna <em>sea</em> criada pela
-função <code>cc_sea</code>.</p>
+<p>Uma maneira fácil de excluir dados em terra é checar a distribuição das ocorrências em relação às regiões oceanográficas indicadas nos dados (<code>waterBody</code>). Isso vale apenas para o OBIS, mas se o objetivo é avaliar espécies terrestres, basta excluir as espécies com <em>flags</em> <strong>TRUE</strong> na coluna <em>sea</em> criada pela função <code>cc_sea</code>.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># investigar niveis suspeitos</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>dori_gbif1 <span class="sc">%&gt;%</span> </span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(waterBody) <span class="sc">%&gt;%</span> </span>
@@ -1686,46 +1600,33 @@ função <code>cc_sea</code>.</p>
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(occ, <span class="at">y=</span>waterBody)) <span class="sc">+</span></span>
 <span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&#39;identity&#39;</span>) </span></code></pre></div>
 <p><img src="atividade3_files/figure-html/coords1-1.png" width="672" /></p>
-<p>Aparentemente, esta espécie tem sido reportada no mundo todo. Com o
-sucesso da animação <em>Procurando Nemo</em>, já temos uma ideia de que
-a <strong>Dori</strong> tem ocorrência nas águas Australianas, mas
-podemos acessar bancos de dados especializados para checar estas
-informações. No caso de peixes (Osteichthyes e Chondrichthyes) o <a
-href="https://fishbase.org"><em>FishBase</em></a> é a fonte mais
-atualizada de informações deste grupo. Depois desta confirmação, podemos
-suspeitar das ocorrências indicadas no Atlântico e, o tratamento mais
-rigoroso é a exclusão de qualquer ocorrência suspeita.</p>
+<p>Aparentemente, esta espécie tem sido reportada no mundo todo. Com o sucesso da animação <em>Procurando Nemo</em>, já temos uma ideia de que a <strong>Dori</strong> tem ocorrência nas águas Australianas, mas podemos acessar bancos de dados especializados para checar estas informações. No caso de peixes (Osteichthyes e Chondrichthyes) o <a href="https://fishbase.org"><em>FishBase</em></a> é a fonte mais atualizada de informações deste grupo. Depois desta confirmação, podemos suspeitar das ocorrências indicadas no Atlântico e, o tratamento mais rigoroso é a exclusão de qualquer ocorrência suspeita.</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fonte das regioes erradas</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>dori_gbif1 <span class="sc">%&gt;%</span> </span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(waterBody <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Atlantic Ocean&quot;</span>, <span class="st">&quot;Carribean&quot;</span>, <span class="st">&quot;Royal Caribbean&quot;</span>, <span class="st">&quot;Carribean Sea&quot;</span>, <span class="st">&quot;Bonaire&quot;</span>)) <span class="sc">%&gt;%</span> </span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(datasetName)</span></code></pre></div>
-<pre><code>## # A tibble: 1 × 1
+<pre><code>## # A tibble: 1 x 1
 ##   datasetName                             
 ##   &lt;chr&gt;                                   
 ## 1 Diveboard - Scuba diving citizen science</code></pre>
-<p>Alguma característica destas ocorrências do Atlântico podem dar
-pistas de como continuar filtrando os resultados. Neste caso, abaixo
-podemos ver que, ao investigarmos um programa de ciência específico de
-identificação realizada por mergulhadores amadores, notamos que este
-concentra a maior parte das suspeitas. Assim, é melhor ser conservador e
-remover todas as ocorrências associadas a tal programa.</p>
+<p>Alguma característica destas ocorrências do Atlântico podem dar pistas de como continuar filtrando os resultados. Neste caso, abaixo podemos ver que, ao investigarmos um programa de ciência específico de identificação realizada por mergulhadores amadores, notamos que este concentra a maior parte das suspeitas. Assim, é melhor ser conservador e remover todas as ocorrências associadas a tal programa.</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 25 ocorrencias</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>dori_gbif1 <span class="sc">%&gt;%</span> </span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(datasetName <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Diveboard - Scuba diving citizen science&quot;</span>))</span></code></pre></div>
-<pre><code>## # A tibble: 25 × 14
-##    scientificName       acceptedScienti… decimalLatitude decimalLongitude issues
+<pre><code>## # A tibble: 25 x 14
+##    scientificName       acceptedScienti~ decimalLatitude decimalLongitude issues
 ##    &lt;chr&gt;                &lt;chr&gt;                      &lt;dbl&gt;            &lt;dbl&gt; &lt;chr&gt; 
-##  1 Paracanthurus hepat… Paracanthurus h…            4.11            119.  cdreps
-##  2 Paracanthurus hepat… Paracanthurus h…           -8.4             119.  cdreps
-##  3 Paracanthurus hepat… Paracanthurus h…           16.1             -61.8 cdreps
-##  4 Paracanthurus hepat… Paracanthurus h…           23.2             -81.2 cdreps
-##  5 Paracanthurus hepat… Paracanthurus h…           26.2             -80   cdreps
-##  6 Paracanthurus hepat… Paracanthurus h…           24.5             -81.9 cdreps
-##  7 Paracanthurus hepat… Paracanthurus h…           13.5             121.  cdreps
-##  8 Paracanthurus hepat… Paracanthurus h…           18.4             -69.7 cdreps
-##  9 Paracanthurus hepat… Paracanthurus h…           27.5              34.2 cdreps
-## 10 Paracanthurus hepat… Paracanthurus h…           19.3             -81.1 cdreps
-## # … with 15 more rows, and 9 more variables: waterBody &lt;chr&gt;,
+##  1 Paracanthurus hepat~ Paracanthurus h~            4.11            119.  cdreps
+##  2 Paracanthurus hepat~ Paracanthurus h~           -8.4             119.  cdreps
+##  3 Paracanthurus hepat~ Paracanthurus h~           16.1             -61.8 cdreps
+##  4 Paracanthurus hepat~ Paracanthurus h~           23.2             -81.2 cdreps
+##  5 Paracanthurus hepat~ Paracanthurus h~           26.2             -80   cdreps
+##  6 Paracanthurus hepat~ Paracanthurus h~           24.5             -81.9 cdreps
+##  7 Paracanthurus hepat~ Paracanthurus h~           13.5             121.  cdreps
+##  8 Paracanthurus hepat~ Paracanthurus h~           18.4             -69.7 cdreps
+##  9 Paracanthurus hepat~ Paracanthurus h~           27.5              34.2 cdreps
+## 10 Paracanthurus hepat~ Paracanthurus h~           19.3             -81.1 cdreps
+## # ... with 15 more rows, and 9 more variables: waterBody &lt;chr&gt;,
 ## #   basisOfRecord &lt;chr&gt;, occurrenceStatus &lt;chr&gt;, rightsHolder &lt;chr&gt;,
 ## #   datasetName &lt;chr&gt;, recordedBy &lt;chr&gt;, depth &lt;dbl&gt;, locality &lt;chr&gt;,
 ## #   habitat &lt;chr&gt;</code></pre>
@@ -1748,9 +1649,7 @@ remover todas as ocorrências associadas a tal programa.</p>
 <span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> dori_gbif_ok, <span class="fu">aes</span>(<span class="at">x =</span> decimalLongitude, <span class="at">y =</span> decimalLatitude), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
 <span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;longitude&quot;</span>, <span class="at">y =</span> <span class="st">&quot;latitude&quot;</span>, <span class="at">title =</span> <span class="fu">expression</span>(<span class="fu">italic</span>(<span class="st">&quot;Paracanthurus hepatus&quot;</span>)))</span></code></pre></div>
 <p><img src="atividade3_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<p>Podemos usar a profundidade como outro critério, pois esta espécie é
-associada apenas a recifes rasos segundo o <strong>FishBase</strong>. E
-parece tudo ok.</p>
+<p>Podemos usar a profundidade como outro critério, pois esta espécie é associada apenas a recifes rasos segundo o <strong>FishBase</strong>. E parece tudo ok.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># checar profundidade</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>dori_gbif_ok <span class="sc">%&gt;%</span> </span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> depth, <span class="at">fill =</span> waterBody)) <span class="sc">+</span></span>
@@ -1758,11 +1657,8 @@ parece tudo ok.</p>
 <p><img src="atividade3_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <hr />
 <div id="obis" class="section level3" number="0.3.1">
-<h3><span class="header-section-number">3.3.1</span>
-<strong>OBIS</strong></h3>
-<p>Agora vamos fazer os mesmos procedimentos com os dados do
-<strong>OBIS</strong>, utilizando o pacote <code>robis</code> e a função
-<code>occurrence</code> deste pacote.</p>
+<h3><span class="header-section-number">3.3.1</span> <strong>OBIS</strong></h3>
+<p>Agora vamos fazer os mesmos procedimentos com os dados do <strong>OBIS</strong>, utilizando o pacote <code>robis</code> e a função <code>occurrence</code> deste pacote.</p>
 <ol style="list-style-type: decimal">
 <li>Baixar as ocorrências</li>
 </ol>
@@ -1771,9 +1667,7 @@ parece tudo ok.</p>
 <ol start="2" style="list-style-type: decimal">
 <li>Checar os dados</li>
 </ol>
-<p>Temos variáveis com os mesmos nomes, pois ambos usam o sistema
-<code>DwC</code>, mas os problemas reportados neste caso são indicados
-na coluna <code>flags</code>.</p>
+<p>Temos variáveis com os mesmos nomes, pois ambos usam o sistema <code>DwC</code>, mas os problemas reportados neste caso são indicados na coluna <code>flags</code>.</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># checar dados</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(dori_obis)</span></code></pre></div>
 <pre><code>##   [1] &quot;infraphylum&quot;                        
@@ -1932,7 +1826,7 @@ na coluna <code>flags</code>.</p>
 <span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="co"># check problemas reportados (flags)</span></span>
 <span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>dori_obis1 <span class="sc">%&gt;%</span> </span>
 <span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(flags)</span></code></pre></div>
-<pre><code>## # A tibble: 7 × 1
+<pre><code>## # A tibble: 7 x 1
 ##   flags                     
 ##   &lt;chr&gt;                     
 ## 1 &lt;NA&gt;                      
@@ -1947,7 +1841,7 @@ na coluna <code>flags</code>.</p>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>flags <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;no_depth,on_land&quot;</span>, <span class="st">&quot;on_land&quot;</span>, <span class="st">&quot;on_land,depth_exceeds_bath&quot;</span>, <span class="st">&quot;depth_exceeds_bath,on_land&quot;</span>),</span>
 <span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>         <span class="fu">is.na</span>(datasetName)) <span class="sc">%&gt;%</span> </span>
 <span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(waterBody)</span></code></pre></div>
-<pre><code>## # A tibble: 12 × 1
+<pre><code>## # A tibble: 12 x 1
 ##    waterBody             
 ##    &lt;chr&gt;                 
 ##  1 &lt;NA&gt;                  
@@ -1962,11 +1856,7 @@ na coluna <code>flags</code>.</p>
 ## 10 pacifique             
 ## 11 atlantique            
 ## 12 North America</code></pre>
-<p>Aqui usamos as <code>flags</code> para filtrar ocorrências em terra,
-além de remover dados sem nome de <em>dataset</em> (não temos como
-checar a origem adequadamente, então podemos tratar como suspeitos),
-filtrar ocorrências no Atlântico e verificar a profundidade
-reportada.</p>
+<p>Aqui usamos as <code>flags</code> para filtrar ocorrências em terra, além de remover dados sem nome de <em>dataset</em> (não temos como checar a origem adequadamente, então podemos tratar como suspeitos), filtrar ocorrências no Atlântico e verificar a profundidade reportada.</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># depth ok</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>dori_obis1 <span class="sc">%&gt;%</span> </span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>flags <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;no_depth,on_land&quot;</span>, <span class="st">&quot;on_land&quot;</span>, <span class="st">&quot;on_land,depth_exceeds_bath&quot;</span>, <span class="st">&quot;depth_exceeds_bath,on_land&quot;</span>),</span>
@@ -2138,8 +2028,7 @@ reportada.</p>
 <span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;longitude&quot;</span>, <span class="at">y =</span> <span class="st">&quot;latitude&quot;</span>, <span class="at">title =</span> <span class="fu">expression</span>(<span class="fu">italic</span>(<span class="st">&quot;Paracanthurus hepatus&quot;</span>)))</span></code></pre></div>
 <p><img src="atividade3_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>Parece tudo ok, e chegamos a 139 ocorrências potenciais.</p>
-<p>Por fim, vamos unir todas as ocorrências, checar se existem
-duplicatas e plotar o resultado final.</p>
+<p>Por fim, vamos unir todas as ocorrências, checar se existem duplicatas e plotar o resultado final.</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># unir GBIF e OBIS</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ver diferencas</span></span>
@@ -2168,41 +2057,17 @@ duplicatas e plotar o resultado final.</p>
 <span id="cb43-19"><a href="#cb43-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> all_data, <span class="fu">aes</span>(<span class="at">x =</span> decimalLongitude, <span class="at">y =</span> decimalLatitude, <span class="at">color =</span> datasetName)) <span class="sc">+</span></span>
 <span id="cb43-20"><a href="#cb43-20" aria-hidden="true" tabindex="-1"></a>  <span class="co">#theme(legend.title = element_blank()) +</span></span>
 <span id="cb43-21"><a href="#cb43-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;longitude&quot;</span>, <span class="at">y =</span> <span class="st">&quot;latitude&quot;</span>, <span class="at">title =</span> <span class="fu">expression</span>(<span class="fu">italic</span>(<span class="st">&quot;Paracanthurus hepatus&quot;</span>)))</span></code></pre></div>
-<p><img src="atividade3_files/figure-html/unnamed-chunk-13-1.png" width="672" />
-<br><br></p>
-<p>O último passo é guardarmos os dados baixados e tratados para
-economizar tempo no próximo uso, mas o mais importante já está
-registrado, o passo-a-passo de como chegamos até os dados usados nas
-análises.</p>
+<p><img src="atividade3_files/figure-html/unnamed-chunk-13-1.png" width="672" /> <br><br></p>
+<p>O último passo é guardarmos os dados baixados e tratados para economizar tempo no próximo uso, mas o mais importante já está registrado, o passo-a-passo de como chegamos até os dados usados nas análises.</p>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(all_data, <span class="st">&quot;data/occ_GBIF-OBIS_par_hepa.csv&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 </div>
-<div id="extra-classificação-automática-de-pontos"
-class="section level3" number="0.3.2">
-<h3><span class="header-section-number">3.3.2</span> EXTRA:
-Classificação automática de pontos</h3>
+<div id="extra-classificação-automática-de-pontos" class="section level3" number="0.3.2">
+<h3><span class="header-section-number">3.3.2</span> EXTRA: Classificação automática de pontos</h3>
 <div id="função-caseira" class="section level4" number="0.3.2.1">
-<h4><span class="header-section-number">3.3.2.1</span> Função
-‘caseira’</h4>
-<p>Podemos usar outras ferramentas mais refinadas para nos ajudar a
-detectar ocorrências suspeitas, como as encontradas nos pacotes
-<code>CoordinateCleaner</code>, <code>obistools</code>,
-<code>scrubr</code> e <code>biogeo</code>. Além disso, podemos criar
-nossas próprias funções para auxiliar nessa tarefa.</p>
-<p>Abaixo, vamos utilizar os dados baixados do <code>GBIF</code> antes
-da limpeza já realizada acima. Aqui vou começar a exemplificar com uma
-função simples criada por mim. Esta função utiliza as coordenadas para
-calcular o centróide (ponto médio de todas as ocorrências) e, a partir
-dele, a distância de cada ponto até o centróide. Esse princípio se
-baseia em propriedades de conectividade de populações contíguas, então
-quanto mais distantes (neste caso as muito distantes) maior a chance de
-termos uma ocorrência suspeita da mesma espécie. <em>Atenção: isso é
-apenas uma ferramenta para classificar as ocorrências! A decisão de
-filtrar ou não os pontos suspeitos vai depender do seu conhecimento ou
-da literatura a respeito dos habitats e regiões de ocorrência da
-espécie-alvo</em>.</p>
-<p>Inicialmente, vamos carregar a função <code>flag_outlier</code>. E,
-em seguida, aplicaremos a função e vamos plotar um mapa para avaliar as
-ocorrências com <em>flag</em> de <em>outlier</em>.</p>
+<h4><span class="header-section-number">3.3.2.1</span> Função ‘caseira’</h4>
+<p>Podemos usar outras ferramentas mais refinadas para nos ajudar a detectar ocorrências suspeitas, como as encontradas nos pacotes <code>CoordinateCleaner</code>, <code>obistools</code>, <code>scrubr</code> e <code>biogeo</code>. Além disso, podemos criar nossas próprias funções para auxiliar nessa tarefa.</p>
+<p>Abaixo, vamos utilizar os dados baixados do <code>GBIF</code> antes da limpeza já realizada acima. Aqui vou começar a exemplificar com uma função simples criada por mim. Esta função utiliza as coordenadas para calcular o centróide (ponto médio de todas as ocorrências) e, a partir dele, a distância de cada ponto até o centróide. Esse princípio se baseia em propriedades de conectividade de populações contíguas, então quanto mais distantes (neste caso as muito distantes) maior a chance de termos uma ocorrência suspeita da mesma espécie. <em>Atenção: isso é apenas uma ferramenta para classificar as ocorrências! A decisão de filtrar ou não os pontos suspeitos vai depender do seu conhecimento ou da literatura a respeito dos habitats e regiões de ocorrência da espécie-alvo</em>.</p>
+<p>Inicialmente, vamos carregar a função <code>flag_outlier</code>. E, em seguida, aplicaremos a função e vamos plotar um mapa para avaliar as ocorrências com <em>flag</em> de <em>outlier</em>.</p>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># funcao para classificar ocorrencias suspeitas</span></span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>flag_outlier <span class="ot">&lt;-</span> <span class="cf">function</span>(df, species){</span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  </span>
@@ -3497,31 +3362,12 @@ ocorrências com <em>flag</em> de <em>outlier</em>.</p>
 <span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
 <span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;longitude&quot;</span>, <span class="at">y =</span> <span class="st">&quot;latitude&quot;</span>, </span>
 <span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="fu">expression</span>(<span class="fu">italic</span>(<span class="st">&quot;Paracanthurus hepatus&quot;</span>)))</span></code></pre></div>
-<p><img src="atividade3_files/figure-html/unnamed-chunk-15-1.png" width="672" />
-<br><br></p>
-<p>Podemos notar no mapa acima que as ocorrencias acima do 90ésimo
-quantil são muito similares às já filtradas acima com base no
-<code>waterBody</code>, mas se já não tivéssemos a informação da
-ocorrência restrita da espécie ao Indo-Pacífico, já poderíamos
-desconfiar destas ocorrências tão longe, os <em>outliers</em>.
-Investigando o datasetName destas ocorrências com <em>flags</em> também
-chegaríamos a mesma conclusão de excluir os dados associados ao
-<code>Diveboard - Scuba diving citizen science</code> e sem valor de
-<code>datasetName</code>. <br><br></p>
+<p><img src="atividade3_files/figure-html/unnamed-chunk-15-1.png" width="672" /> <br><br></p>
+<p>Podemos notar no mapa acima que as ocorrencias acima do 90ésimo quantil são muito similares às já filtradas acima com base no <code>waterBody</code>, mas se já não tivéssemos a informação da ocorrência restrita da espécie ao Indo-Pacífico, já poderíamos desconfiar destas ocorrências tão longe, os <em>outliers</em>. Investigando o datasetName destas ocorrências com <em>flags</em> também chegaríamos a mesma conclusão de excluir os dados associados ao <code>Diveboard - Scuba diving citizen science</code> e sem valor de <code>datasetName</code>. <br><br></p>
 </div>
 <div id="pacote-scrubr" class="section level4" number="0.3.2.2">
-<h4><span class="header-section-number">3.3.2.2</span> Pacote
-<code>scrubr</code></h4>
-<p>O pacote <code>scrubr</code> possui algumas funções úteis para
-indicar problemas com coordenadas com elementos faltantes
-(<code>coord_incomplete</code>), coordenadas impossíveis
-(<code>coord_impossible</code>) e coordenadas duplicadas
-(<code>dedup</code>). Este último é estimado em um raio de tolerância e
-mais útil para análises em escala mais grosseira ou quando o informações
-a serem correlacionadas estão em escala maior. Podemos inclusive
-aplicá-las sequencialmente, pois o padrão das funções é excluir as
-ocorrências suspeitas, mas <strong>não recomendo seguir cegamente
-métodos automáticos de exclusão de dados!</strong></p>
+<h4><span class="header-section-number">3.3.2.2</span> Pacote <code>scrubr</code></h4>
+<p>O pacote <code>scrubr</code> possui algumas funções úteis para indicar problemas com coordenadas com elementos faltantes (<code>coord_incomplete</code>), coordenadas impossíveis (<code>coord_impossible</code>) e coordenadas duplicadas (<code>dedup</code>). Este último é estimado em um raio de tolerância e mais útil para análises em escala mais grosseira ou quando o informações a serem correlacionadas estão em escala maior. Podemos inclusive aplicá-las sequencialmente, pois o padrão das funções é excluir as ocorrências suspeitas, mas <strong>não recomendo seguir cegamente métodos automáticos de exclusão de dados!</strong></p>
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;scrubr&quot;</span>)) <span class="fu">install.packages</span>(<span class="st">&quot;scrubr&quot;</span>)</span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scrubr)</span>
@@ -3550,25 +3396,12 @@ métodos automáticos de exclusão de dados!</strong></p>
 <span id="cb49-26"><a href="#cb49-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
 <span id="cb49-27"><a href="#cb49-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;longitude&quot;</span>, <span class="at">y =</span> <span class="st">&quot;latitude&quot;</span>, </span>
 <span id="cb49-28"><a href="#cb49-28" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="fu">expression</span>(<span class="fu">italic</span>(<span class="st">&quot;Paracanthurus hepatus&quot;</span>)))</span></code></pre></div>
-<p><img src="atividade3_files/figure-html/scrubr-1.png" width="672" />
-<br><br></p>
-<p>Note que as ocorrências indicadas com uma cruz foram mantidas pelo
-<code>scrubr</code>, e isso reforça o papel de quem analisa em julgar os
-pontos suspeitos. <br><br></p>
+<p><img src="atividade3_files/figure-html/scrubr-1.png" width="672" /> <br><br></p>
+<p>Note que as ocorrências indicadas com uma cruz foram mantidas pelo <code>scrubr</code>, e isso reforça o papel de quem analisa em julgar os pontos suspeitos. <br><br></p>
 </div>
 <div id="pacote-obistools" class="section level4" number="0.3.2.3">
-<h4><span class="header-section-number">3.3.2.3</span> pacote
-<code>obistools</code></h4>
-<p>Vale lembrar que o <code>OBIS</code> é um repositório de dados
-marinhos, então as ferramentas tem melhor uso para dados desta natureza.
-Inclusive uma das funções do pacote (<code>check_onland</code>) checa
-coordenadas em terra, sejam ilhas ou continentes. Aqui vamos testar a
-função <code>check_outliers_species</code> que tem um princípio
-semelhante à nossa função caseira <code>flag_outliers</code>, mas é
-baseada no <strong>median absolute deviation (MAD)</strong> e no
-<strong>interquartile range (IQR)</strong>, parâmetros que podem ser
-ajustados na função. OBS: Algumas vezes pode ocorrer uma falha de
-conexão com o servidor, então deve-se insistir um pouco.</p>
+<h4><span class="header-section-number">3.3.2.3</span> pacote <code>obistools</code></h4>
+<p>Vale lembrar que o <code>OBIS</code> é um repositório de dados marinhos, então as ferramentas tem melhor uso para dados desta natureza. Inclusive uma das funções do pacote (<code>check_onland</code>) checa coordenadas em terra, sejam ilhas ou continentes. Aqui vamos testar a função <code>check_outliers_species</code> que tem um princípio semelhante à nossa função caseira <code>flag_outliers</code>, mas é baseada no <strong>median absolute deviation (MAD)</strong> e no <strong>interquartile range (IQR)</strong>, parâmetros que podem ser ajustados na função. OBS: Algumas vezes pode ocorrer uma falha de conexão com o servidor, então deve-se insistir um pouco.</p>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">&quot;obistools&quot;</span>)) <span class="fu">install.packages</span>(<span class="st">&quot;obistools&quot;</span>)</span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(obistools)</span>
@@ -3598,11 +3431,8 @@ conexão com o servidor, então deve-se insistir um pouco.</p>
 <span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
 <span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;longitude&quot;</span>, <span class="at">y =</span> <span class="st">&quot;latitude&quot;</span>, </span>
 <span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="fu">expression</span>(<span class="fu">italic</span>(<span class="st">&quot;Paracanthurus hepatus&quot;</span>)))</span></code></pre></div>
-<p><img src="atividade3_files/figure-html/unnamed-chunk-17-1.png" width="672" />
-<br><br></p>
-<p>Por fim, vamos testar o pacote <code>CoordinateCleaner</code>. Nele
-devemos especificar os campos correspondentes na função
-<code>clean_coordinates</code>.</p>
+<p><img src="atividade3_files/figure-html/unnamed-chunk-17-1.png" width="672" /> <br><br></p>
+<p>Por fim, vamos testar o pacote <code>CoordinateCleaner</code>. Nele devemos especificar os campos correspondentes na função <code>clean_coordinates</code>.</p>
 <div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>flags <span class="ot">&lt;-</span></span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_coordinates</span>(</span>
 <span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> marcados,</span>
@@ -3613,14 +3443,25 @@ devemos especificar os campos correspondentes na função
 <span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;zeros&quot;</span>, <span class="st">&quot;seas&quot;</span>)</span>
 <span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <pre><code>## OGR data source with driver: ESRI Shapefile 
-## Source: &quot;/private/var/folders/xx/6x1gs2p90qs1n_41pc68sd0m0000gn/T/RtmpmFmLU1&quot;, layer: &quot;ne_50m_land&quot;
+## Source: &quot;C:\Users\UENF\AppData\Local\Temp\RtmpsLzoRf&quot;, layer: &quot;ne_50m_land&quot;
 ## with 1420 features
 ## It has 3 fields
 ## Integer64 fields read as strings:  scalerank</code></pre>
 <p><br><br></p>
-<p>Neste caso, nenhuma ocorrência foi marcada como suspeita. Moral da
-história, sempre temos que conferir todos os dados, mas as ferramentas
-ajudam muito nesta tarefa! ***</p>
+<p>Neste caso, nenhuma ocorrência foi marcada como suspeita. Moral da história, sempre temos que conferir todos os dados, mas as ferramentas ajudam muito nesta tarefa! ***</p>
+<ul class="pager">
+<!--this is the style of the button-->
+<li>
+<a href="atividade2.html">Anterior</a>
+</li>
+<li>
+<a href="#">Topo</a>
+</li>
+<!--This button takes me to the table of contents-->
+<li>
+<a href="atividade4.html">Próxima</a>
+</li>
+</ul>
 </div>
 </div>
 </div>

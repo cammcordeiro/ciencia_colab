@@ -585,4 +585,8 @@ flags <-
 Neste caso, nenhuma ocorrência foi marcada como suspeita. Moral da história, sempre temos que conferir todos os dados, mas as ferramentas ajudam muito nesta tarefa!
 ***
 
-
+<ul class="pager"> <!--this is the style of the button-->
+<li><a href="atividade2.html">Anterior</a></li>
+<li><a href="#">Topo</a></li> <!--This button takes me to the table of contents-->
+<li><a href="atividade4.html">Próxima</a></li>
+</ul>

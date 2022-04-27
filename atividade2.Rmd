@@ -256,3 +256,8 @@ for(i in 1:length(files)) {
 Agora já está tudo pronto para subir os dados para o repositório ou compartilhar diretamente. Só não esqueça dos metadados!!
 
 ------------------------------------------------------------------------
+<ul class="pager"> <!--this is the style of the button-->
+<li><a href="atividade1.html">Anterior</a></li>
+<li><a href="#">Topo</a></li> <!--This button takes me to the table of contents-->
+<li><a href="atividade3.html">Próxima</a></li>
+</ul>

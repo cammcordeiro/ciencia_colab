@@ -460,3 +460,8 @@ Guides](https://guides.github.com/introduction/flow/). Um guia muito
 useR](https://happygitwithr.com/).
 
 ------------------------------------------------------------------------
+<ul class="pager"> <!--this is the style of the button-->
+<li><a href="atividade3.html">Anterior</a></li>
+<li><a href="#">Topo</a></li> <!--This button takes me to the table of contents-->
+<li><a href="atividade5.html">Próxima</a></li>
+</ul>
