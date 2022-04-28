@@ -34,6 +34,41 @@ NORFLU <- rgdal::readOGR("data/NORFLU/map.shp")
 
 ```
 
+# Dori
+
+## Row
+
+### Ocorrências de *Paracanthurus hepatus*
+
+```{r mapa_dori}
+
+pal <- colorFactor(palette = "viridis", domain = unique(campos$kingdom))
+
+NORFLU %>% 
+  leaflet() %>% 
+  addTiles() %>% 
+  addPolygons(fillColor = "grey",
+              highlight = highlightOptions(weight = 1,
+                                           color = "red",
+                                           fillOpacity = 0.7,
+                                           bringToFront = TRUE),
+              label = ~NM_MUNICIP) %>% 
+  addCircleMarkers(data = campos,
+                   ~decimalLongitude,
+                   ~decimalLatitude,
+                   radius = 5,
+                   #label = ~as.character(datasetName),
+                   color = ~pal(campos$kingdom),
+                   stroke = FALSE, fillOpacity = 0.5) %>%
+  addLegend('bottomright',
+          colors = unique(pal(campos$kingdom)),
+          labels = unique(campos$kingdom),
+          title = 'Dataset',
+          opacity = 0.5)
+
+```
+
+
 # Lente Ecológica
 
 ## Row
@@ -108,9 +143,11 @@ gauge(91, min = 0, max = 100, symbol = '%', gaugeSectors(
 ### Scatterplot
 ```{r}
 
-a3 <- iris %>% 
-  ggplot(aes(x = Petal.Length, y = Petal.Width, color = Species)) +
-    geom_point() +
+a3 <- campos %>% 
+  group_by(kingdom) %>% 
+  summarise(spp = n_distinct(genus)) %>% 
+  ggplot(aes(y = spp, color = kingdom)) +
+    geom_histogram() +
     theme_classic()
 
 ggplotly(a3)
@@ -122,45 +159,10 @@ ggplotly(a3)
 
 ```{r chart C}
 # conferir no mapa
-iris %>% 
+campos %>% 
   leaflet() %>% 
   addTiles() %>% 
-  addMarkers(~lon,
-             ~lat)
+  addMarkers(~decimalLongitude,
+             ~decimalLatitude)
 ```
 
-# Dori
-
-## Row
-
-### Ocorrências de *Paracanthurus hepatus*
-
-```{r mapa_dori}
-
-pal <- colorFactor(palette = "viridis", domain = unique(campos$kingdom))
-
-NORFLU %>% 
-  leaflet() %>% 
-  addTiles() %>% 
-  addPolygons(fillColor = "grey",
-              highlight = highlightOptions(weight = 1,
-                                           color = "red",
-                                           fillOpacity = 0.7,
-                                           bringToFront = TRUE),
-              label = ~NM_MUNICIP) %>% 
-  addCircleMarkers(data = campos,
-                   ~decimalLongitude,
-                   ~decimalLatitude,
-                   radius = 5,
-                   #label = ~as.character(datasetName),
-                   color = ~pal(campos$kingdom),
-                   stroke = FALSE, fillOpacity = 0.5) %>%
-  addLegend('bottomright',
-          colors = unique(pal(campos$kingdom)),
-          labels = unique(campos$kingdom),
-          title = 'Dataset',
-          opacity = 0.5)
-
-
-
-```
