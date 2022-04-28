@@ -7,49 +7,6 @@ output:
     source_code: embed
 ---
 
-
-####
-NORFLU %>% 
-  leaflet() %>% 
-  addTiles() %>% 
-  addPolygons(fillColor = "grey",
-              highlight = highlightOptions(weight = 1,
-                                           color = "red",
-                                           fillOpacity = 0.7,
-                                           bringToFront = TRUE),
-              label = ~NM_MUNICIP) %>% 
-  addCircleMarkers(data = dori,
-                   ~decimalLongitude,
-                   ~decimalLatitude,
-                   radius = 5,
-                   label = ~as.character(datasetName),
-                   color = ~pal(dori$datasetName),
-                   stroke = FALSE, fillOpacity = 0.5) %>%
-  addLegend('bottomright',
-          colors = unique(pal(dori$datasetName)),
-          labels = unique(dori$datasetName),
-          title = 'Dataset',
-          opacity = 0.5)
-
-
-rank <- campoxxx %>% 
-  group_by(kingdom, phylum, family) %>% 
-  summarise(richness = n_distinct(paste(genus, species))) %>% 
-  arrange(-richness) %>% 
-  pull(family)
-
-
-campoxxx %>% 
-  group_by(kingdom, phylum, class) %>% 
-  summarise(richness = n_distinct(paste(genus, species))) %>% 
-  mutate(phylum = factor(phylum, levels = phylum)) %>% 
-  ggplot(aes(y = richness, x = class, fill = kingdom)) +
-    geom_bar(stat = 'identity') +
-    theme_classic() +
-    coord_flip() +
-    facet_grid(~kingdom, scales = "free")
-
-
 ### IUCN redlist
 # https://www.youtube.com/watch?v=4T6GXtptmj4
 
@@ -57,7 +14,7 @@ campoxxx %>%
 
 # https://bookdown.org/yihui/rmarkdown/dashboard-components.html
 
-
+# https://plotly.com/r/time-series/
 
 
 
@@ -66,8 +23,15 @@ library(flexdashboard)
 library(tidyverse)
 library(plotly)
 library(leaflet)
+library(sf)
 
-campos <- read.delim("~/Downloads/0251266-210914110416597.csv")
+campos <- read.csv("data/campos_gbif_25apr2022.csv", header = T)
+
+NORFLU <- sf::st_read("data/NORFLU/map.shp")
+
+NORFLU <- rgdal::readOGR("data/NORFLU/map.shp")
+
+
 ```
 
 # Lente Ecológica
@@ -78,7 +42,7 @@ campos <- read.delim("~/Downloads/0251266-210914110416597.csv")
 
 ```{r}
 
-rank <- campoxxx %>% 
+rank <- campos %>% 
   mutate(kingdom = factor(kingdom, levels = c("Viruses", "Bacteria", "Chromista", "Fungi", "Plantae", "Animalia", "incertae sedis"))) %>% 
   group_by(kingdom, phylum) %>% 
   summarise(spp = n_distinct(paste(genus, species))) %>% 
@@ -86,7 +50,7 @@ rank <- campoxxx %>%
   arrange(kingdom, spp) %>% 
   pull(phylum)
 
-a1 <- campoxxx %>% 
+a1 <- campos %>% 
   mutate(kingdom = factor(kingdom, levels = c("Animalia", "Plantae", "Fungi", "Chromista", "Bacteria", "Viruses", "incertae sedis"))) %>% 
   group_by(kingdom, phylum) %>% 
   summarise(spp = n_distinct(paste(genus, species))) %>% 
@@ -101,7 +65,7 @@ a1 <- campoxxx %>%
 ggplotly(a1)
 
 
-ggplotly(campoxxx %>% 
+ggplotly(campos %>% 
   mutate(kingdom = factor(kingdom, levels = c("Animalia", "Plantae", "Fungi", "Chromista", "Bacteria", "Viruses", "incertae sedis"))) %>% 
   group_by(kingdom, phylum, class) %>% 
   summarise(spp = n_distinct(paste(genus, species))) %>% 
@@ -173,29 +137,30 @@ iris %>%
 
 ```{r mapa_dori}
 
-dori <- read.csv("data/occ_GBIF-OBIS_par_hepa.csv", header = TRUE)
+pal <- colorFactor(palette = "viridis", domain = unique(campos$kingdom))
 
-pal <- colorFactor(palette = "viridis", domain = unique(dori$datasetName))
-
-dori %>% 
+NORFLU %>% 
   leaflet() %>% 
   addTiles() %>% 
-  addCircleMarkers(~decimalLongitude,
-                   ~decimalLatitude,
-                   radius = 5,
-                   label = ~as.character(datasetName),
-                   color = ~pal(dori$datasetName),
-                   stroke = FALSE, fillOpacity = 0.5) %>% 
-  addLegend('bottomright', 
-            colors = unique(pal(dori$datasetName)), 
-            labels = unique(dori$datasetName),
-            title = 'Dataset',
-            opacity = 0.5) %>% 
   addPolygons(fillColor = "grey",
-              highlight = highlightOptions(weight = 5,
+              highlight = highlightOptions(weight = 1,
                                            color = "red",
                                            fillOpacity = 0.7,
                                            bringToFront = TRUE),
-              label = ~NAME)
+              label = ~NM_MUNICIP) %>% 
+  addCircleMarkers(data = campos,
+                   ~decimalLongitude,
+                   ~decimalLatitude,
+                   radius = 5,
+                   #label = ~as.character(datasetName),
+                   color = ~pal(campos$kingdom),
+                   stroke = FALSE, fillOpacity = 0.5) %>%
+  addLegend('bottomright',
+          colors = unique(pal(campos$kingdom)),
+          labels = unique(campos$kingdom),
+          title = 'Dataset',
+          opacity = 0.5)
+
+
 
 ```
