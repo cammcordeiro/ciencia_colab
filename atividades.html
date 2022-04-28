@@ -13,8 +13,8 @@
 
 <title>Atividades</title>
 
-<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -54,6 +54,7 @@
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -74,6 +75,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -289,12 +293,12 @@ div.tocify {
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row">
-<div class="col-sm-12 col-md-4 col-lg-3">
+<div class="col-xs-12 col-sm-4 col-md-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-sm-12 col-md-8 col-lg-9">
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -302,7 +306,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -323,7 +327,7 @@ div.tocify {
 </li>
 <li>
   <a href="materiais.html">
-    <span class="fas fa-folder fa-lg"></span>
+    <span class="fa fa-folder fa-lg"></span>
      
     Materiais
   </a>
@@ -352,7 +356,7 @@ div.tocify {
 <div id="header">
 
 <div class="btn-group pull-right float-right">
-<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
 <ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
 <li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
 <li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
@@ -376,7 +380,13 @@ text-align: justify}
 <img src= "figs/amostra.png" style= "width:60%">
 </center>
 <p><br><br></p>
-<p>A <a href="atividade1.html"><strong>atividade 1</strong></a> consiste em um exercício de construção de uma base de dados (planilha) a partir de dados coletados em campo descritos em <a href="https://drive.google.com/drive/folders/1a1x8tgpXuw28rEm8CdUYaOJqJxcjLBVH?usp=sharing"><em>fichas de campo</em></a> simuladas com dados derivados do trabalho de Edgar Anderson (Anderson E. 1935. The irises of the Gaspe Peninsula, <em>Bulletin of the American Iris Society</em>, 59: 2–5). <br><br></p>
+<p>A <a href="atividade1.html"><strong>atividade 1</strong></a> consiste
+em um exercício de construção de uma base de dados (planilha) a partir
+de dados coletados em campo descritos em <a
+href="https://drive.google.com/drive/folders/1a1x8tgpXuw28rEm8CdUYaOJqJxcjLBVH?usp=sharing"><em>fichas
+de campo</em></a> simuladas com dados derivados do trabalho de Edgar
+Anderson (Anderson E. 1935. The irises of the Gaspe Peninsula,
+<em>Bulletin of the American Iris Society</em>, 59: 2–5). <br><br></p>
 <hr />
 </div>
 <div id="atividade-2" class="section level2 unnumbered">
@@ -384,7 +394,12 @@ text-align: justify}
 <center>
 <img src= "figs/git_4.png" style= "width:50%">
 </center>
-<p>A <a href="atividade2.html"><strong>atividade 2</strong></a> será realizada para padronizar os dados gerados na atividade 1 usando o sistema <a href="https://dwc.tdwg.org/">Darwin Core</a> e criar os arquivos necessários para distribuição dos dados como <a href="https://classroom.oceanteacher.org/pluginfile.php/15953/mod_resource/content/1/OBIS%20standards%20and%20formating.pdf">Darwin Core Arquive</a>. <br><br></p>
+<p>A <a href="atividade2.html"><strong>atividade 2</strong></a> será
+realizada para padronizar os dados gerados na atividade 1 usando o
+sistema <a href="https://dwc.tdwg.org/">Darwin Core</a> e criar os
+arquivos necessários para distribuição dos dados como <a
+href="https://classroom.oceanteacher.org/pluginfile.php/15953/mod_resource/content/1/OBIS%20standards%20and%20formating.pdf">Darwin
+Core Arquive</a>. <br><br></p>
 <hr />
 </div>
 <div id="atividade-3" class="section level2 unnumbered">
@@ -393,7 +408,11 @@ text-align: justify}
 <img src= "atividade3_files/figure-html/unnamed-chunk-13-1.png" style= "width:70%">
 </center>
 <p><br><br></p>
-<p>A <a href="atividade3.html"><strong>atividade 3</strong></a> inclui exercícios para a criação de uma rotina em R para a aquisição de dados em bases abertas, neste caso, utilizando-se o <a href="https://www.gbif.org/">GBIF</a>. Além disso, serão apresentadas ferramentas para conferência e limpeza de dados. <br><br></p>
+<p>A <a href="atividade3.html"><strong>atividade 3</strong></a> inclui
+exercícios para a criação de uma rotina em R para a aquisição de dados
+em bases abertas, neste caso, utilizando-se o <a
+href="https://www.gbif.org/">GBIF</a>. Além disso, serão apresentadas
+ferramentas para conferência e limpeza de dados. <br><br></p>
 <hr />
 </div>
 <div id="atividade-4" class="section level2 unnumbered">
@@ -402,7 +421,13 @@ text-align: justify}
 <img src= "figs/rmarkdown_icon.png" style= "width:30%">
 </center>
 <p><br><br></p>
-<p>A <a href="atividade4.html"><strong>atividade 4</strong></a> é uma extensão da <a href="atividade3.html"><strong>atividade 3</strong></a>, onde os participantes terão de traduzir a rotina criada em R para uma rotina comentada em RMarkdown indicando detalhes a respeito do processo de aquisição e limpeza dos dados. Na segunda parte da atividade, serão testadas ferramentas de compartilhamento no <a href="https://github.com/">GitHub</a>. <br><br></p>
+<p>A <a href="atividade4.html"><strong>atividade 4</strong></a> é uma
+extensão da <a href="atividade3.html"><strong>atividade 3</strong></a>,
+onde os participantes terão de traduzir a rotina criada em R para uma
+rotina comentada em RMarkdown indicando detalhes a respeito do processo
+de aquisição e limpeza dos dados. Na segunda parte da atividade, serão
+testadas ferramentas de compartilhamento no <a
+href="https://github.com/">GitHub</a>. <br><br></p>
 <hr />
 </div>
 <div id="atividade-5" class="section level2 unnumbered">
@@ -411,11 +436,18 @@ text-align: justify}
 <img src= "figs/data_cycle.png" style= "width:50%">
 </center>
 <p><br><br></p>
-<p>A <a href="atividade5.html"><strong>atividade 5</strong></a> finaliza o processo de ferramentas básicas de compartilhamento e reprodutibilidade de dados científicos. Nesta atividade, os participantes irão tranformar as rotinas criadas nas atividades anteriores em um website além de incluir alguns <code>chunck</code> de recursos interativos. <br><br></p>
+<p>A <a href="atividade5.html"><strong>atividade 5</strong></a> finaliza
+o processo de ferramentas básicas de compartilhamento e
+reprodutibilidade de dados científicos. Nesta atividade, os
+participantes irão tranformar as rotinas criadas nas atividades
+anteriores em um website além de incluir alguns <code>chunck</code> de
+recursos interativos. <br><br></p>
 </div>
 <div id="extra" class="section level2 unnumbered">
 <h2 class="unnumbered"><strong>Extra</strong></h2>
-<p><a href="https://cammcordeiro.github.io/CCBD_atividade4/extra_dashboard.html">Um exemplo usando gráficos interativos.</a></p>
+<p><a
+href="https://cammcordeiro.github.io/CCBD_atividade4/extra_dashboard.html">Um
+exemplo usando gráficos interativos.</a></p>
 <hr />
 </div>
 
@@ -465,6 +497,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')
