@@ -13,8 +13,8 @@
 
 <title>Atividade 1</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
-<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -59,7 +59,6 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -392,12 +391,12 @@ div.tocify {
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
+<div class="col-sm-12 col-md-4 col-lg-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
 
 
 
@@ -426,7 +425,7 @@ div.tocify {
 </li>
 <li>
   <a href="materiais.html">
-    <span class="fa fa-folder fa-lg"></span>
+    <span class="fas fa-folder fa-lg"></span>
      
     Materiais
   </a>
@@ -476,23 +475,23 @@ text-align: justify}
 <h1 class="unnumbered">Atividade 1</h1>
 </div>
 <div id="planilhamento-de-dados" class="section level1" number="1">
-<h1><span class="header-section-number">1</span> Planilhamento de dados</h1>
+<h1 number="1"><span class="header-section-number">1</span> Planilhamento de dados</h1>
 <div id="fonte-dos-dados" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> Fonte dos dados</h2>
+<h2 number="1.1"><span class="header-section-number">1.1</span> Fonte dos dados</h2>
 <p>Para a primeira atividade do curso vamos utilizar dados amplamente conhecidos dos usuários de R no campo da ecologia.</p>
 <p>Estes dados foram derivados do trabalho de Edgar Anderson (Anderson E. 1935. The irises of the Gaspe Peninsula, <em>Bulletin of the American Iris Society</em>, 59: 2–5) realizado com medições morfológicas das flores de três espécies de plantas do gênero <em>Iris</em> coletadas em áreas gramadas na Península de Gaspé (EUA) em 1935. Este conjunto de dados ficou famoso por ter sido utilizado por Ronald Fisher <a href="https://digital.library.adelaide.edu.au/dspace/bitstream/2440/15227/1/138.pdf">(Fisher R. 1936. The Use of Multiple Measurements in Taxonomic Problems, <em>Annals of Eugenics</em>, 7:179 - 188)</a>.</p>
 <p>Vale indicar que, as coordenadas indicadas nas fichas de campo foram obtidas com a avaliação de imagem ortomosaico do serviço <em>Google Earth</em> com propósito ilustrativo, mas não correspondem às coordenadas originais dos locais de coleta.</p>
 <hr />
 </div>
 <div id="instruções" class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> Instruções</h2>
+<h2 number="1.2"><span class="header-section-number">1.2</span> Instruções</h2>
 <p>A atividade 1 consiste em transferir os dados indicados nas fichas de campo para o formato de planilha. As fichas encontram-se na pasta compartilhada do <a href="https://drive.google.com/drive/folders/1S_yTN8DfdS1l6RtB8McWUoEeaBZLAJuGGqQdUkMkUD87ARpeelck2iyXv_c1tR4qnQWQhArk?usp=sharing">Google Drive da disciplina</a>.</p>
 <ol style="list-style-type: decimal">
 <li>Esta atividade deve ser realizada de modo individual e cada participante deverá baixar as amostras (i.e., fichas de campo) indicadas junto ao seu nome na tabela abaixo.</li>
 </ol>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">participante =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">1</span>),</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">fichas =</span> <span class="fu">c</span>(<span class="fu">read.csv</span>(<span class="st">&quot;data/iris_mod.csv&quot;</span>, <span class="at">header =</span> T) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">fichas =</span> <span class="fu">c</span>(<span class="fu">read.csv</span>(<span class="st">&quot;~/github/cursodados/data/iris_mod.csv&quot;</span>, <span class="at">header =</span> T) <span class="sc">%&gt;%</span> </span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">distinct</span>(amostra) <span class="sc">%&gt;%</span> </span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">pull</span>()<span class="sc">%&gt;%</span> </span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">sample</span>()),</span>
@@ -517,61 +516,51 @@ text-align: justify}
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="left">A102, A9 , A114, A133, A117, A105, A1 , A82 , A113, A118, A59 , A37 , A5 , A88 , A109</td>
+<td align="left">A116, A25 , A69 , A114, A21 , A113, A95 , A94 , A26 , A10 , A136, A129, A147, A79 , A115</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="left">A60 , A76 , A55 , A10 , A11 , A68 , A18 , A71 , A83 , A97 , A42 , A124, A110, A20 , A91</td>
+<td align="left">A140, A118, A60 , A148, A62 , A52 , A49 , A31 , A55 , A19 , A135, A70 , A110, A112, A53</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="left">A24 , A148, A70 , A16 , A67 , A144, A92 , A108, A112, A81 , A51 , A75 , A32 , A34 , A52</td>
+<td align="left">A59 , A71 , A16 , A127, A91 , A17 , A143, A117, A39 , A32 , A37 , A84 , A138, A41 , A96</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="left">A138, A19 , A74 , A125, A6 , A30 , A43 , A94 , A8 , A126, A28 , A2 , A35 , A119, A99</td>
+<td align="left">A28 , A124, A73 , A93 , A13 , A90 , A50 , A131, A12 , A99 , A33 , A67 , A11 , A51 , A38</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="left">A116, A62 , A121, A115, A56 , A15 , A58 , A49 , A21 , A40 , A101, A107, A127, A140, A90</td>
+<td align="left">A119, A3 , A98 , A132, A111, A128, A9 , A146, A42 , A18 , A149, A77 , A57 , A1 , A4</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="left">A77 , A85 , A139, A78 , A27 , A72 , A25 , A106, A135, A111, A104, A3 , A65 , A4 , A7</td>
+<td align="left">A142, A63 , A2 , A35 , A89 , A22 , A20 , A7 , A23 , A43 , A6 , A83 , A56 , A134, A81</td>
 </tr>
 <tr class="odd">
 <td align="right">7</td>
-<td align="left">A17 , A130, A61 , A38 , A129, A122, A41 , A66 , A84 , A137, A95 , A146, A79 , A80 , A53</td>
+<td align="left">A145, A120, A78 , A101, A97 , A65 , A75 , A137, A107, A86 , A45 , A80 , A47 , A27 , A8</td>
 </tr>
 <tr class="even">
 <td align="right">8</td>
-<td align="left">A45 , A142, A89 , A93 , A147, A69 , A23 , A136, A120, A22 , A86 , A29 , A128, A50 , A13</td>
+<td align="left">A133, A126, A46 , A85 , A54 , A68 , A72 , A30 , A40 , A34 , A88 , A29 , A100, A61 , A103</td>
 </tr>
 <tr class="odd">
 <td align="right">9</td>
-<td align="left">A143, A44 , A100, A12 , A131, A145, A132, A47 , A150, A98 , A87 , A14 , A63 , A141, A57</td>
+<td align="left">A44 , A64 , A122, A82 , A104, A14 , A125, A105, A76 , A102, A48 , A121, A36 , A24 , A74</td>
 </tr>
 <tr class="even">
 <td align="right">10</td>
-<td align="left">A39 , A134, A64 , A123, A48 , A73 , A54 , A46 , A33 , A36 , A96 , A26 , A149, A31 , A103</td>
+<td align="left">A108, A141, A139, A130, A109, A106, A5 , A144, A150, A58 , A92 , A87 , A15 , A66 , A123</td>
 </tr>
 </tbody>
 </table>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Ao finalizar o planilhamento das informações, o arquivo deverá ser salvo no formato <code>*.csv</code> (<em>comma separated values</em>) e nomeado seguindo o padrão: <strong>atividade1_NOME-DO-PARTICIPANTE.csv</strong></p></li>
-<li><p>Subir a planilha para no <a href="https://drive.google.com/drive/folders/1C5LIx2rifGsHz22qwzjxDNwEQne3YRrT?usp=sharing">drive compartilhado</a> na pasta <strong>atividade1_data</strong> dentro da pasta <strong>atividades</strong> (i.e. <em>Ciencia Colab2022/atividades/atividade1_data/</em>).</p></li>
+<li><p>Subir a planilha para no <a href="https://drive.google.com/drive/folders/1S_yTN8DfdS1l6RtB8McWUoEeaBZLAJuGGqQdUkMkUD87ARpeelck2iyXv_c1tR4qnQWQhArk?usp=sharing">drive compartilhado</a></p></li>
 </ol>
 <hr />
-<ul class="pager">
-<!--this is the style of the button-->
-<li>
-<a href="#">Topo</a>
-</li>
-<!--This button takes me to the table of contents-->
-<li>
-<a href="atividade2.html">Próxima</a>
-</li>
-</ul>
 </div>
 </div>
 
@@ -621,9 +610,6 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

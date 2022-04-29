@@ -13,8 +13,8 @@
 
 <title>Atividade 2</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
-<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -63,7 +63,6 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -396,12 +395,12 @@ div.tocify {
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
+<div class="col-sm-12 col-md-4 col-lg-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
 
 
 
@@ -430,7 +429,7 @@ div.tocify {
 </li>
 <li>
   <a href="materiais.html">
-    <span class="fa fa-folder fa-lg"></span>
+    <span class="fas fa-folder fa-lg"></span>
      
     Materiais
   </a>
@@ -484,14 +483,14 @@ text-align: justify}
 <h1 class="unnumbered">Atividade 2</h1>
 <hr />
 <div id="criando-arquivos-no-sistema-emof" class="section level2" number="0.1">
-<h2><span class="header-section-number">2.1</span> Criando arquivos no sistema eMOF</h2>
+<h2 number="2.1"><span class="header-section-number">2.1</span> Criando arquivos no sistema eMOF</h2>
 <p>Nesta atividade, continuaremos utilizando os dados modificados do dataset <code>iris</code> do pacote <code>vegan</code> com os dados coletados por Edgar Anderson.</p>
 <ul>
 <li>Anderson E (1935) The irises of the Gaspe Peninsula, Bulletin of the American Iris Society, 59, 2–5.</li>
 </ul>
 <hr />
 <div id="checando-os-dados" class="section level3" number="0.1.1">
-<h3><span class="header-section-number">2.1.1</span> Checando os dados</h3>
+<h3 number="2.1.1"><span class="header-section-number">2.1.1</span> Checando os dados</h3>
 <p>O primeiro passo é identificar os campos presentes no dataset:</p>
 <ol style="list-style-type: decimal">
 <li>Usar a função <code>str</code> para conferir os tipos de dados em cada coluna</li>
@@ -549,73 +548,39 @@ text-align: justify}
 ## $site
 ## [1] &quot;Site1&quot; &quot;Site2&quot; &quot;Site3&quot;</code></pre>
 <p>Aqui podemos identificar que temos 150 amostras e nomes de espécies associados às amostras, além de atributos (eg. Petal.Length, Sepal.Width) associados a cada espécie. Também existem dados de coordenadas dos sites e datas das amostragens.</p>
-<p>Podemos aproveitar para investigar algumas características dos dados e fazer um controle de qualidade. Por exemplo, verificar se existem valores discrepantes nas variáveis numéricas ou se existem valores faltantes.</p>
-<p>Inicialmente, vamos fazer uma inspeção visual da distribuição dos valores numéricos.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">%&gt;%</span> </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Species, Sepal.Length<span class="sc">:</span>Petal.Width) <span class="sc">%&gt;%</span> </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>Species, <span class="at">names_to =</span> <span class="st">&quot;variavel&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;valores&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> valores, <span class="at">fill =</span> Species)) <span class="sc">+</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span> variavel, <span class="at">scales =</span> <span class="st">&#39;free_y&#39;</span>) <span class="sc">+</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
-<p><img src="atividade2_files/figure-html/histograms-1.png" width="672" /></p>
-<p>Aqui podemos observar a variação dos dados que tendem a tem distribuição unimodal, mas sem valores extremos.</p>
-<p>Para checar as demais variáveis, vamos utilizar o pacote <code>validate</code>. Neste pacote é possível indicar os padrões esperados de cada variável e verificar quais observações violam os limites indicados. Para isso são definidas as regras (e.g. valores de <code>latitude</code> entre -90 e 90, variável <code>site</code> como caracter). Para mais informações, basta acessar o <a href="https://cran.r-project.org/web/packages/validate/vignettes/cookbook.html#41_Completeness_of_records"><code>vignette</code></a> do pacote <code>validate</code></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rules <span class="ot">&lt;-</span> <span class="fu">validator</span>(<span class="fu">in_range</span>(lat, <span class="at">min =</span> <span class="sc">-</span><span class="dv">90</span>, <span class="at">max =</span> <span class="dv">90</span>),</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">in_range</span>(lat, <span class="at">min =</span> <span class="sc">-</span><span class="dv">180</span>, <span class="at">max =</span> <span class="dv">180</span>),</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">is.character</span>(site),</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">is.numeric</span>(date),</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">all_complete</span>(iris))</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>out   <span class="ot">&lt;-</span> <span class="fu">confront</span>(iris, rules)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(out)</span></code></pre></div>
-<pre><code>##   name items passes fails nNA error warning
-## 1   V1   150    150     0   0 FALSE   FALSE
-## 2   V2   150    150     0   0 FALSE   FALSE
-## 3   V3     1      1     0   0 FALSE   FALSE
-## 4   V4     1      0     1   0 FALSE   FALSE
-## 5   V5     1      1     0   0 FALSE   FALSE
-##                             expression
-## 1   in_range(lat, min = -90, max = 90)
-## 2 in_range(lat, min = -180, max = 180)
-## 3                   is.character(site)
-## 4                     is.numeric(date)
-## 5                   all_complete(iris)</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(out)</span></code></pre></div>
-<p><img src="atividade2_files/figure-html/validate-1.png" width="672" /></p>
+<p>Avaliando estes campos, podemos ver que possuímos quase todos os campos obrigatórios para o sistema Darwin Core (DwC).</p>
 <hr />
 </div>
 <div id="taxóns" class="section level3" number="0.1.2">
-<h3><span class="header-section-number">2.1.2</span> Taxóns</h3>
-<p>Avaliando os dados, podemos ver que não existem inconsistências e que já possuímos quase todos os campos obrigatórios para o sistema Darwin Core (DwC).</p>
-<p>Em seguida, um passo importante é checar se os nomes utilizados dos táxons são válidos.</p>
+<h3 number="2.1.2"><span class="header-section-number">2.1.2</span> Taxóns</h3>
+<p>Em seguida, é importante checar se os nomes utilizados dos táxons são válidos.</p>
 <ol style="list-style-type: decimal">
 <li>Para isso podemos utilizar a função <code>get_tsn</code> do pacote <code>taxize</code>. Esta função permite investigar na base de dados do <a href="https://www.itis.gov/"><em>Integrated Taxonomic Information System</em></a> se a nomenclatura aplicada aos táxons é válida ou se necessita de atualização.</li>
 </ol>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check taxa</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>species <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(Species) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_tsn</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(iris <span class="sc">%&gt;%</span> </span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>              <span class="fu">distinct</span>(Species))</span></code></pre></div>
-<pre><code>## ==  3 queries  ===============
-## v  Found:  Iris setosa
-## v  Found:  Iris versicolor
-## v  Found:  Iris virginica
-## ==  Results  =================
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check taxa</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>species <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(Species) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_tsn</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(iris <span class="sc">%&gt;%</span> </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>              <span class="fu">distinct</span>(Species))</span></code></pre></div>
+<pre><code>## ══  3 queries  ═══════════════
+## ✔  Found:  Iris setosa
+## ✔  Found:  Iris versicolor
+## ✔  Found:  Iris virginica
+## ══  Results  ═════════════════
 ## 
-## * Total: 3 
-## * Found: 3 
-## * Not Found: 0</code></pre>
+## ● Total: 3 
+## ● Found: 3 
+## ● Not Found: 0</code></pre>
 <p>Os campos de <code>match</code> e <code>pattern_match</code> indicam que as espécies são válidas e, o campo <code>uri</code> indica o endereço único para checar a espécie no ITIS. Este campo <code>uri</code> será utilizado na planilha <code>occurrence</code> do sistema <code>event core</code>.</p>
 <hr />
 </div>
 <div id="manipulando-os-dados" class="section level3" number="0.1.3">
-<h3><span class="header-section-number">2.1.3</span> Manipulando os dados</h3>
+<h3 number="2.1.3"><span class="header-section-number">2.1.3</span> Manipulando os dados</h3>
 <div id="planilha-base" class="section level4" number="0.1.3.1">
-<h4><span class="header-section-number">2.1.3.1</span> Planilha base</h4>
+<h4 number="2.1.3.1"><span class="header-section-number">2.1.3.1</span> Planilha base</h4>
 <p>Sabendo-se que podemos prosseguir sem corrigir os táxons, agora é necessário renomear as variáveis de acordo com o DwC.</p>
 <ol style="list-style-type: decimal">
 <li><p>O primeiro passo é criar uma identidade única para as menores unidades de ocorrência dos táxons (<code>occurrenceID</code>) e das amostras (<code>eventID</code>).</p></li>
@@ -625,119 +590,106 @@ text-align: justify}
 <blockquote>
 <p>OBS: os dados das coordenadas são fictícios e o nome do amostrador é baseado em informação do pacote <code>vegan</code> (para checar, carregue o pacote <code>vegan</code> e digite <code>?iris</code>)</p>
 </blockquote>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>iris_1 <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">eventID =</span> <span class="fu">paste</span>(site, date, <span class="at">sep =</span> <span class="st">&quot;_&quot;</span>), <span class="co"># create indexing fields </span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">occurrenceID =</span> <span class="fu">paste</span>(site, date, amostra, <span class="at">sep =</span> <span class="st">&quot;_&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(species <span class="sc">%&gt;%</span> </span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>              <span class="fu">select</span>(Species, uri)) <span class="sc">%&gt;%</span> <span class="co"># add species unique identifier</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">decimalLongitude =</span> lon, <span class="co"># rename fields according to DwC </span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">decimalLatitude =</span> lat,</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">eventDate =</span> date,</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">scientificName =</span> Species,</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">scientificNameID =</span> uri) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">geodeticDatum =</span> <span class="st">&quot;WGS84&quot;</span>, <span class="co"># and add complimentary fields</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">verbatimCoordinateSystem =</span> <span class="st">&quot;decimal degrees&quot;</span>,</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">georeferenceProtocol =</span> <span class="st">&quot;Random coordinates obtained from Google Earth&quot;</span>,</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">locality =</span> <span class="st">&quot;Gaspe Peninsula&quot;</span>,</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">recordedBy =</span> <span class="st">&quot;Edgar Anderson&quot;</span>,</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">taxonRank =</span> <span class="st">&quot;Species&quot;</span>,</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">organismQuantityType =</span> <span class="st">&quot;individuals&quot;</span>,</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">basisOfRecord =</span> <span class="st">&quot;Human observation&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>iris_1 <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">eventID =</span> <span class="fu">paste</span>(site, date, <span class="at">sep =</span> <span class="st">&quot;_&quot;</span>), <span class="co"># create indexing fields </span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">occurrenceID =</span> <span class="fu">paste</span>(site, date, amostra, <span class="at">sep =</span> <span class="st">&quot;_&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(species <span class="sc">%&gt;%</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>              <span class="fu">select</span>(Species, uri)) <span class="sc">%&gt;%</span> <span class="co"># add species unique identifier</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">decimalLongitude =</span> lon, <span class="co"># rename fields according to DwC </span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">decimalLatitude =</span> lat,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">eventDate =</span> date,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">scientificName =</span> Species,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">scientificNameID =</span> uri) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">geodeticDatum =</span> <span class="st">&quot;WGS84&quot;</span>, <span class="co"># and add complimentary fields</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">verbatimCoordinateSystem =</span> <span class="st">&quot;decimal degrees&quot;</span>,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">georeferenceProtocol =</span> <span class="st">&quot;Random coordinates obtained from Google Earth&quot;</span>,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">locality =</span> <span class="st">&quot;Gaspe Peninsula&quot;</span>,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">recordedBy =</span> <span class="st">&quot;Edgar Anderson&quot;</span>,</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">taxonRank =</span> <span class="st">&quot;Species&quot;</span>,</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">organismQuantityType =</span> <span class="st">&quot;individuals&quot;</span>,</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">basisOfRecord =</span> <span class="st">&quot;Human observation&quot;</span>)</span></code></pre></div>
 <hr />
 </div>
 <div id="planilhas-do-emof" class="section level4" number="0.1.3.2">
-<h4><span class="header-section-number">2.1.3.2</span> Planilhas do eMOF</h4>
+<h4 number="2.1.3.2"><span class="header-section-number">2.1.3.2</span> Planilhas do eMOF</h4>
 <p>Com os campos adicionados na planilha já podemos iniciar a construção das três matrizes necessárias para inserir os dados em repositórios baseados em ocorrências e dados acessórios como o <a href="https://www.gbif.org/">GBIF</a>.</p>
 <p>Os campos obrigatórios na planilha de eventos (<code>eventCore</code>) são: * eventID = indica os eventos únicos de amostragem * eventDate = data da amostragem no formato YYYY-MM-DD (ano com 4 dígitos, mês com 2 dígitos e dia com 2 dígitos) * decimalLongitude = longitude indicada em graus decimais * decimalLatitude = latitude indicada em graus decimais * verbatimCoordinateSystem = tipo de coordenadas * geodeticDatum = Datum das coordenadas</p>
 <p>Os termos padronizados do DwC podem ser encontrados no site do <a href="https://dwc.tdwg.org/terms/">DwC</a></p>
 <hr />
 <div id="planilha-de-eventos" class="section level5" number="0.1.3.2.1">
-<h5><span class="header-section-number">2.1.3.2.1</span> Planilha de eventos</h5>
+<h5 number="2.1.3.2.1"><span class="header-section-number">2.1.3.2.1</span> Planilha de eventos</h5>
 <p>Nesta planilha, apenas os campos relacionados às amostras e características gerais do conjunto de dados são selecionadas.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="do">## create eventCore</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>eventCore <span class="ot">&lt;-</span> iris_1 <span class="sc">%&gt;%</span> </span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(eventID, eventDate, decimalLongitude, decimalLatitude, locality, site,</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>         geodeticDatum, verbatimCoordinateSystem, georeferenceProtocol) <span class="sc">%&gt;%</span> </span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## create eventCore</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>eventCore <span class="ot">&lt;-</span> iris_1 <span class="sc">%&gt;%</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(eventID, eventDate, decimalLongitude, decimalLatitude, locality, site,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>         geodeticDatum, verbatimCoordinateSystem, georeferenceProtocol) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>() </span></code></pre></div>
 </div>
 <div id="planilha-de-ocorrências" class="section level5" number="0.1.3.2.2">
-<h5><span class="header-section-number">2.1.3.2.2</span> Planilha de ocorrências</h5>
+<h5 number="2.1.3.2.2"><span class="header-section-number">2.1.3.2.2</span> Planilha de ocorrências</h5>
 <p>O próximo passo é derivar as ocorrências únicas presentes no <em>dataset</em>. Como ocorrência deve ser considerada a ocorrência única de determinada espécie.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="do">## create occurrence</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>occurrences <span class="ot">&lt;-</span> iris_1 <span class="sc">%&gt;%</span> </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(eventID, occurrenceID, scientificName, scientificNameID,</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>         recordedBy, taxonRank, organismQuantityType, basisOfRecord) <span class="sc">%&gt;%</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## create occurrence</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>occurrences <span class="ot">&lt;-</span> iris_1 <span class="sc">%&gt;%</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(eventID, occurrenceID, scientificName, scientificNameID,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>         recordedBy, taxonRank, organismQuantityType, basisOfRecord) <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>() </span></code></pre></div>
 </div>
 <div id="planilha-de-atributos-emof" class="section level5" number="0.1.3.2.3">
-<h5><span class="header-section-number">2.1.3.2.3</span> Planilha de atributos (eMOF)</h5>
+<h5 number="2.1.3.2.3"><span class="header-section-number">2.1.3.2.3</span> Planilha de atributos (eMOF)</h5>
 <p>Por fim, podemos associar atributos a cada ocorrência, neste caso, medidas morfométricas das flores das espécies indicadas. Aqui também devem ser adicionados os campos onde são detalhados os tipos de atributos associados às ocorrências, por exemplo, indicar que as medidas foram tomadas de indivíduos e medidas em centímetros. Os nomes das medidas foram renomeados para seguir padrões de boas práticas.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">## create measurementsOrFacts</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>eMOF <span class="ot">&lt;-</span> iris_1 <span class="sc">%&gt;%</span> </span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(eventID, occurrenceID, recordedBy, Sepal.Length<span class="sc">:</span>Petal.Width) <span class="sc">%&gt;%</span>  </span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> Sepal.Length<span class="sc">:</span>Petal.Width,</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">names_to =</span> <span class="st">&quot;measurementType&quot;</span>,</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_to =</span> <span class="st">&quot;measurementValue&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">measurementUnit =</span> <span class="st">&quot;cm&quot;</span>,</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">measurementType =</span> plyr<span class="sc">::</span><span class="fu">mapvalues</span>(measurementType,</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">from =</span> <span class="fu">c</span>(<span class="st">&quot;Sepal.Length&quot;</span>, <span class="st">&quot;Sepal.Width&quot;</span>, <span class="st">&quot;Petal.Width&quot;</span>, <span class="st">&quot;Petal.Length&quot;</span>), </span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">to =</span> <span class="fu">c</span>(<span class="st">&quot;sepal length&quot;</span>, <span class="st">&quot;sepal width&quot;</span>, <span class="st">&quot;petal width&quot;</span>, <span class="st">&quot;petal length&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">## create measurementsOrFacts</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>eMOF <span class="ot">&lt;-</span> iris_1 <span class="sc">%&gt;%</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(eventID, occurrenceID, recordedBy, Sepal.Length<span class="sc">:</span>Petal.Width) <span class="sc">%&gt;%</span>  </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> Sepal.Length<span class="sc">:</span>Petal.Width,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">names_to =</span> <span class="st">&quot;measurementType&quot;</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_to =</span> <span class="st">&quot;measurementValue&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">measurementUnit =</span> <span class="st">&quot;cm&quot;</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">measurementType =</span> plyr<span class="sc">::</span><span class="fu">mapvalues</span>(measurementType,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">from =</span> <span class="fu">c</span>(<span class="st">&quot;Sepal.Length&quot;</span>, <span class="st">&quot;Sepal.Width&quot;</span>, <span class="st">&quot;Petal.Width&quot;</span>, <span class="st">&quot;Petal.Length&quot;</span>), </span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>                                           <span class="at">to =</span> <span class="fu">c</span>(<span class="st">&quot;sepal length&quot;</span>, <span class="st">&quot;sepal width&quot;</span>, <span class="st">&quot;petal width&quot;</span>, <span class="st">&quot;petal length&quot;</span>)))</span></code></pre></div>
 <hr />
 </div>
 </div>
 <div id="controle-de-qualidade" class="section level4" number="0.1.3.3">
-<h4><span class="header-section-number">2.1.3.3</span> Controle de qualidade</h4>
+<h4 number="2.1.3.3"><span class="header-section-number">2.1.3.3</span> Controle de qualidade</h4>
 <p>O penúltimo passo é um rápido controle de qualidade para checar se todas as planilhas tem os mesmos valores de <code>eventID</code>. Afinal, este campo é o elo entre todas as planilhas.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check if all eventID matches</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(eventCore<span class="sc">$</span>eventID, occurrences<span class="sc">$</span>eventID)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check if all eventID matches</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(eventCore<span class="sc">$</span>eventID, occurrences<span class="sc">$</span>eventID)</span></code></pre></div>
 <pre><code>## character(0)</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(eventCore<span class="sc">$</span>eventID, eMOF<span class="sc">$</span>eventID)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(eventCore<span class="sc">$</span>eventID, eMOF<span class="sc">$</span>eventID)</span></code></pre></div>
 <pre><code>## character(0)</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(occurrences<span class="sc">$</span>eventID, eMOF<span class="sc">$</span>eventID)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(occurrences<span class="sc">$</span>eventID, eMOF<span class="sc">$</span>eventID)</span></code></pre></div>
 <pre><code>## character(0)</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check NA values</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>eMOF <span class="sc">%&gt;%</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(eventID))</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check NA values</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>eMOF <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(eventID))</span></code></pre></div>
 <pre><code>## # A tibble: 0 x 6
-## # ... with 6 variables: eventID &lt;chr&gt;, occurrenceID &lt;chr&gt;, recordedBy &lt;chr&gt;,
+## # … with 6 variables: eventID &lt;chr&gt;, occurrenceID &lt;chr&gt;, recordedBy &lt;chr&gt;,
 ## #   measurementType &lt;chr&gt;, measurementValue &lt;dbl&gt;, measurementUnit &lt;chr&gt;</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>occurrences <span class="sc">%&gt;%</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(eventID))</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>occurrences <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(eventID))</span></code></pre></div>
 <pre><code>## [1] eventID              occurrenceID         scientificName      
 ## [4] scientificNameID     recordedBy           taxonRank           
 ## [7] organismQuantityType basisOfRecord       
-## &lt;0 linhas&gt; (ou row.names de comprimento 0)</code></pre>
+## &lt;0 rows&gt; (or 0-length row.names)</code></pre>
 <hr />
 </div>
 <div id="escrevendo-as-matrizes-como-arquivos-de-texto" class="section level4" number="0.1.3.4">
-<h4><span class="header-section-number">2.1.3.4</span> Escrevendo as matrizes como arquivos de texto</h4>
+<h4 number="2.1.3.4"><span class="header-section-number">2.1.3.4</span> Escrevendo as matrizes como arquivos de texto</h4>
 <p>Tudo parece OK! Agora podemos remover os arquivos intermediários e deixar apenas os que serão publicados, para então salvá-los como arquivo <code>*.csv</code>.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">setdiff</span>(<span class="fu">ls</span>(), <span class="fu">c</span>(<span class="st">&quot;eventCore&quot;</span>, <span class="st">&quot;occurrences&quot;</span>, <span class="st">&quot;eMOF&quot;</span>)))</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>files <span class="ot">&lt;-</span> <span class="fu">list</span>(eventCore, occurrences, eMOF) </span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>data_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;DF_eventCore&quot;</span>,<span class="st">&quot;DF_occ&quot;</span>,<span class="st">&quot;DF_eMOF&quot;</span>)</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;Dwc_Files&quot;</span>)</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(files)) {</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  path <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">getwd</span>(), <span class="st">&quot;/&quot;</span>, <span class="st">&quot;DwC_Files&quot;</span>)</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write.csv</span>(files[[i]], <span class="fu">paste0</span>(path, <span class="st">&quot;/&quot;</span>, data_names[i], <span class="st">&quot;.csv&quot;</span>))</span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">setdiff</span>(<span class="fu">ls</span>(), <span class="fu">c</span>(<span class="st">&quot;eventCore&quot;</span>, <span class="st">&quot;occurrences&quot;</span>, <span class="st">&quot;eMOF&quot;</span>)))</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>files <span class="ot">&lt;-</span> <span class="fu">list</span>(eventCore, occurrences, eMOF) </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>data_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;DF_eventCore&quot;</span>,<span class="st">&quot;DF_occ&quot;</span>,<span class="st">&quot;DF_eMOF&quot;</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;Dwc_Files&quot;</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(files)) {</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  path <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">getwd</span>(), <span class="st">&quot;/&quot;</span>, <span class="st">&quot;DwC_Files&quot;</span>)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write.csv</span>(files[[i]], <span class="fu">paste0</span>(path, <span class="st">&quot;/&quot;</span>, data_names[i], <span class="st">&quot;.csv&quot;</span>))</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Agora já está tudo pronto para subir os dados para o repositório ou compartilhar diretamente. Só não esqueça dos metadados!!</p>
 <hr />
-<ul class="pager">
-<!--this is the style of the button-->
-<li>
-<a href="atividade1.html">Anterior</a>
-</li>
-<li>
-<a href="#">Topo</a>
-</li>
-<!--This button takes me to the table of contents-->
-<li>
-<a href="atividade3.html">Próxima</a>
-</li>
-</ul>
 </div>
 </div>
 </div>
@@ -789,9 +741,6 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

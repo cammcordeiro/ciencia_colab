@@ -10,19 +10,17 @@ output:
     code_folding: "show"
 ---
 
-```{=html}
 <style>
 body {
 text-align: justify}
 </style>
-```
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
 # load packages
 library(tidyverse)
 library(taxize)
-library(validate)
 
 ```
 
@@ -58,48 +56,13 @@ lapply(iris, unique)
 
 Aqui podemos identificar que temos 150 amostras e nomes de espécies associados às amostras, além de atributos (eg. Petal.Length, Sepal.Width) associados a cada espécie. Também existem dados de coordenadas dos sites e datas das amostragens.
 
-Podemos aproveitar para investigar algumas características dos dados e fazer um controle de qualidade. Por exemplo, verificar se existem valores discrepantes nas variáveis numéricas ou se existem valores faltantes.
-
-Inicialmente, vamos fazer uma inspeção visual da distribuição dos valores numéricos.
-
-```{r histograms}
-
-iris %>% 
-  select(Species, Sepal.Length:Petal.Width) %>% 
-  pivot_longer(cols = -Species, names_to = "variavel", values_to = "valores") %>% 
-  ggplot(aes(y = valores, fill = Species)) +
-    geom_histogram() +
-    facet_wrap(~ variavel, scales = 'free_y') +
-    theme_classic()
-
-```
-
-Aqui podemos observar a variação dos dados que tendem a tem distribuição unimodal, mas sem valores extremos.
-
-Para checar as demais variáveis, vamos utilizar o pacote `validate`. Neste pacote é possível indicar os padrões esperados de cada variável e verificar quais observações violam os limites indicados. Para isso são definidas as regras (e.g. valores de `latitude` entre -90 e 90, variável `site` como caracter). Para mais informações, basta acessar o [`vignette`](https://cran.r-project.org/web/packages/validate/vignettes/cookbook.html#41_Completeness_of_records) do pacote `validate`
-
-```{r validate}
-
-rules <- validator(in_range(lat, min = -90, max = 90),
-                   in_range(lat, min = -180, max = 180),
-                   is.character(site),
-                   is.numeric(date),
-                   all_complete(iris))
-
-out   <- confront(iris, rules)
-summary(out)
-plot(out)
-
-```
-
+Avaliando estes campos, podemos ver que possuímos quase todos os campos obrigatórios para o sistema Darwin Core (DwC).
 
 ------------------------------------------------------------------------
 
 ### Taxóns
 
-Avaliando os dados, podemos ver que não existem inconsistências e que já possuímos quase todos os campos obrigatórios para o sistema Darwin Core (DwC).
-
-Em seguida, um passo importante é checar se os nomes utilizados dos táxons são válidos.
+Em seguida, é importante checar se os nomes utilizados dos táxons são válidos.
 
 1.  Para isso podemos utilizar a função `get_tsn` do pacote `taxize`. Esta função permite investigar na base de dados do [*Integrated Taxonomic Information System*](https://www.itis.gov/) se a nomenclatura aplicada aos táxons é válida ou se necessita de atualização.
 
@@ -255,9 +218,4 @@ for(i in 1:length(files)) {
 
 Agora já está tudo pronto para subir os dados para o repositório ou compartilhar diretamente. Só não esqueça dos metadados!!
 
-------------------------------------------------------------------------
-<ul class="pager"> <!--this is the style of the button-->
-<li><a href="atividade1.html">Anterior</a></li>
-<li><a href="#">Topo</a></li> <!--This button takes me to the table of contents-->
-<li><a href="atividade3.html">Próxima</a></li>
-</ul>
+***

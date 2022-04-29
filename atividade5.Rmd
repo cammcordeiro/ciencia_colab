@@ -308,7 +308,3 @@ ggplotly(cc)
 Este foi apenas um exemplo, para mais funções, acesse o tutorial do [`Plotly`](https://plotly.com/r/).
 
 ***
-<ul class="pager"> <!--this is the style of the button-->
-<li><a href="atividade4.html">Anterior</a></li>
-<li><a href="#">Topo</a></li> <!--This button takes me to the table of contents-->
-</ul>
