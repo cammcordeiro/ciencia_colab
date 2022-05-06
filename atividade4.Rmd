@@ -391,7 +391,7 @@ com controle de versão. Abaixo um resumo dos comandos abordados:
 Para colaborar em um repositório você antes de mais nada copiar os
 arquivos para o seu **Github**. Essa ação é executada com o comando
 `fork`. Por exemplo, se dirija ao [respositório de teste -
-**CCBD_atividade4**](https://github.com/cammcordeiro/CCBD_atividade4) e
+**ciencia_colab_a4**](https://github.com/cammcordeiro/ciencia_colab_a4) e
 localize no alto da página o botão `fork`. Depois escolha onde você
 gostaria de colocar, escolha seu usuário. No canto esquerdo da página
 mostrará que o reposotório está em seu usuário também.
