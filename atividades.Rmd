@@ -60,6 +60,8 @@ A [**atividade 5**](atividade5.html) finaliza o processo de ferramentas básicas
 <br><br>
 
 ## **Extra** {.unnumbered}
-[Um exemplo usando gráficos interativos.](https://cammcordeiro.github.io/CCBD_atividade4/extra_dashboard.html)
+[Exemplo 1 usando gráficos interativos.](https://cammcordeiro.github.io/CCBD_atividade4/extra_dashboard.html)
+
+[Exemplo 2 usando gráficos interativos.](https://cammcordeiro.shinyapps.io/ccbd_atividade4/#section-in%C3%ADcio)
 
 ***
