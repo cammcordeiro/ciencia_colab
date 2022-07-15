@@ -26,30 +26,28 @@ text-align: justify}
 
 ------------------------------------------------------------------------
 
+Infelizmente as aulas oferecidas em 2022 não foram gravadas, mas a versão oferecida em 2021 pode ser acessada por [este link](https://drive.google.com/drive/folders/1r2f3b9SL2EVEV4oamY9EX7OF0vIc7aRM?usp=sharing). Vale lembrar que foram realizadas atualizações no conteúdo, então existem algumas diferenças entre os material dos slides disponibilizados no drive e utilizados nas gravações de 2021. Contudo, as ferramentas indicadas foram essencialmente as mesmas.
+
+<br><br>
+
 1.  **Dia 1 (03/05/2022)**
 
 -   Leitura: [**UNESCO (2021)** Recomendação da UNESCO sobre Ciência Aberta](https://drive.google.com/drive/folders/1PHFcgUcL_FtzdZvom50Rr7zR_hNHejnt?usp=sharing)
--   [Gravação da aula]() <br><br>
 
 2.  **Dia 2 (04/05/2022)**
 
 -   Leituras: [**Reichman OJ et al. (2011)** Challenges and Opportunities of Open Data in Ecology. Science, 331:703-705](https://drive.google.com/drive/folders/1PHFcgUcL_FtzdZvom50Rr7zR_hNHejnt?usp=sharing) e [**Kadakia KT et al. (2021)** Leveraging Open Science to Accelerate Research. The New England Journal of Medicine, e61:1-3](https://drive.google.com/drive/folders/1PHFcgUcL_FtzdZvom50Rr7zR_hNHejnt?usp=sharing)
--   [Gravação da aula]() <br><br>
 
 3.  **Dia 3 (05/05/2022)**
 
 -   Leitura: [**Parker TH et al. (2016)** Transparency in Ecology and Evolution: Real Problems, Real Solutions. Trends in Ecology & Evolution, 31(9) 711-719](https://drive.google.com/drive/folders/1PHFcgUcL_FtzdZvom50Rr7zR_hNHejnt?usp=sharing)  e [**Stosic et al. (2021)** Greater belief in science predicts mask-wearing behavior during COVID-19. Personality and Individual Differences, 176: 110769](https://drive.google.com/drive/folders/1PHFcgUcL_FtzdZvom50Rr7zR_hNHejnt?usp=sharing)
 
--   [Gravação da aula]() <br><br>
-
 4.  **Dia 4 (23/09/2021)**
 
 -   Leitura:[**Dutta et al. (2021)** Decolonizing Open Science: Southern Interventions. Journal of Communication, 71 (5): 803-826](https://drive.google.com/drive/folders/1PHFcgUcL_FtzdZvom50Rr7zR_hNHejnt?usp=sharing) 
--   [Gravação da aula]() <br><br>
 
 5.  **Dia 5 (24/09/2021)**
 
 -   Leitura: [**Carroll SR et al. (2020)** The CARE Principles for Indigenous Data Governance.Data Science Journal, 19(43):1–12](https://drive.google.com/drive/folders/1PHFcgUcL_FtzdZvom50Rr7zR_hNHejnt?usp=sharing)
--   [Gravação da aula]() <br><br>
 
 ------------------------------------------------------------------------
