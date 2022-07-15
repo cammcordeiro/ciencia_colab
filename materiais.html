@@ -13,8 +13,8 @@
 
 <title>Materiais</title>
 
-<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -50,6 +50,7 @@
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -70,6 +71,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -222,7 +226,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -243,7 +247,7 @@ $(document).ready(function () {
 </li>
 <li>
   <a href="materiais.html">
-    <span class="fas fa-folder fa-lg"></span>
+    <span class="fa fa-folder fa-lg"></span>
      
     Materiais
   </a>
@@ -287,47 +291,75 @@ text-align: justify}
 <center>
 <p><img src="figs/curso_pg.png" style="width:80%"/> <br><br></p>
 </center>
-<div id="o-link-a-seguir-leva-ao-google-drive-da-disciplina-e-contém-o-material-de-apoio-ao-curso." class="section level4">
-<h4>O link a seguir leva ao Google Drive da disciplina e contém o material de apoio ao curso.</h4>
+<div
+id="o-link-a-seguir-leva-ao-google-drive-da-disciplina-e-contém-o-material-de-apoio-ao-curso."
+class="section level4">
+<h4>O link a seguir leva ao Google Drive da disciplina e contém o
+material de apoio ao curso.</h4>
 </div>
-<div id="clique-aqui-para-acessar-drive-com-o-material-do-curso.-navegue-pelas-pastas-para-explorar-o-conteúdo." class="section level4">
-<h4>Clique <a href="https://drive.google.com/drive/folders/1S_yTN8DfdS1l6RtB8McWUoEeaBZLAJuGGqQdUkMkUD87ARpeelck2iyXv_c1tR4qnQWQhArk?usp=sharing">aqui</a> para acessar drive com o material do curso. Navegue pelas pastas para explorar o conteúdo.</h4>
+<div
+id="clique-aqui-para-acessar-drive-com-o-material-do-curso.-navegue-pelas-pastas-para-explorar-o-conteúdo."
+class="section level4">
+<h4>Clique <a
+href="https://drive.google.com/drive/folders/1S_yTN8DfdS1l6RtB8McWUoEeaBZLAJuGGqQdUkMkUD87ARpeelck2iyXv_c1tR4qnQWQhArk?usp=sharing">aqui</a>
+para acessar drive com o material do curso. Navegue pelas pastas para
+explorar o conteúdo.</h4>
 <p><br><br></p>
 <hr />
+<p>Infelizmente as aulas oferecidas em 2022 não foram gravadas, mas a
+versão oferecida em 2021 pode ser acessada por <a
+href="https://drive.google.com/drive/folders/1r2f3b9SL2EVEV4oamY9EX7OF0vIc7aRM?usp=sharing">este
+link</a>. Vale lembrar que foram realizadas atualizações no conteúdo,
+então existem algumas diferenças entre os material dos slides
+disponibilizados no drive e utilizados nas gravações de 2021. Contudo,
+as ferramentas indicadas foram essencialmente as mesmas.</p>
+<p><br><br></p>
 <ol style="list-style-type: decimal">
 <li><strong>Dia 1 (20/09/2021)</strong></li>
 </ol>
 <ul>
-<li>Leitura: <a href="https://drive.google.com/file/d/1mGYsJDO7EoKoUKrNuwWarS5roII7TZ1-/view?usp=sharing">Carroll SR, et al. (2020) The CARE Principles for Indigenous Data Governance. Data Science Journal, 19(43):1–12. DOI: https://doi.org/10.5334/dsj-2020-043</a></li>
-<li><a href="https://drive.google.com/drive/folders/1r2f3b9SL2EVEV4oamY9EX7OF0vIc7aRM?usp=sharing">Gravação da aula</a> <br><br></li>
+<li>Leitura: <a
+href="https://drive.google.com/file/d/1mGYsJDO7EoKoUKrNuwWarS5roII7TZ1-/view?usp=sharing">Carroll
+SR, et al. (2020) The CARE Principles for Indigenous Data Governance.
+Data Science Journal, 19(43):1–12. DOI:
+https://doi.org/10.5334/dsj-2020-043</a></li>
 </ul>
 <ol start="2" style="list-style-type: decimal">
 <li><strong>Dia 2 (21/09/2021)</strong></li>
 </ol>
 <ul>
-<li>Leitura: <a href="https://drive.google.com/file/d/1kyoyR9Tr0renaFQX-9nPj9Z7LG40uyHW/view?usp=sharing">Reichman OJ, et al. (2011) Challenges and Opportunities of Open Data in Ecology. Science, 331:703-705</a></li>
-<li><a href="https://drive.google.com/drive/folders/1r2f3b9SL2EVEV4oamY9EX7OF0vIc7aRM?usp=sharing">Gravação da aula</a> <br><br></li>
+<li>Leitura: <a
+href="https://drive.google.com/file/d/1kyoyR9Tr0renaFQX-9nPj9Z7LG40uyHW/view?usp=sharing">Reichman
+OJ, et al. (2011) Challenges and Opportunities of Open Data in Ecology.
+Science, 331:703-705</a></li>
 </ul>
 <ol start="3" style="list-style-type: decimal">
 <li><strong>Dia 3 (22/09/2021)</strong></li>
 </ol>
 <ul>
-<li>Leitura: <a href="https://drive.google.com/file/d/15JfKzG33aVk8JOKMERcju_cYdeDBmwTE/view?usp=sharing">Michener WK (2006) Meta-information concepts for ecological data management. Ecological Informatics, 1 (1): 3-7</a></li>
-<li><a href="https://drive.google.com/drive/folders/1r2f3b9SL2EVEV4oamY9EX7OF0vIc7aRM?usp=sharing">Gravação da aula</a> <br><br></li>
+<li>Leitura: <a
+href="https://drive.google.com/file/d/15JfKzG33aVk8JOKMERcju_cYdeDBmwTE/view?usp=sharing">Michener
+WK (2006) Meta-information concepts for ecological data management.
+Ecological Informatics, 1 (1): 3-7</a></li>
 </ul>
 <ol start="4" style="list-style-type: decimal">
 <li><strong>Dia 4 (23/09/2021)</strong></li>
 </ol>
 <ul>
-<li>Leitura: <a href="https://drive.google.com/file/d/1T4rheqL98XEUhjonf5i3ubHAsU8_2rg_/view?usp=sharing">Parker TH et al. (2016) Transparency in Ecology and Evolution: Real Problems, Real Solutions. Trends in Ecology &amp; Evolution, 31(9): 711-719</a></li>
-<li><a href="https://drive.google.com/drive/folders/1r2f3b9SL2EVEV4oamY9EX7OF0vIc7aRM?usp=sharing">Gravação da aula</a> <br><br></li>
+<li>Leitura: <a
+href="https://drive.google.com/file/d/1T4rheqL98XEUhjonf5i3ubHAsU8_2rg_/view?usp=sharing">Parker
+TH et al. (2016) Transparency in Ecology and Evolution: Real Problems,
+Real Solutions. Trends in Ecology &amp; Evolution, 31(9):
+711-719</a></li>
 </ul>
 <ol start="5" style="list-style-type: decimal">
 <li><strong>Dia 5 (24/09/2021)</strong></li>
 </ol>
 <ul>
-<li>Leitura: <a href="https://drive.google.com/file/d/1nYWYuw1taNZxWWEu1vKXA0XlilTgWj6R/view?usp=sharing">Azulay A et al. (2021) Draft text of the UNESCO Recommendation on Open Science</a></li>
-<li><a href="https://drive.google.com/drive/folders/1r2f3b9SL2EVEV4oamY9EX7OF0vIc7aRM?usp=sharing">Gravação da aula</a> <br><br></li>
+<li>Leitura: <a
+href="https://drive.google.com/file/d/1nYWYuw1taNZxWWEu1vKXA0XlilTgWj6R/view?usp=sharing">Azulay
+A et al. (2021) Draft text of the UNESCO Recommendation on Open
+Science</a></li>
 </ul>
 <hr />
 </div>
