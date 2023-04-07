@@ -17,9 +17,6 @@ text-align: justify}
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
-
-library(robis)
-
 ```
 
 ```{r klippy, echo=FALSE, include=TRUE}
@@ -181,7 +178,7 @@ cl <- dori_gbif1 %>%
 
 Na imagem abaixo podemos dar uma rápida conferida nos alertas indicados pelas funções. Não tivemos nenhuma coordenada inválida, mas algumas ocorrências parecem estar muito próximas a capitais. No entanto, todas as capitais estão em terra e, nesse caso, temos que investigar se as ocorrências estão em terra (lembre-se a Dori vive no mar!) ou apenas próximas a países insulares.
 
-```{r}
+```{r tags}
 # verificar coordenadas com flags
 
 # capitais (padrão é um raio de 10km)
@@ -221,7 +218,7 @@ Aparentemente, esta espécie tem sido reportada no mundo todo.
 Com o sucesso da animação *Procurando Nemo*, já temos uma ideia de que a **Dori** tem ocorrência nas águas Australianas, mas podemos acessar bancos de dados especializados para checar estas informações. No caso de peixes (Osteichthyes e Chondrichthyes) o [*FishBase*](https://fishbase.org) é a fonte mais atualizada de informações deste grupo.
 Depois desta confirmação, podemos suspeitar das ocorrências indicadas no Atlântico e, o tratamento mais rigoroso é a exclusão de qualquer ocorrência suspeita.
 
-```{r}
+```{r check-gbif1}
 
 # fonte das regioes erradas
 dori_gbif1 %>% 
@@ -232,7 +229,7 @@ dori_gbif1 %>%
 
 Alguma característica destas ocorrências do Atlântico podem dar pistas de como continuar filtrando os resultados. Neste caso, abaixo podemos ver que, ao investigarmos um programa de ciência específico de identificação realizada por mergulhadores amadores, notamos que este concentra a maior parte das suspeitas. Assim, é melhor ser conservador e remover todas as ocorrências associadas a tal programa.
 
-```{r}
+```{r check-gbif2}
 
 # 25 ocorrencias
 dori_gbif1 %>% 
@@ -246,7 +243,7 @@ dori_gbif_ok <- dori_gbif1 %>%
 
 Agora não vemos mais nenhuma ocorrência no Atlântico!
 
-```{r}
+```{r plot-gbif}
 
 library(ggmap)
 library(maps)
@@ -267,7 +264,7 @@ ggplot() +
 
 Podemos usar a profundidade como outro critério, pois esta espécie é associada apenas a recifes rasos segundo o **FishBase**. E parece tudo ok.
 
-```{r}
+```{r depth-gbif}
 
 # checar profundidade
 dori_gbif_ok %>% 
@@ -283,7 +280,7 @@ dori_gbif_ok %>%
 Agora vamos fazer os mesmos procedimentos com os dados do **OBIS**, utilizando o pacote `robis` e a função `occurrence` deste pacote.
 
 1. Baixar as ocorrências
-```{r}
+```{r dori-obis}
 
 ## OBIS
 dori_obis <- robis::occurrence("Paracanthurus hepatus")
@@ -294,7 +291,7 @@ dori_obis <- robis::occurrence("Paracanthurus hepatus")
 
 Temos variáveis com os mesmos nomes, pois ambos usam o sistema `DwC`, mas os problemas reportados neste caso são indicados na coluna `flags`.
 
-```{r}
+```{r check-dori}
 
 # checar dados
 names(dori_obis)
@@ -319,7 +316,7 @@ dori_obis1 %>%
 
 Aqui usamos as `flags` para filtrar ocorrências em terra, além de remover dados sem nome de *dataset* (não temos como checar a origem adequadamente, então podemos tratar como suspeitos), filtrar ocorrências no Atlântico e verificar a profundidade reportada.
 
-```{r}
+```{r check-dori1}
 
 # depth ok
 dori_obis1 %>% 
@@ -346,7 +343,7 @@ dori_obis_ok <- dori_obis1 %>%
 
 Podemos usar um mapa para verificar melhor as ocorrências também.
 
-```{r}
+```{r check-dori2}
 
 # check
 ggplot() +
@@ -362,7 +359,7 @@ Parece tudo ok, e chegamos a `r nrow(dori_obis_ok)` ocorrências potenciais.
 
 Por fim, vamos unir todas as ocorrências, checar se existem duplicatas e plotar o resultado final.
 
-```{r}
+```{r gbif-obis}
 
 # unir GBIF e OBIS
 
@@ -414,7 +411,7 @@ Abaixo, vamos utilizar os dados baixados do `GBIF` antes da limpeza já realizad
 
 Inicialmente, vamos carregar a função `flag_outlier`. E, em seguida, aplicaremos a função e vamos plotar um mapa para avaliar as ocorrências com *flag* de *outlier*. 
 
-```{r}
+```{r flag-function}
 
 # funcao para classificar ocorrencias suspeitas
 flag_outlier <- function(df, species){
@@ -449,7 +446,7 @@ flag_outlier <- function(df, species){
 ```
 
 
-```{r}
+```{r occ}
 
 # classificar ocorrências
 marcados <- dori_gbif$data %>% 
@@ -477,57 +474,22 @@ Podemos notar no mapa acima que as ocorrencias acima do 90ésimo quantil são mu
 <br><br>
 
 
-#### Pacote `scrubr`
-
-O pacote `scrubr` possui algumas funções úteis para indicar problemas com coordenadas com elementos faltantes (`coord_incomplete`), coordenadas impossíveis (`coord_impossible`) e coordenadas duplicadas (`dedup`). Este último é estimado em um raio de tolerância e mais útil para análises em escala mais grosseira ou quando o informações a serem correlacionadas estão em escala maior. Podemos inclusive aplicá-las sequencialmente, pois o padrão das funções é excluir as ocorrências suspeitas, mas **não recomendo seguir cegamente métodos automáticos de exclusão de dados!**
-
-```{r scrubr}
-if (!require("scrubr")) install.packages("scrubr")
-
-library(scrubr)
-
-# usando os dados com flag
-data_scrubr <- marcados %>% 
-  dframe() %>% 
-  coord_impossible() %>% 
-  coord_incomplete() %>% 
-  coord_unlikely() %>% 
-  dedup()
-
-
-# mapa
-ggplot() +
-  geom_polygon(data = world, aes(x = long, y = lat, group = group)) +
-  coord_fixed() +
-  theme_classic() +
-  geom_point(data = data_scrubr, 
-               aes(x = decimalLongitude, y = decimalLatitude), 
-                   color = "red") +
-  geom_point(data = marcados %>% 
-                 filter(flag != "OK"), 
-               aes(x = decimalLongitude, y = decimalLatitude), 
-                   color = "blue", shape = 3) +
-    theme(legend.title = element_blank()) +
-    labs(x = "longitude", y = "latitude", 
-         title = expression(italic("Paracanthurus hepatus")))
-
-```
-<br><br>
-
-
-Note que as ocorrências indicadas com uma cruz foram mantidas pelo `scrubr`, e isso reforça o papel de quem analisa em julgar os pontos suspeitos.
-<br><br>
-
-
 #### pacote `obistools`
 
 Vale lembrar que o `OBIS` é um repositório de dados marinhos, então as ferramentas tem melhor uso para dados desta natureza. Inclusive uma das funções do pacote (`check_onland`) checa coordenadas em terra, sejam ilhas ou continentes.
 Aqui vamos testar a função `check_outliers_species` que tem um princípio semelhante à nossa função caseira `flag_outliers`, mas é baseada no **median absolute deviation (MAD)** e no **interquartile range (IQR)**, parâmetros que podem ser ajustados na função.
 OBS: Algumas vezes pode ocorrer uma falha de conexão com o servidor, então deve-se insistir um pouco.
+<br><br>
 
-```{r}
-if (!require("obistools")) install.packages("obistools")
+Um pequeno detalhe. Muitas vezes os pacotes não são atualizados na mesma velocidade que o R e acabam ficando incompatíveis, ou os pacotes não são enviados ao CRAN e, usando a função `install.packages` o pacote não é encontrado. Quando isso acontece, podemos ir direto no repositório do pacote. Basta dar uma pesquisada do Google como "nome do pacote e from source". Abaixo segue o exemplo de como instalar direto da fonte usando o pacote `devtools`.
 
+> install.packages("devtools")
+
+> devtools::install_github("iobis/obistools")
+
+<br><br>
+
+```{r obistools}
 library(obistools)
 
 # dori_obis %>% 
@@ -544,11 +506,11 @@ dori_obis %>%
   dim()
 
 ```
-<br><br>
+<br></br>
 
 
-
-```{r}
+Em seguida, verificamos os *outliers*.
+```{r outliers}
 
 ggplot() +
     geom_polygon(data = world, aes(x = long, y = lat, group = group)) +
@@ -567,7 +529,7 @@ ggplot() +
 
 Por fim, vamos testar o pacote `CoordinateCleaner`. Nele devemos especificar os campos correspondentes na função `clean_coordinates`.
 
-```{r}
+```{r flags}
 
 flags <-
   clean_coordinates(
