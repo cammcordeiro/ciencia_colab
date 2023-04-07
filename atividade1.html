@@ -13,7 +13,7 @@
 
 <title>Atividade 1</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
@@ -45,6 +45,7 @@
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
     </style>
+
 
 
 <style type="text/css">
@@ -136,13 +137,20 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   for (var i = 0; i < sheets.length; i++) {
     if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
     try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
+    var j = 0;
+    while (j < rules.length) {
       var rule = rules[j];
       // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -177,6 +185,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -234,11 +245,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -267,8 +282,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -276,16 +291,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -405,7 +413,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -455,7 +463,7 @@ div.tocify {
 <div id="header">
 
 <div class="btn-group pull-right float-right">
-<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
 <ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
 <li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
 <li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
@@ -476,22 +484,41 @@ text-align: justify}
 <h1 class="unnumbered">Atividade 1</h1>
 </div>
 <div id="planilhamento-de-dados" class="section level1" number="1">
-<h1><span class="header-section-number">1</span> Planilhamento de dados</h1>
+<h1><span class="header-section-number">1</span> Planilhamento de
+dados</h1>
 <div id="fonte-dos-dados" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> Fonte dos dados</h2>
-<p>Para a primeira atividade do curso vamos utilizar dados amplamente conhecidos dos usuários de R no campo da ecologia.</p>
-<p>Estes dados foram derivados do trabalho de Edgar Anderson (Anderson E. 1935. The irises of the Gaspe Peninsula, <em>Bulletin of the American Iris Society</em>, 59: 2–5) realizado com medições morfológicas das flores de três espécies de plantas do gênero <em>Iris</em> coletadas em áreas gramadas na Península de Gaspé (EUA) em 1935. Este conjunto de dados ficou famoso por ter sido utilizado por Ronald Fisher <a href="https://digital.library.adelaide.edu.au/dspace/bitstream/2440/15227/1/138.pdf">(Fisher R. 1936. The Use of Multiple Measurements in Taxonomic Problems, <em>Annals of Eugenics</em>, 7:179 - 188)</a>.</p>
-<p>Vale indicar que, as coordenadas indicadas nas fichas de campo foram obtidas com a avaliação de imagem ortomosaico do serviço <em>Google Earth</em> com propósito ilustrativo, mas não correspondem às coordenadas originais dos locais de coleta.</p>
+<p>Para a primeira atividade do curso vamos utilizar dados amplamente
+conhecidos dos usuários de R no campo da ecologia.</p>
+<p>Estes dados foram derivados do trabalho de Edgar Anderson (Anderson
+E. 1935. The irises of the Gaspe Peninsula, <em>Bulletin of the American
+Iris Society</em>, 59: 2–5) realizado com medições morfológicas das
+flores de três espécies de plantas do gênero <em>Iris</em> coletadas em
+áreas gramadas na Península de Gaspé (EUA) em 1935. Este conjunto de
+dados ficou famoso por ter sido utilizado por Ronald Fisher <a
+href="https://digital.library.adelaide.edu.au/dspace/bitstream/2440/15227/1/138.pdf">(Fisher
+R. 1936. The Use of Multiple Measurements in Taxonomic Problems,
+<em>Annals of Eugenics</em>, 7:179 - 188)</a>.</p>
+<p>Vale indicar que, as coordenadas indicadas nas fichas de campo foram
+obtidas com a avaliação de imagem ortomosaico do serviço <em>Google
+Earth</em> com propósito ilustrativo, mas não correspondem às
+coordenadas originais dos locais de coleta.</p>
 <hr />
 </div>
 <div id="instruções" class="section level2" number="1.2">
 <h2><span class="header-section-number">1.2</span> Instruções</h2>
-<p>A atividade 1 consiste em transferir os dados indicados nas fichas de campo para o formato de planilha. As fichas encontram-se na pasta compartilhada do <a href="https://drive.google.com/drive/folders/1S_yTN8DfdS1l6RtB8McWUoEeaBZLAJuGGqQdUkMkUD87ARpeelck2iyXv_c1tR4qnQWQhArk?usp=sharing">Google Drive da disciplina</a>.</p>
+<p>A atividade 1 consiste em transferir os dados indicados nas fichas de
+campo para o formato de planilha. As fichas encontram-se na pasta
+compartilhada do <a
+href="https://drive.google.com/drive/folders/1S_yTN8DfdS1l6RtB8McWUoEeaBZLAJuGGqQdUkMkUD87ARpeelck2iyXv_c1tR4qnQWQhArk?usp=sharing">Google
+Drive da disciplina</a>.</p>
 <ol style="list-style-type: decimal">
-<li>Esta atividade deve ser realizada de modo individual e cada participante deverá baixar as amostras (i.e., fichas de campo) indicadas junto ao seu nome na tabela abaixo.</li>
+<li>Esta atividade deve ser realizada de modo individual e cada
+participante deverá baixar as amostras (i.e., fichas de campo) indicadas
+junto ao seu nome na tabela abaixo.</li>
 </ol>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">participante =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">1</span>),</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">participante =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">1</span>),</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">fichas =</span> <span class="fu">c</span>(<span class="fu">read.csv</span>(<span class="st">&quot;data/iris_mod.csv&quot;</span>, <span class="at">header =</span> T) <span class="sc">%&gt;%</span> </span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">distinct</span>(amostra) <span class="sc">%&gt;%</span> </span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">pull</span>()<span class="sc">%&gt;%</span> </span>
@@ -505,8 +532,8 @@ text-align: justify}
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
 <table>
 <colgroup>
-<col width="12%" />
-<col width="87%" />
+<col width="8%" />
+<col width="91%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -517,49 +544,52 @@ text-align: justify}
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="left">A102, A9 , A114, A133, A117, A105, A1 , A82 , A113, A118, A59 , A37 , A5 , A88 , A109</td>
+<td align="left">A104, A128, A89 , A21 , A33 , A106, A146, A137, A23 ,
+A131, A139, A48 , A58 , A107, A6 , A148, A64 , A30 , A2 , A55 , A125, A3
+, A84 , A103, A40</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="left">A60 , A76 , A55 , A10 , A11 , A68 , A18 , A71 , A83 , A97 , A42 , A124, A110, A20 , A91</td>
+<td align="left">A62 , A45 , A112, A98 , A115, A17 , A18 , A15 , A126,
+A34 , A132, A105, A14 , A68 , A121, A35 , A28 , A120, A136, A83 , A47 ,
+A133, A26 , A149, A39</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="left">A24 , A148, A70 , A16 , A67 , A144, A92 , A108, A112, A81 , A51 , A75 , A32 , A34 , A52</td>
+<td align="left">A42 , A142, A95 , A38 , A54 , A101, A118, A41 , A29 ,
+A81 , A13 , A1 , A43 , A10 , A32 , A31 , A4 , A19 , A24 , A69 , A123,
+A114, A147, A140, A77</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="left">A138, A19 , A74 , A125, A6 , A30 , A43 , A94 , A8 , A126, A28 , A2 , A35 , A119, A99</td>
+<td align="left">A82 , A94 , A86 , A22 , A134, A20 , A12 , A92 , A61 ,
+A124, A96 , A110, A52 , A16 , A25 , A74 , A65 , A71 , A63 , A143, A93 ,
+A36 , A27 , A100, A90</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="left">A116, A62 , A121, A115, A56 , A15 , A58 , A49 , A21 , A40 , A101, A107, A127, A140, A90</td>
+<td align="left">A117, A129, A72 , A37 , A76 , A99 , A50 , A11 , A73 ,
+A130, A46 , A49 , A91 , A135, A80 , A51 , A67 , A60 , A150, A109, A70 ,
+A141, A113, A78 , A87</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="left">A77 , A85 , A139, A78 , A27 , A72 , A25 , A106, A135, A111, A104, A3 , A65 , A4 , A7</td>
-</tr>
-<tr class="odd">
-<td align="right">7</td>
-<td align="left">A17 , A130, A61 , A38 , A129, A122, A41 , A66 , A84 , A137, A95 , A146, A79 , A80 , A53</td>
-</tr>
-<tr class="even">
-<td align="right">8</td>
-<td align="left">A45 , A142, A89 , A93 , A147, A69 , A23 , A136, A120, A22 , A86 , A29 , A128, A50 , A13</td>
-</tr>
-<tr class="odd">
-<td align="right">9</td>
-<td align="left">A143, A44 , A100, A12 , A131, A145, A132, A47 , A150, A98 , A87 , A14 , A63 , A141, A57</td>
-</tr>
-<tr class="even">
-<td align="right">10</td>
-<td align="left">A39 , A134, A64 , A123, A48 , A73 , A54 , A46 , A33 , A36 , A96 , A26 , A149, A31 , A103</td>
+<td align="left">A59 , A66 , A97 , A9 , A102, A122, A56 , A116, A53 , A5
+, A85 , A75 , A119, A108, A111, A144, A127, A145, A8 , A7 , A88 , A57 ,
+A138, A79 , A44</td>
 </tr>
 </tbody>
 </table>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Ao finalizar o planilhamento das informações, o arquivo deverá ser salvo no formato <code>*.csv</code> (<em>comma separated values</em>) e nomeado seguindo o padrão: <strong>atividade1_NOME-DO-PARTICIPANTE.csv</strong></p></li>
-<li><p>Subir a planilha para no <a href="https://drive.google.com/drive/folders/1C5LIx2rifGsHz22qwzjxDNwEQne3YRrT?usp=sharing">drive compartilhado</a> na pasta <strong>atividade1_data</strong> dentro da pasta <strong>atividades</strong> (i.e. <em>Ciencia Colab2022/atividades/atividade1_data/</em>).</p></li>
+<li><p>Ao finalizar o planilhamento das informações, o arquivo deverá
+ser salvo no formato <code>*.csv</code> (<em>comma separated
+values</em>) e nomeado seguindo o padrão:
+<strong>atividade1_NOME-DO-PARTICIPANTE.csv</strong></p></li>
+<li><p>Subir a planilha para no <a
+href="https://drive.google.com/drive/folders/1C5LIx2rifGsHz22qwzjxDNwEQne3YRrT?usp=sharing">drive
+compartilhado</a> na pasta <strong>atividade1_data</strong> dentro da
+pasta <strong>atividades</strong> (i.e. <em>Ciencia
+Colab2022/atividades/atividade1_data/</em>).</p></li>
 </ol>
 <hr />
 <ul class="pager">

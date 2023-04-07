@@ -19,7 +19,7 @@ Todo o material das aulas pode ser acessados no cronograma baixo clicando-se os 
 
 ### Cronograma
 
-[**Aula 1**](https://docs.google.com/presentation/d/1j-2CDbvavYjV5kYlm8UkTqC2Z8ep0dS4p1X33fxf5HY/edit?usp=sharing) (03/05)
+[**Aula 1**](https://docs.google.com/presentation/d/1j-2CDbvavYjV5kYlm8UkTqC2Z8ep0dS4p1X33fxf5HY/edit?usp=sharing) (10/04)
 
 -   *Open Science* e *Open Data*: o que são?
 
@@ -30,7 +30,7 @@ Todo o material das aulas pode ser acessados no cronograma baixo clicando-se os 
 -   [Atividade 1](atividade1.html)
 
 
-[**Aula 2**](https://docs.google.com/presentation/d/1daiNzlYnPee9RxQvcO5e-ngaKaSJt-yomkMM_lU2gaE/edit?usp=sharing) (04/05)
+[**Aula 2**](https://docs.google.com/presentation/d/1daiNzlYnPee9RxQvcO5e-ngaKaSJt-yomkMM_lU2gaE/edit?usp=sharing) (11/04)
 
 -   Padrões e boas práticas no compartilhamento de dados
 
@@ -43,7 +43,7 @@ Todo o material das aulas pode ser acessados no cronograma baixo clicando-se os 
 -   [Atividade 2](atividade2.html)
 
 
-[**Aula 3**](https://docs.google.com/presentation/d/1MUOq0bpQRwD-v8dVmPiQwdwxvrMs2Dypvuynn8fMJHQ/edit?usp=sharing) (05/05)
+[**Aula 3**](https://docs.google.com/presentation/d/1MUOq0bpQRwD-v8dVmPiQwdwxvrMs2Dypvuynn8fMJHQ/edit?usp=sharing) (12/04)
 
 -   Repositórios de dados ecológicos
 
@@ -56,27 +56,24 @@ Todo o material das aulas pode ser acessados no cronograma baixo clicando-se os 
 -   [Atividade 3](atividade3.html)
 
 
-[**Aula 4**](https://docs.google.com/presentation/d/124h0vVwljvU_o6oGex5B85cFQ57duFNY5t3xLTQk7XU/edit?usp=sharing) (06/05)
+[**Aula 4**](https://docs.google.com/presentation/d/124h0vVwljvU_o6oGex5B85cFQ57duFNY5t3xLTQk7XU/edit?usp=sharing) (13/04)
 
 -   Compartilhamento e pesquisa reprodutível (*Git* e *GitHub*)
 
 -   Construção de rotinas de aquisição de dados em bases abertas (*RMarkdown*)
 
--   Análise crítica de artigos científicos do tema na forma de seminário
+-   Análise crítica de artigos científicos
 
 -   [Atividade 4](atividade4.html)
 
 
-[**Aula 5**](https://docs.google.com/presentation/d/1LzS4OiMxpiI9AwkcJj9fuB26nvE4xYXYU8WH20Ulqy4/edit?usp=sharing) (12/05)
+[**Aula 5**](https://docs.google.com/presentation/d/1LzS4OiMxpiI9AwkcJj9fuB26nvE4xYXYU8WH20Ulqy4/edit?usp=sharing) (14/04)
 
 -   Ferramentas para disponibilização e visualização de dados online
 
--   Análise crítica de artigos científicos do tema na forma de seminário
+-   Análise crítica de artigos científicos
 
 -   [Atividade 5](atividade5.html)
-
-
-[**Aula 6**](https://docs.google.com/presentation/d/1LzS4OiMxpiI9AwkcJj9fuB26nvE4xYXYU8WH20Ulqy4/edit?usp=sharing) (13/05)
 
 -   Revisão geral do conteúdo e debate
 

@@ -45,7 +45,7 @@ A atividade 1 consiste em transferir os dados indicados nas fichas de campo para
 ```{r load data, warning = FALSE}
 
 data.frame(
-  participante = seq(1, 10, 1),
+  participante = seq(1, 6, 1),
   fichas = c(read.csv("data/iris_mod.csv", header = T) %>% 
                  distinct(amostra) %>% 
                  pull()%>% 

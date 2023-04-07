@@ -56,7 +56,7 @@ lapply(iris, unique)
 
 ```
 
-Aqui podemos identificar que temos 150 amostras e nomes de espécies associados às amostras, além de atributos (eg. Petal.Length, Sepal.Width) associados a cada espécie. Também existem dados de coordenadas dos sites e datas das amostragens.
+Aqui podemos identificar que temos 150 amostras e nomes de espécies associados às amostras, além de atributos (e.g., *Petal.Length*, *Sepal.Width*) associados a cada espécie. Também existem dados de coordenadas dos sites e datas das amostragens.
 
 Podemos aproveitar para investigar algumas características dos dados e fazer um controle de qualidade. Por exemplo, verificar se existem valores discrepantes nas variáveis numéricas ou se existem valores faltantes.
 
@@ -67,10 +67,17 @@ Inicialmente, vamos fazer uma inspeção visual da distribuição dos valores nu
 iris %>% 
   select(Species, Sepal.Length:Petal.Width) %>% 
   pivot_longer(cols = -Species, names_to = "variavel", values_to = "valores") %>% 
-  ggplot(aes(y = valores, fill = Species)) +
+  ggplot(aes(x = valores, fill = Species)) +
     geom_histogram() +
-    facet_wrap(~ variavel, scales = 'free_y') +
-    theme_classic()
+    facet_wrap(~ variavel, scales = 'free_x') +
+    theme_classic() +
+  theme(legend.position = "bottom") +
+    labs(x = "tamanho (mm)") +
+    scale_fill_discrete(
+      expression(bold("Species:")),
+      labels = c(expression(italic("Iris setosa")), 
+                 expression(italic("Iris versicolor")), 
+                 expression(italic("Iris virginica"))))
 
 ```
 
@@ -109,12 +116,16 @@ Em seguida, um passo importante é checar se os nomes utilizados dos táxons sã
 species <- iris %>% 
   distinct(Species) %>% 
   pull() %>% 
+  c("Iris murchosa", .) %>% # inserimos uma espécie fictícia para teste
   get_tsn() %>% 
   data.frame() %>% 
-  bind_cols(iris %>% 
-              distinct(Species))
+  bind_cols(Species = iris %>% 
+              distinct(Species) %>% 
+              pull() %>% 
+              c("Iris murchosa", .))
 
 ```
+Podemos observar que nossa impostora (*Iris murchosa*) não existe na base de dados do ITIS.
 
 Os campos de `match` e `pattern_match` indicam que as espécies são válidas e, o campo `uri` indica o endereço único para checar a espécie no ITIS. Este campo `uri` será utilizado na planilha `occurrence` do sistema `event core`.
 
@@ -164,7 +175,7 @@ Com os campos adicionados na planilha já podemos iniciar a construção das tr�
 
 Os campos obrigatórios na planilha de eventos (`eventCore`) são: \* eventID = indica os eventos únicos de amostragem \* eventDate = data da amostragem no formato YYYY-MM-DD (ano com 4 dígitos, mês com 2 dígitos e dia com 2 dígitos) \* decimalLongitude = longitude indicada em graus decimais \* decimalLatitude = latitude indicada em graus decimais \* verbatimCoordinateSystem = tipo de coordenadas \* geodeticDatum = Datum das coordenadas
 
-Os termos padronizados do DwC podem ser encontrados no site do [DwC](https://dwc.tdwg.org/terms/)
+Os termos padronizados do DwC podem ser encontrados no site do [DwC](https://dwc.tdwg.org/terms/).
 
 ------------------------------------------------------------------------
 
