@@ -13,7 +13,7 @@
 
 <title>Atividade 4</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
@@ -141,13 +141,20 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
   for (var i = 0; i < sheets.length; i++) {
     if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
     try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
+    var j = 0;
+    while (j < rules.length) {
       var rule = rules[j];
       // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -242,11 +249,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -275,8 +286,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -284,16 +295,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -489,7 +493,7 @@ text-align: justify}
 <p>A atividade 4 vai incluir algumas subatividades para podermos
 interagir com as atividades anteriores e inserir algumas novas
 ferramentas. <br><br></p>
-<div id="r-markdown" class="section level2" number="0.1">
+<div id="r-markdown" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> R Markdown</h2>
 <p>A primeira parte da atividade consiste em tranformar a rotina criada
 na <a href="atividade3.html">atividade 3</a> em um formato mais amigável
@@ -554,7 +558,7 @@ cada etapa.</li>
 <p>Mas não se esqueça, daqui pra frente, já pode começar seu documentos
 direto como <code>R Markdown</code>. <br><br></p>
 </div>
-<div id="github" class="section level2" number="0.2">
+<div id="github" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> GitHub</h2>
 <p>Agora vamos à segunda parte da atividade 4.</p>
 <p>Para isso precisamos:</p>
@@ -575,7 +579,7 @@ Silveira</a> e <a
 href="https://noaa-iea.github.io/r3-train/collaborate.html">Ben
 Best</a>. <br><br></p>
 <div id="criando-uma-conta-no-github" class="section level3"
-number="0.2.1">
+number="4.2.1">
 <h3><span class="header-section-number">4.2.1</span> Criando uma conta
 no GitHub</h3>
 <p>Para criar uma conta no <code>GitHub</code> basta acessar o site <a
@@ -593,7 +597,7 @@ instruções.</p>
 <p>Depois de criado, basta acessar seu <code>GitHub</code>. <br><br></p>
 </div>
 <div id="configurando-o-git-no-rstudio" class="section level3"
-number="0.2.2">
+number="4.2.2">
 <h3><span class="header-section-number">4.2.2</span> Configurando o Git
 no RStudio</h3>
 <p>Agora, vamos ao RStudio para configurar o acesso do <code>Git</code>.
@@ -634,7 +638,7 @@ href="https://happygitwithr.com/rstudio-see-git.html#tell-rstudio-where-to-find-
 Git and GitHub for the useR</a> se tiver algum problema.<br><br></p>
 </div>
 <div id="criando-repositório-ou-repo-no-github" class="section level3"
-number="0.2.3">
+number="4.2.3">
 <h3><span class="header-section-number">4.2.3</span> Criando repositório
 (ou REPO) no GitHub</h3>
 <p>Após a instalação e configuração do <strong>Git/R/RStudio</strong> e
@@ -667,7 +671,7 @@ aberta no seu navegador, pois vamos precisar dela no próximo passo.
 <br><br></p>
 </div>
 <div id="criando-projeto-no-rstudio-clonando-o-repositório-do-github"
-class="section level3" number="0.2.4">
+class="section level3" number="4.2.4">
 <h3><span class="header-section-number">4.2.4</span> Criando projeto no
 RStudio clonando o repositório do Github</h3>
 <ol style="list-style-type: decimal">
@@ -716,11 +720,11 @@ versão no nosso repo recém criado.</p>
 <hr />
 </div>
 </div>
-<div id="workflow-rstudiogithub" class="section level2" number="0.3">
+<div id="workflow-rstudiogithub" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> Workflow
 RStudio/Github</h2>
 <div id="controle-de-versão-commit-e-push" class="section level3"
-number="0.3.1">
+number="4.3.1">
 <h3><span class="header-section-number">4.3.1</span> Controle de versão:
 <code>commit</code> e <code>push</code></h3>
 <p>Agora podemos criar um script teste para fazermos o primeiro
@@ -798,7 +802,7 @@ figura abaixo.</p>
 </center>
 </div>
 <div id="colaboração-fork-branch-pull-request-e-merge"
-class="section level3" number="0.3.2">
+class="section level3" number="4.3.2">
 <h3><span class="header-section-number">4.3.2</span> Colaboração:
 <code>fork</code>, <code>branch</code>, <code>pull request</code> e
 <code>merge</code></h3>
@@ -850,8 +854,8 @@ repositório no GitHub</strong>. Tenha certeza de criar uma nova pasta
 fora das pastas que você já está trabalhando.</p>
 <p>Abra o projeto do repositório clonado (CCBD_atividade4) no RStudio.
 Agora o repositório deve ser acessado pelo <a
-href="https://github.com/SEU_USUÁRIO/CCBD_atividade4"
-class="uri">https://github.com/SEU_USUÁRIO/CCBD_atividade4</a>. Abra o
+href="https://github.com/SEU_USUÁRIO/ciencia_colab_a4"
+class="uri">https://github.com/SEU_USUÁRIO/ciencia_colab_a4</a>. Abra o
 arquivo <code>partipantes.csv</code>, e edite adicionando seu nome e
 nome de usuário do <code>GitHub</code>. Salve, faça o
 <code>commit</code> e o <code>push</code>.</p>
@@ -874,8 +878,8 @@ contribuição.</p>
 </center>
 <p>Clique novamente no botão <strong>Create pull request</strong> para
 confirmar sua contribuição. Visualize a página <a
-href="https://github.com/cammcordeiro/CCBD_atividade4"
-class="uri">https://github.com/cammcordeiro/CCBD_atividade4</a> e veja
+href="https://github.com/cammcordeiro/ciencia_colab_a4"
+class="uri">https://github.com/cammcordeiro/ciencia_colab_a4</a> e veja
 como ficou.</p>
 <center>
 <p><img src="figs/git_26.png" style="width:60%"/> <br><br></p>

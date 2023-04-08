@@ -408,7 +408,7 @@ já está trabalhando.
 
 Abra o projeto do repositório clonado (CCBD_atividade4) no RStudio.
 Agora o repositório deve ser acessado pelo
-[https://github.com/SEU_USUÁRIO/CCBD_atividade4](https://github.com/SEU_USUÁRIO/CCBD_atividade4){.uri}.
+[https://github.com/SEU_USUÁRIO/ciencia_colab_a4](https://github.com/SEU_USUÁRIO/ciencia_colab_a4){.uri}.
 Abra o arquivo `partipantes.csv`, e edite adicionando seu nome e nome de
 usuário do `GitHub`. Salve, faça o `commit` e o `push`.
 
@@ -442,7 +442,7 @@ contribuição.
 
 Clique novamente no botão **Create pull request** para confirmar sua
 contribuição. Visualize a página
-<https://github.com/cammcordeiro/CCBD_atividade4> e veja como ficou.
+<https://github.com/cammcordeiro/ciencia_colab_a4> e veja como ficou.
 
 <center>
 
