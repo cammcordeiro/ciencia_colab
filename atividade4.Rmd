@@ -442,7 +442,7 @@ contribuição.
 
 Clique novamente no botão **Create pull request** para confirmar sua
 contribuição. Visualize a página
-<https://github.com/cammcordeiro/ciencia_colab_a4> e veja como ficou.
+<https://cammcordeiro.github.io/ciencia_colab_a4> e veja como ficou.
 
 <center>
 
