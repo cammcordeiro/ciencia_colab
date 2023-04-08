@@ -413,7 +413,7 @@ Abra o arquivo `partipantes.csv`, e edite adicionando seu nome e nome de
 usuário do `GitHub`. Salve, faça o `commit` e o `push`.
 
 Agora navegue até o [respositório da atividade
-4](https://github.com/cammcordeiro/CCBD_atividade4) recém clonado e
+4](https://github.com/cammcordeiro/ciencia_colab_a4) recém clonado e
 clique em **Contribute**.
 
 <center>
