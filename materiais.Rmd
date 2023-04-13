@@ -40,8 +40,12 @@ text-align: justify}
 
 -   [**Dutta et al. (2021)** Decolonizing Open Science: Southern Interventions. Journal of Communication, 71 (5): 803-826](https://drive.google.com/drive/folders/1PHFcgUcL_FtzdZvom50Rr7zR_hNHejnt?usp=sharing)
 
--   [**Carroll SR et al. (2020)** The CARE Principles for Indigenous Data Governance. Data Science Journal, 19(43):1--12](https://drive.google.com/drive/folders/1PHFcgUcL_FtzdZvom50Rr7zR_hNHejnt?usp=sharing)
+-   [**Carroll SR et al. (2020)** The CARE Principles for Indigenous Data Governance. Data Science Journal, 19(43):1-12](https://drive.google.com/drive/folders/1PHFcgUcL_FtzdZvom50Rr7zR_hNHejnt?usp=sharing)
 
 4\. **Dia 5 (14/04/2023)**
+
+- [**Gundersen et al. (2018)** On Reproducible AI:
+Towards Reproducible Research, Open Science,
+and Digital Scholarship in AI Publications. AI Magazine, 39(3): 56-68](https://drive.google.com/drive/folders/1PHFcgUcL_FtzdZvom50Rr7zR_hNHejnt?usp=sharing)
 
 <br></br>
