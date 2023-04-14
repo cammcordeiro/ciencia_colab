@@ -3,11 +3,13 @@ title: "iNaturalist"
 output: html_document
 ---
 
-```{r, results = FALSE, echo=FALSE, warning=FALSE}
+```{r, results = FALSE, echo=TRUE, warning=FALSE}
 # packages (https://statsandr.com/blog/an-efficient-way-to-install-and-load-r-packages/)
+
 packages <- c("rinat", "tidyverse", "leaflet", "htmltools")
 
 installed_packages <- packages %in% rownames(installed.packages())
+
 if (any(installed_packages == FALSE)) {
   install.packages(packages[!installed_packages])
   } else {
