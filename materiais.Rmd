@@ -20,29 +20,32 @@ text-align: justify}
 
 <br></br>
 
-1\. **Dia 1 (10/04/2023)**
+### **Debate de artigos científicos**
+<br></br>
+
+1\. **Dia 1**
 
 -   [**UNESCO (2021)** Recomendação da UNESCO sobre Ciência Aberta](https://drive.google.com/drive/folders/1PHFcgUcL_FtzdZvom50Rr7zR_hNHejnt?usp=sharing)
 
-2\. **Dia 2 (11/04/2023)**
+2\. **Dia 2**
 
 -   [**Reichman OJ et al. (2011)** Challenges and Opportunities of Open Data in Ecology. Science, 331:703-705](https://drive.google.com/drive/folders/1PHFcgUcL_FtzdZvom50Rr7zR_hNHejnt?usp=sharing)
 
 -   [**Kadakia KT et al. (2021)** Leveraging Open Science to Accelerate Research. The New England Journal of Medicine, e61:1-3](https://drive.google.com/drive/folders/1PHFcgUcL_FtzdZvom50Rr7zR_hNHejnt?usp=sharing)
 
-3\. **Dia 3 (12/04/2023)**
+3\. **Dia 3**
 
 -   [**Parker TH et al. (2016)** Transparency in Ecology and Evolution: Real Problems, Real Solutions. Trends in Ecology & Evolution, 31(9) 711-719](https://drive.google.com/drive/folders/1PHFcgUcL_FtzdZvom50Rr7zR_hNHejnt?usp=sharing)
 
 -   [**Stosic et al. (2021)** Greater belief in science predicts mask-wearing behavior during COVID-19. Personality and Individual Differences, 176: 110769](https://drive.google.com/drive/folders/1PHFcgUcL_FtzdZvom50Rr7zR_hNHejnt?usp=sharing)
 
-4\. **Dia 4 (13/04/2023)**
+4\. **Dia 4**
 
 -   [**Dutta et al. (2021)** Decolonizing Open Science: Southern Interventions. Journal of Communication, 71 (5): 803-826](https://drive.google.com/drive/folders/1PHFcgUcL_FtzdZvom50Rr7zR_hNHejnt?usp=sharing)
 
 -   [**Carroll SR et al. (2020)** The CARE Principles for Indigenous Data Governance. Data Science Journal, 19(43):1-12](https://drive.google.com/drive/folders/1PHFcgUcL_FtzdZvom50Rr7zR_hNHejnt?usp=sharing)
 
-4\. **Dia 5 (14/04/2023)**
+4\. **Dia 5**
 
 - [**Gundersen et al. (2018)** On Reproducible AI:
 Towards Reproducible Research, Open Science,
