@@ -19,7 +19,7 @@ Todo o material das aulas pode ser acessados no cronograma baixo clicando-se os 
 
 ### Cronograma
 
-[**Aula 1**]()
+[**Aula 1**](https://docs.google.com/presentation/d/1j-2CDbvavYjV5kYlm8UkTqC2Z8ep0dS4p1X33fxf5HY/edit?usp=sharing)
 
 -   *Open Science* e *Open Data*: o que são?
 

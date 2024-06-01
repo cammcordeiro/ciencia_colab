@@ -27,8 +27,6 @@ text-align: justify}
 
 -   [**Albagli et al. (2014)** Ciência Aberta: correntes interpretativas e tipos de ação](https://drive.google.com/drive/folders/1gQ8BQVyDHW78pu3pKjrzD3sQeJNaZ4Gm?usp=sharing)
 
--   [**UNESCO (2021)** Recomendação da UNESCO sobre Ciência Aberta](https://drive.google.com/drive/folders/1gQ8BQVyDHW78pu3pKjrzD3sQeJNaZ4Gm?usp=sharing)
-
 2\. **Debate 2**
 
 -   [**Reichman OJ et al. (2011)** Challenges and Opportunities of Open Data in Ecology. Science, 331:703-705](https://drive.google.com/drive/folders/1gQ8BQVyDHW78pu3pKjrzD3sQeJNaZ4Gm?usp=sharing)
@@ -51,5 +49,6 @@ text-align: justify}
 
 -   [**Gundersen OE et al. (2018)** On Reproducible AI:Towards Reproducible Research, and Digital Scholarship in AI Publications. AI Magazine, 39(3): 56-68.](https://drive.google.com/drive/folders/1gQ8BQVyDHW78pu3pKjrzD3sQeJNaZ4Gm?usp=sharing)
 
+-   [**UNESCO (2021)** Recomendação da UNESCO sobre Ciência Aberta](https://drive.google.com/drive/folders/1gQ8BQVyDHW78pu3pKjrzD3sQeJNaZ4Gm?usp=sharing)
 
 <br></br>
