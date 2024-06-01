@@ -62,8 +62,8 @@ A [**atividade 5**](atividade5.html) finaliza o processo de ferramentas básicas
 ## **Extra** {.unnumbered}
 [Exemplo 1 - banco de dados do iNaturalist](https://cammcordeiro.github.io/ciencia_colab/extra_inaturalist.html)
 
-[Exemplo 2 - usando gráficos interativos.](https://cammcordeiro.shinyapps.io/ccbd_atividade4/#section-in%C3%ADcio)
+[Exemplo 2 - usando gráficos animados.]()
 
-[Exemplo 3 - usando gráficos interativos.](https://cammcordeiro.shinyapps.io/ccbd_atividade4/#section-in%C3%ADcio)
+[Exemplo 3 - usando gráficos interativos.](https://cammcordeiro.shinyapps.io/PortalLenteEcologica/#section-início)
 
 ***
