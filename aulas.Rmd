@@ -30,7 +30,7 @@ Todo o material das aulas pode ser acessados no cronograma baixo clicando-se os 
 -   [Atividade 1](atividade1.html)
 
 
-[**Aula 2**]()
+[**Aula 2**](https://docs.google.com/presentation/d/1-0CXE87QRoRxaw2gQ7cJjofBH77u9arURmZDk0zKbgo/edit?usp=sharing)
 
 -   Padrões e boas práticas no compartilhamento de dados
 

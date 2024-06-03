@@ -62,7 +62,7 @@ data.frame(
 
 2.  Ao finalizar o planilhamento das informações, o arquivo deverá ser salvo no formato `*.csv` (*comma separated values*) e nomeado seguindo o padrão: **atividade1_NOME-DO-PARTICIPANTE.csv**
 
-3.  Subir a planilha para no [drive compartilhado](https://drive.google.com/drive/folders/1C5LIx2rifGsHz22qwzjxDNwEQne3YRrT?usp=sharing) na pasta **atividade1_data** dentro da pasta **atividades** (i.e. *Ciencia Colab2022/atividades/atividade1_data/*).
+3.  Subir a planilha para no [drive compartilhado](https://drive.google.com/drive/folders/1C5LIx2rifGsHz22qwzjxDNwEQne3YRrT?usp=sharing) na pasta **atividade1_data** dentro da pasta **atividades** (i.e. *Ciencia Colab/2024/aulas/aula1_amostras/planilhas/*).
 
 ***
 
