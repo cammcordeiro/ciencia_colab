@@ -43,7 +43,7 @@ Todo o material das aulas pode ser acessados no cronograma baixo clicando-se os 
 -   [Atividade 2](atividade2.html)
 
 
-[**Aula 3**]()
+[**Aula 3**](https://docs.google.com/presentation/d/1MUOq0bpQRwD-v8dVmPiQwdwxvrMs2Dypvuynn8fMJHQ/edit?usp=sharing)
 
 -   Repositórios de dados ecológicos
 
