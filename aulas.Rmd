@@ -56,7 +56,7 @@ Todo o material das aulas pode ser acessados no cronograma baixo clicando-se os 
 -   [Atividade 3](atividade3.html)
 
 
-[**Aula 4**]()
+[**Aula 4**](https://docs.google.com/presentation/d/124h0vVwljvU_o6oGex5B85cFQ57duFNY5t3xLTQk7XU/edit?usp=sharing)
 
 -   Compartilhamento e pesquisa reprodutível (*Git* e *GitHub*)
 
@@ -67,7 +67,7 @@ Todo o material das aulas pode ser acessados no cronograma baixo clicando-se os 
 -   [Atividade 4](atividade4.html)
 
 
-[**Aula 5**]()
+[**Aula 5**](https://docs.google.com/presentation/d/1LzS4OiMxpiI9AwkcJj9fuB26nvE4xYXYU8WH20Ulqy4/edit?usp=sharing)
 
 -   Ferramentas para disponibilização e visualização de dados online
 
