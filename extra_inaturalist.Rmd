@@ -9,12 +9,12 @@ output: html_document
 packages <- c("rinat", "tidyverse", "leaflet", "htmltools")
 
 installed_packages <- packages %in% rownames(installed.packages())
-
-if (any(installed_packages == FALSE)) {
-  install.packages(packages[!installed_packages])
-  } else {
-  invisible(lapply(packages, library, character.only = TRUE)); rm(packages, installed_packages)
-  }
+# 
+# if (any(installed_packages == FALSE)) {
+#   install.packages(packages[!installed_packages])
+#   } else {
+#   invisible(lapply(packages, library, character.only = TRUE)); rm(packages, installed_packages)
+#   }
 
 
 ```
