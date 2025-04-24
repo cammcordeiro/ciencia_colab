@@ -254,32 +254,25 @@ A seguir, vamos utilizar um exemplo simples utilizando os mesmos dados dos corvo
 ```{r}
 
 corvus %>% 
-  mutate(lat = round(decimalLatitude)) %>% 
-  group_by(lat, scientificName) %>%
-  summarise(occ = length(scientificName)) %>%
-  ggplot(aes(y = occ, x = lat, color = scientificName)) +
-    geom_point() +
-    geom_smooth() +
+  ggplot(aes(y = decimalLatitude, fill = scientificName)) +
+    geom_histogram() +
     theme_classic() +
-    labs(x = "latitude", y = 'ocorrências')
+    labs(y = "latitude", x = 'ocorrências') +
+    ylim(-50, 70)
 
 ```
 <br><br>
 
-Acima observamos que existe apenas uma ocorrência (*Corvus coronoides*) no hemisfério sul (latitude < 0) e isso dificulta a visualização do restante dos dados. Podemos limitar a escala do eixo para focar na área de maior concentração de dados.
+Acima observamos que existem poucas ocorrências no hemisfério sul (latitude < 0) e isso dificulta a visualização do restante dos dados. Podemos limitar a escala do eixo para focar na área de maior concentração de dados.
 
 ```{r}
 
 corvus %>% 
-  mutate(lat = round(decimalLatitude)) %>% 
-  group_by(lat, scientificName) %>%
-  summarise(occ = length(scientificName)) %>%
-  ggplot(aes(y = occ, x = lat, color = scientificName)) +
-    geom_point() +
-    geom_smooth() +
+  ggplot(aes(y = decimalLatitude, fill = scientificName)) +
+    geom_histogram() +
     theme_classic() +
-    labs(x = "latitude", y = 'ocorrências') +
-    xlim(40, 75)
+    labs(y = "latitude", x = 'ocorrências') +
+    ylim(35, 65)
 
 ```
 <br><br>
@@ -291,14 +284,11 @@ Uma das vantagens do `Plotly` é permitir interagir com os gráficos e isso incl
 library(plotly)
 
 cc <- corvus %>% 
-  mutate(lat = round(decimalLatitude)) %>% 
-  group_by(lat, scientificName) %>%
-  summarise(occ = length(scientificName)) %>%
-  ggplot(aes(y = occ, x = lat, color = scientificName)) +
-    geom_point() +
-    geom_smooth() +
+  ggplot(aes(y = decimalLatitude, fill = scientificName)) +
+    geom_histogram() +
     theme_classic() +
-    labs(x = "latitude", y = 'ocorrências')
+    labs(y = "latitude", x = 'ocorrências') +
+    ylim(-50, 70)
 
 ggplotly(cc)
 

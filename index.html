@@ -13,7 +13,7 @@
 
 <title>index.knit</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
@@ -30,8 +30,8 @@
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -131,11 +131,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -164,8 +168,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -173,16 +177,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -286,14 +283,21 @@ body {
 text-align: justify}
 </style>
 <table>
+<colgroup>
+<col width="47%" />
+<col width="52%" />
+</colgroup>
 <tbody>
 <tr class="odd">
-<td align="left"><a href="https://uenf.br/"><img src="figs/logo_uenf.jpeg" width="300" /></a></td>
-<td align="right"><a href="https://uenf.br/cbb/lca/"><img src="figs/logo_lca.png" width="227" /></a></td>
+<td align="left"><a href="https://uenf.br/"><img
+src="figs/logo_uenf.jpeg" width="300" /></a></td>
+<td align="right"><a href="https://uenf.br/cbb/lca/"><img
+src="figs/logo_lca.png" width="227" /></a></td>
 </tr>
 </tbody>
 </table>
-<div id="ferramentas-em-ciência-colaborativa-e-bancos-de-dados-abertos" class="section level2">
+<div id="ferramentas-em-ciência-colaborativa-e-bancos-de-dados-abertos"
+class="section level2">
 <h2>Ferramentas em ciência colaborativa e bancos de dados abertos</h2>
 <blockquote>
 <p>UENF - CBB - Laboratório de Ciências Ambientais (LCA)</p>
@@ -302,27 +306,108 @@ text-align: justify}
 <hr />
 <div id="sobre-o-curso" class="section level3">
 <h3>Sobre o curso…</h3>
-<p>Neste curso, serão explorados os usos de ferramentas em ciência colaborativa e construção de bases de dados abertos em estudos ecológicos, desde a aquisição de dados em repositórios existentes até a inserção de dados novos nestes repositórios. Tópicos contemplando as principais ferramentas aplicadas a controle de versão em documentos e roteiros de análises (e.g. plataformas Git e GitHub), modelos de bancos de dados e repositórios mais utilizados no campo da ecologia serão debatidos durante o curso. Também serão abordados padrões de construção de bases de dados (e.g. Darwin Core), etapas de verificação de qualidade de dados, noções de compartilhamento de arquivos e utilização de ferramentas para publicação e visualização de dados online.</p>
-<p><strong>Pré-requisitos</strong>: Espera-se que os estudantes matriculados tenham familiaridade com a linguagem R. <br><br></p>
+<p>Neste curso, serão explorados os usos de ferramentas em ciência
+colaborativa e construção de bases de dados abertos em estudos
+ecológicos, desde a aquisição de dados em repositórios existentes até a
+inserção de dados novos nestes repositórios. Tópicos contemplando as
+principais ferramentas aplicadas a controle de versão em documentos e
+roteiros de análises (e.g. plataformas Git e GitHub), modelos de bancos
+de dados e repositórios mais utilizados no campo da ecologia serão
+debatidos durante o curso. Também serão abordados padrões de construção
+de bases de dados (e.g. Darwin Core), etapas de verificação de qualidade
+de dados, noções de compartilhamento de arquivos e utilização de
+ferramentas para publicação e visualização de dados online.</p>
+<p><strong>Pré-requisitos</strong>: Espera-se que os estudantes
+matriculados tenham familiaridade com a linguagem R. <br><br></p>
 </div>
 <div id="mais-informações" class="section level3">
 <h3>Mais informações</h3>
-<p>A disciplina será conduzida por meio de plataforma digital com todas as aulas expositivas sendo realizadas de forma síncrona permitindo a interação em tempo real com o professor. Esta parte da disciplina contará como 70% da carga horária indicada. Atividades assíncronas somarão 30% da disciplina sendo associadas à análise crítica de artigos científicos para a preparação de apresentação em forma de seminário, a ser utilizado como a primeira avaliação. Os participantes serão separados em grupos para a apresentação dos artigos a partir do segundo dia do curso, sendo o número de apresentações dividida igualmente entre os dias restantes da disciplina. Os apresentadores serão sorteados no dia da apresentação (um apresentador e um ou mais debatedores), tendo todo participante 24 horas para preparação da apresentação e elaboração de, ao menos, uma questão sobre o tema. A apresentação consistirá em uma breve explicação do artigo indicado (5 minutos) ficando a critério do participante a utilização de recursos audiovisuais ou apenas exposição oral. Os temas dos seminários incluirão: metodologia de organização de dados, data papers, big data e política de uso de dados, sendo os artigos recomendados pelo professor e fornecidos na plataforma compartilhada (Google drive). Os debatedores deverão propor uma pergunta cada ao apresentador e à turma, podendo também ser indicada uma crítica ao artigo, aplicação ou exemplo local da questão em debate. Os dados utilizados durante a disciplina serão adquiridos diretamente de servidores abertos durante as aulas síncronas, e as rotinas de exemplo serão compartilhadas com os estudantes também via plataforma digital (Google drive).</p>
-<p>A segunda avaliação consistirá em um trabalho final autoral confeccionado como um roteiro reprodutível de aquisição, polimento e visualização de dados públicos ou dos participantes. Todas as práticas realizadas serão acompanhadas na rotina comentada utilizada nas práticas adicionada das observações dos participantes. A frequência dos estudantes será contabilizada ao início de cada período das aulas. <br><br></p>
+<p>A disciplina será conduzida por meio de plataforma digital com todas
+as aulas expositivas sendo realizadas de forma síncrona permitindo a
+interação em tempo real com o professor. Esta parte da disciplina
+contará como 70% da carga horária indicada. Atividades assíncronas
+somarão 30% da disciplina sendo associadas à análise crítica de artigos
+científicos para a preparação de apresentação em forma de seminário, a
+ser utilizado como a primeira avaliação. Os participantes serão
+separados em grupos para a apresentação dos artigos a partir do segundo
+dia do curso, sendo o número de apresentações dividida igualmente entre
+os dias restantes da disciplina. Os apresentadores serão sorteados no
+dia da apresentação (um apresentador e um ou mais debatedores), tendo
+todo participante 24 horas para preparação da apresentação e elaboração
+de, ao menos, uma questão sobre o tema. A apresentação consistirá em uma
+breve explicação do artigo indicado (5 minutos) ficando a critério do
+participante a utilização de recursos audiovisuais ou apenas exposição
+oral. Os temas dos seminários incluirão: metodologia de organização de
+dados, data papers, big data e política de uso de dados, sendo os
+artigos recomendados pelo professor e fornecidos na plataforma
+compartilhada (Google drive). Os debatedores deverão propor uma pergunta
+cada ao apresentador e à turma, podendo também ser indicada uma crítica
+ao artigo, aplicação ou exemplo local da questão em debate. Os dados
+utilizados durante a disciplina serão adquiridos diretamente de
+servidores abertos durante as aulas síncronas, e as rotinas de exemplo
+serão compartilhadas com os estudantes também via plataforma digital
+(Google drive).</p>
+<p>A segunda avaliação consistirá em um trabalho final autoral
+confeccionado como um roteiro reprodutível de aquisição, polimento e
+visualização de dados públicos ou dos participantes. Todas as práticas
+realizadas serão acompanhadas na rotina comentada utilizada nas práticas
+adicionada das observações dos participantes. A frequência dos
+estudantes será contabilizada ao início de cada período das aulas.
+<br><br></p>
 </div>
-<div id="referências-recomendadas" class="section level3">
-<h3>Referências recomendadas</h3>
+<div
+id="referências-recomendadas-atualizações-são-feitas-nas-sugestões-para-cada-aula"
+class="section level3">
+<h3>Referências recomendadas (atualizações são feitas nas sugestões para
+cada aula)</h3>
 <ul>
-<li><p>Baker K, Millerand F (2012) Infrastructuring ecology: challenges in achieving data sharing. In: Collaboration in the New Life Sciences. (eds) Parker J, Vermeulen N, Penders B. Ashgate. Disponível em: <a href="http://interoperability.ucsd.edu/docs/10BakerMillerand_InfrastructuringEcology_old.pdf" class="uri">http://interoperability.ucsd.edu/docs/10BakerMillerand_InfrastructuringEcology_old.pdf</a></p></li>
-<li><p>Chapman AD (2015). Princípios de Qualidade de Dados. Versão 1.0 pt em Português lançada em abril 2015 e traduzida para pelo Nó Português do GBIF (www.gbif.pt) e pelo representante brasileiro do GBIF, SiBBr (Sistema de Informação sobre a Biodiversidade Brasileira, www.sibbr.gov.br). Versão original em Inglês lançada em jul 2005. Copenhagen: Global Biodiversity Information Facility. 81 pp. ISBN: 87-92020-58-5. Disponível on-line em <a href="http://www.gbif.org/orc/?doc_id=5990" class="uri">http://www.gbif.org/orc/?doc_id=5990</a>.</p></li>
-<li><p>Cooper N, Hsing PY (2019) Reproducible code – guides to better science. British Ecological Society. Disponível em: <a href="https://www.britishecologicalsociety.org/wp-content/uploads/2019/06/BES-Guide-Reproducible-Code-2019.pdf" class="uri">https://www.britishecologicalsociety.org/wp-content/uploads/2019/06/BES-Guide-Reproducible-Code-2019.pdf</a></p></li>
-<li><p>Hampton SE et al. (2013) Big data and the future of ecology. Front Ecol Environ 2013; 11(3): 156–162, <a href="https://doi.org/10.1890/120103" class="uri">https://doi.org/10.1890/120103</a></p></li>
-<li><p>Harisson K (2019) A Guide to Data Management in Ecology and Evolution - guides to better science. British Ecological Society. Disponível em: <a href="https://www.britishecologicalsociety.org/wp-content/uploads/Publ_Data-Management-Booklet.pdf" class="uri">https://www.britishecologicalsociety.org/wp-content/uploads/Publ_Data-Management-Booklet.pdf</a></p></li>
-<li><p>König C, Weigelt P, Schrader J, Taylor A, Kattge J, Kreft H (2019) Biodiversity data integration—the significance of data resolution and domain. PLoS Biol 17(3): e3000183. <a href="https://doi.org/10.1371/journal.pbio.3000183" class="uri">https://doi.org/10.1371/journal.pbio.3000183</a></p></li>
-<li><p>Powers SM, Hampton SE (2019). Open science, reproducibility, and transparency in ecology. Ecological Applications 29(1):e01822. <a href="https://doi.org/10.1002/eap.1822" class="uri">https://doi.org/10.1002/eap.1822</a></p></li>
-<li><p>Wieczorek J, Bloom D, Guralnick R, Blum S, Do ̈ring M, et al. (2012) Darwin Core: An Evolving Community-Developed Biodiversity Data Standard. PLoS ONE 7(1): e29715. <a href="https://doi.org/10.1371/journal.pone.0029715" class="uri">https://doi.org/10.1371/journal.pone.0029715</a></p></li>
-<li><p>Version Control with Git - <a href="http://swcarpentry.github.io/git-novice/" class="uri">http://swcarpentry.github.io/git-novice/</a></p></li>
-<li><p>Darwin Core Archive - <a href="https://obis.org/manual/dataformat/" class="uri">https://obis.org/manual/dataformat/</a></p></li>
+<li><p>Baker K, Millerand F (2012) Infrastructuring ecology: challenges
+in achieving data sharing. In: Collaboration in the New Life Sciences.
+(eds) Parker J, Vermeulen N, Penders B. Ashgate. Disponível em: <a
+href="http://interoperability.ucsd.edu/docs/10BakerMillerand_InfrastructuringEcology_old.pdf"
+class="uri">http://interoperability.ucsd.edu/docs/10BakerMillerand_InfrastructuringEcology_old.pdf</a></p></li>
+<li><p>Chapman AD (2015). Princípios de Qualidade de Dados. Versão 1.0
+pt em Português lançada em abril 2015 e traduzida para pelo Nó Português
+do GBIF (www.gbif.pt) e pelo representante brasileiro do GBIF, SiBBr
+(Sistema de Informação sobre a Biodiversidade Brasileira,
+www.sibbr.gov.br). Versão original em Inglês lançada em jul 2005.
+Copenhagen: Global Biodiversity Information Facility. 81 pp. ISBN:
+87-92020-58-5. Disponível on-line em <a
+href="http://www.gbif.org/orc/?doc_id=5990"
+class="uri">http://www.gbif.org/orc/?doc_id=5990</a>.</p></li>
+<li><p>Cooper N, Hsing PY (2019) Reproducible code – guides to better
+science. British Ecological Society. Disponível em: <a
+href="https://www.britishecologicalsociety.org/wp-content/uploads/2019/06/BES-Guide-Reproducible-Code-2019.pdf"
+class="uri">https://www.britishecologicalsociety.org/wp-content/uploads/2019/06/BES-Guide-Reproducible-Code-2019.pdf</a></p></li>
+<li><p>Hampton SE et al. (2013) Big data and the future of ecology.
+Front Ecol Environ 2013; 11(3): 156–162, <a
+href="https://doi.org/10.1890/120103"
+class="uri">https://doi.org/10.1890/120103</a></p></li>
+<li><p>Harisson K (2019) A Guide to Data Management in Ecology and
+Evolution - guides to better science. British Ecological Society.
+Disponível em: <a
+href="https://www.britishecologicalsociety.org/wp-content/uploads/Publ_Data-Management-Booklet.pdf"
+class="uri">https://www.britishecologicalsociety.org/wp-content/uploads/Publ_Data-Management-Booklet.pdf</a></p></li>
+<li><p>König C, Weigelt P, Schrader J, Taylor A, Kattge J, Kreft H
+(2019) Biodiversity data integration—the significance of data resolution
+and domain. PLoS Biol 17(3): e3000183. <a
+href="https://doi.org/10.1371/journal.pbio.3000183"
+class="uri">https://doi.org/10.1371/journal.pbio.3000183</a></p></li>
+<li><p>Powers SM, Hampton SE (2019). Open science, reproducibility, and
+transparency in ecology. Ecological Applications 29(1):e01822. <a
+href="https://doi.org/10.1002/eap.1822"
+class="uri">https://doi.org/10.1002/eap.1822</a></p></li>
+<li><p>Wieczorek J, Bloom D, Guralnick R, Blum S, Do ̈ring M, et
+al. (2012) Darwin Core: An Evolving Community-Developed Biodiversity
+Data Standard. PLoS ONE 7(1): e29715. <a
+href="https://doi.org/10.1371/journal.pone.0029715"
+class="uri">https://doi.org/10.1371/journal.pone.0029715</a></p></li>
+<li><p>Version Control with Git - <a
+href="http://swcarpentry.github.io/git-novice/"
+class="uri">http://swcarpentry.github.io/git-novice/</a></p></li>
+<li><p>Darwin Core Archive - <a
+href="https://obis.org/manual/dataformat/"
+class="uri">https://obis.org/manual/dataformat/</a></p></li>
 </ul>
 <hr />
 </div>

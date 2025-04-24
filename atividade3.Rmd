@@ -165,14 +165,14 @@ check_pf <-
 # checar coordenadas válidas e próximas a capitais (muitas vezes as coordenadas são erroneamente associadas a capitais dos países)
 
 cl <- dori_gbif1 %>%
-  select(acceptedScientificName, decimalLatitude, decimalLongitude) %>%
-  rename(decimallongitude = decimalLongitude,
-         decimallatitude = decimalLatitude,
-         scientificName = acceptedScientificName) %>% 
-  as_tibble() %>% 
-  mutate(val = cc_val(., value = "flagged"),
-         sea = cc_sea(., value = "flagged"),
-         capital = cc_cap(., value = "flagged"))
+  CoordinateCleaner::clean_coordinates(species = "acceptedScientificName",
+                                       lat = "decimalLatitude",
+                                       lon = "decimalLongitude",
+                                       tests = c("capitals", 
+                                                 "centroids","equal", 
+                                                 "gbif", "institutions", 
+                                                 "outliers", "seas", 
+                                                 "zeros"))
 
 ```
 
@@ -182,16 +182,18 @@ Na imagem abaixo podemos dar uma rápida conferida nos alertas indicados pelas f
 # verificar coordenadas com flags
 
 # capitais (padrão é um raio de 10km)
-cl %>% 
-  rename(decimalLongitude = decimallongitude,
-         decimalLatitude = decimallatitude) %>% 
-  bdc::bdc_quickmap(., col_to_map = "capital")  
+ggplot() +
+  borders("world", fill = "lightgray") +
+  geom_point(data = cl, aes(x = decimalLongitude, y = decimalLatitude, color = `.cap`)) +
+  coord_quickmap() +
+  theme_classic()
 
-
-cl %>% 
-  rename(decimalLongitude = decimallongitude,
-         decimalLatitude = decimallatitude) %>% 
-  bdc::bdc_quickmap(., col_to_map = "sea")  
+# pontos no mar
+ggplot() +
+  borders("world", fill = "lightgray") +
+  geom_point(data = cl, aes(x = decimalLongitude, y = decimalLatitude, color = `.sea`)) +
+  coord_quickmap() +
+  theme_classic()
 
 
 ```
@@ -215,7 +217,7 @@ dori_gbif1 %>%
 ```
 
 Aparentemente, esta espécie tem sido reportada no mundo todo.
-Com o sucesso da animação *Procurando Nemo*, já temos uma ideia de que a **Dori** tem ocorrência nas águas Australianas, mas podemos acessar bancos de dados especializados para checar estas informações. No caso de peixes (Osteichthyes e Chondrichthyes) o [*FishBase*](https://fishbase.org) é a fonte mais atualizada de informações deste grupo.
+Com o sucesso da animação *Procurando Nemo*, já temos uma ideia de que a **Dori** tem ocorrência nas águas australianas, mas podemos acessar bancos de dados especializados para checar estas informações. No caso de peixes (Osteichthyes e Chondrichthyes) o [*FishBase*](https://fishbase.org) é a fonte mais atualizada de informações deste grupo.
 Depois desta confirmação, podemos suspeitar das ocorrências indicadas no Atlântico e, o tratamento mais rigoroso é a exclusão de qualquer ocorrência suspeita.
 
 ```{r check-gbif1}
@@ -231,17 +233,37 @@ Alguma característica destas ocorrências do Atlântico podem dar pistas de com
 
 ```{r check-gbif2}
 
-# 25 ocorrencias
+dori_gbif1 <- dori_gbif1 %>% 
+  filter(!waterBody %in% c("Atlantic Ocean", "Carribean", "Royal Caribbean", "Carribean Sea", "Bonaire"))
+
+# 14 ocorrencias
 dori_gbif1 %>% 
-  filter(datasetName %in% c("Diveboard - Scuba diving citizen science"))
+  filter(datasetName %in% c("Diveboard - Scuba diving citizen science")) %>% 
+  data.frame()
 
 # filtrar todas do dataset suspeito
-dori_gbif_ok <- dori_gbif1 %>% 
+dori_gbif_noDiveboard <- dori_gbif1 %>% 
   filter(!datasetName %in% c("Diveboard - Scuba diving citizen science"))
 
 ```
 
-Agora não vemos mais nenhuma ocorrência no Atlântico!
+Agora não vemos mais nenhuma ocorrência no Atlântico! Mas ainda existem algumas suspeitas no Mediterrâneo e Mar do Norte (a Dori é tropical!).
+
+Vamos aos últimos cortes. Além das ocorrências no Mediterrâneo, há uma no Japão que também parece muito ao norte, assim, vamos ver as coordenadas mais boreais e excluir.
+
+```{r last_cut}
+
+dori_gbif_noDiveboard %>% 
+  filter(decimalLatitude > 25) %>% 
+  arrange(-decimalLatitude) %>% 
+  data.frame()
+
+dori_gbif_ok <- dori_gbif_noDiveboard %>% 
+  filter(decimalLatitude < 31) 
+
+```
+
+Como o registro do Japão é de um espécie preservado, indica que possivelmente foi coletado nesta latitude mesmo, então este vamos manter.
 
 ```{r plot-gbif}
 
@@ -308,49 +330,60 @@ dori_obis1 %>%
 
 # check NA em datasetName
 dori_obis1 %>% 
-  filter(!flags %in% c("no_depth,on_land", "on_land", "on_land,depth_exceeds_bath", "depth_exceeds_bath,on_land"),
+  filter(!flags %in% c("NO_DEPTH,ON_LAND", "ON_LAND", "DEPTH_EXCEEDS_BATH,ON_LAND"),
          is.na(datasetName)) %>% 
   distinct(waterBody)
 
 ```
 
-Aqui usamos as `flags` para filtrar ocorrências em terra, além de remover dados sem nome de *dataset* (não temos como checar a origem adequadamente, então podemos tratar como suspeitos), filtrar ocorrências no Atlântico e verificar a profundidade reportada.
+Aqui usamos as `flags` para filtrar ocorrências em terra, além de remover dados sem nome de *dataset* (não temos como checar a origem adequadamente, então podemos tratar como suspeitos), filtrar ocorrências no Atlântico e verificar a profundidade reportada. Podemos usar um mapa para verificar melhor as ocorrências também.
 
 ```{r check-dori1}
 
 # depth ok
 dori_obis1 %>% 
-  filter(!flags %in% c("no_depth,on_land", "on_land", "on_land,depth_exceeds_bath", "depth_exceeds_bath,on_land"),
+  filter(!flags %in% c("NO_DEPTH,ON_LAND", "ON_LAND", "DEPTH_EXCEEDS_BATH,ON_LAND"),
          !is.na(datasetName),
-         !waterBody %in% c("North America", "North America Atlantic", "atlantique")) %>% 
+         !waterBody %in% c("Caribbean Sea", "atlantique")) %>% 
   ggplot(aes(x = depth, fill = waterBody)) +
     geom_histogram() 
 
 # checar niveis
 dori_obis1 %>% 
-  filter(!flags %in% c("no_depth,on_land", "on_land", "on_land,depth_exceeds_bath", "depth_exceeds_bath,on_land"),
+  filter(!flags %in% c("NO_DEPTH,ON_LAND", "ON_LAND", "DEPTH_EXCEEDS_BATH,ON_LAND"),
          !is.na(datasetName),
-         !waterBody %in% c("North America", "North America Atlantic", "atlantique")) %>% 
+         !waterBody %in% c("Caribbean Sea", "atlantique")) %>% 
   lapply(., unique)
 
-# ok
+# aplicar filtros
 dori_obis_ok <- dori_obis1 %>% 
-  filter(!flags %in% c("no_depth,on_land", "on_land", "on_land,depth_exceeds_bath", "depth_exceeds_bath,on_land"),
+  filter(!flags %in% c("NO_DEPTH,ON_LAND", "ON_LAND", "DEPTH_EXCEEDS_BATH,ON_LAND"),
          !is.na(datasetName),
-         !waterBody %in% c("North America", "North America Atlantic", "atlantique", NA)) 
+         !waterBody %in% c("Caribbean Sea", "atlantique"))
 
-```
-
-Podemos usar um mapa para verificar melhor as ocorrências também.
-
-```{r check-dori2}
-
-# check
+# plot
 ggplot() +
   geom_polygon(data = world, aes(x = long, y = lat, group = group)) +
   coord_fixed() +
   theme_classic() +
   geom_point(data = dori_obis_ok, aes(x = decimalLongitude, y = decimalLatitude, color = waterBody)) +
+  labs(x = "longitude", y = "latitude", title = expression(italic("Paracanthurus hepatus")))
+
+```
+
+Ainda temos ocorrências no Atlântico, então vamos limpar isso e plotar o mapa novamente.
+
+```{r check-dori2}
+
+dori_obis_final <- dori_obis_ok %>% 
+  filter(decimalLongitude > 0 | decimalLongitude < -100)
+
+# plot
+ggplot() +
+  geom_polygon(data = world, aes(x = long, y = lat, group = group)) +
+  coord_fixed() +
+  theme_classic() +
+  geom_point(data = dori_obis_final, aes(x = decimalLongitude, y = decimalLatitude, color = waterBody)) +
   labs(x = "longitude", y = "latitude", title = expression(italic("Paracanthurus hepatus")))
 
 ```
@@ -365,11 +398,11 @@ Por fim, vamos unir todas as ocorrências, checar se existem duplicatas e plotar
 
 # ver diferencas
 setdiff(names(dori_gbif_ok), names(dori_obis_ok))
-setdiff(names(dori_obis_ok), names(dori_gbif_ok))
+setdiff(names(dori_obis_final), names(dori_obis_final))
 
 all_data <- bind_rows(dori_gbif_ok %>% 
                         mutate(repo = paste0("gbif", row.names(.))), 
-                      dori_obis_ok %>% 
+                      dori_obis_final %>% 
                         mutate(repo = paste0("obis", row.names(.)))) %>%
   column_to_rownames("repo") %>% 
   dplyr::select(decimalLongitude, decimalLatitude, depth) %>% 
@@ -433,7 +466,7 @@ flag_outlier <- function(df, species){
   ) %>% 
     bind_cols(dados) %>% 
     rename(dist_centroid = '...1') %>% 
-    mutate(flag = ifelse(dist_centroid < quantile(dist_centroid, probs = 0.9), "OK",
+    mutate(flag = ifelse(dist_centroid < quantile(dist_centroid, probs = 0.90), "OK",
                          ifelse(dist_centroid >= quantile(dist_centroid, probs = 0.90) & dist_centroid < quantile(dist_centroid, probs = 0.95), "check > Q90",
                                 ifelse(dist_centroid >= quantile(dist_centroid, probs = 0.95), "check > Q95", "OK"))))
   
@@ -446,14 +479,14 @@ flag_outlier <- function(df, species){
 ```
 
 
-```{r occ}
+```{r occ, results=FALSE}
 
 # classificar ocorrências
 marcados <- dori_gbif$data %>% 
   data.frame() %>% 
   dplyr::select(scientificName, decimalLongitude, decimalLatitude, datasetName) %>% 
   distinct() %>% 
-  flag_outlier(., "Paracanthurus hepatus (Linnaeus, 1766)")
+  flag_outlier(., species = "Paracanthurus hepatus (Linnaeus, 1766)")
   
 # mapa
 ggplot() +
@@ -473,60 +506,6 @@ ggplot() +
 Podemos notar no mapa acima que as ocorrencias acima do 90ésimo quantil são muito similares às já filtradas acima com base no `waterBody`, mas se já não tivéssemos a informação da ocorrência restrita da espécie ao Indo-Pacífico, já poderíamos desconfiar destas ocorrências tão longe, os *outliers*. Investigando o datasetName destas ocorrências com *flags* também chegaríamos a mesma conclusão de excluir os dados associados ao `Diveboard - Scuba diving citizen science` e sem valor de `datasetName`.
 <br><br>
 
-
-#### pacote `obistools`
-
-Vale lembrar que o `OBIS` é um repositório de dados marinhos, então as ferramentas tem melhor uso para dados desta natureza. Inclusive uma das funções do pacote (`check_onland`) checa coordenadas em terra, sejam ilhas ou continentes.
-Aqui vamos testar a função `check_outliers_species` que tem um princípio semelhante à nossa função caseira `flag_outliers`, mas é baseada no **median absolute deviation (MAD)** e no **interquartile range (IQR)**, parâmetros que podem ser ajustados na função.
-OBS: Algumas vezes pode ocorrer uma falha de conexão com o servidor, então deve-se insistir um pouco.
-<br><br>
-
-Um pequeno detalhe. Muitas vezes os pacotes não são atualizados na mesma velocidade que o R e acabam ficando incompatíveis, ou os pacotes não são enviados ao CRAN e, usando a função `install.packages` o pacote não é encontrado. Quando isso acontece, podemos ir direto no repositório do pacote. Basta dar uma pesquisada do Google como "nome do pacote e from source". Abaixo segue o exemplo de como instalar direto da fonte usando o pacote `devtools`.
-
-> install.packages("devtools")
-
-> devtools::install_github("iobis/obistools")
-
-<br><br>
-
-```{r obistools}
-library(obistools)
-
-# dori_obis %>% 
-#   dplyr::select(decimalLongitude, decimalLatitude, scientificNameID) %>% 
-#   distinct() %>% 
-#   check_outliers_species(., report=TRUE)
-
-
-# usando essa configuração chegamos a valores próximos aos da limpeza manual
-dori_obis %>% 
-  dplyr::select(decimalLongitude, decimalLatitude, scientificNameID) %>% 
-  distinct() %>% 
-  check_outliers_dataset(., report = FALSE, iqr_coef = 1, mad_coef = 5) %>% 
-  dim()
-
-```
-<br></br>
-
-
-Em seguida, verificamos os *outliers*.
-```{r outliers}
-
-ggplot() +
-    geom_polygon(data = world, aes(x = long, y = lat, group = group)) +
-    coord_fixed() +
-    theme_classic() +
-    geom_point(data = marcados %>% 
-                 filter(flag != "OK"), 
-               aes(x = decimalLongitude, y = decimalLatitude, 
-                   color = datasetName)) +
-    theme(legend.title = element_blank()) +
-    labs(x = "longitude", y = "latitude", 
-         title = expression(italic("Paracanthurus hepatus")))
-
-```
-<br><br>
-
 Por fim, vamos testar o pacote `CoordinateCleaner`. Nele devemos especificar os campos correspondentes na função `clean_coordinates`.
 
 ```{r flags}
@@ -544,7 +523,25 @@ flags <-
 ```
 <br><br>
 
-Neste caso, nenhuma ocorrência foi marcada como suspeita. Moral da história, sempre temos que conferir todos os dados, mas as ferramentas ajudam muito nesta tarefa!
+Em seguida, verificamos os *outliers*. 
+```{r outliers}
+
+ggplot() +
+    geom_polygon(data = world, aes(x = long, y = lat, group = group)) +
+    coord_fixed() +
+    theme_classic() +
+    geom_point(data = marcados %>% 
+                 filter(flag != "OK"), 
+               aes(x = decimalLongitude, y = decimalLatitude, 
+                   color = datasetName)) +
+    theme(legend.title = element_blank()) +
+    labs(x = "longitude", y = "latitude", 
+         title = expression(italic("Paracanthurus hepatus")))
+
+```
+<br><br>
+
+Moral da história, sempre temos que conferir todos os dados, mas as ferramentas ajudam muito nesta tarefa!
 ***
 
 <ul class="pager"> <!--this is the style of the button-->

@@ -13,7 +13,7 @@
 
 <title>Atividade 1</title>
 
-<script src="site_libs/header-attrs-2.22/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
@@ -34,8 +34,8 @@
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
-<link href="site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -69,7 +69,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -510,7 +510,7 @@ coordenadas originais dos locais de coleta.</p>
 <p>A atividade 1 consiste em transferir os dados indicados nas fichas de
 campo para o formato de planilha. As fichas encontram-se na pasta
 compartilhada do <a
-href="https://drive.google.com/drive/folders/1S_yTN8DfdS1l6RtB8McWUoEeaBZLAJuGGqQdUkMkUD87ARpeelck2iyXv_c1tR4qnQWQhArk?usp=sharing">Google
+href="https://drive.google.com/drive/folders/1a1x8tgpXuw28rEm8CdUYaOJqJxcjLBVH?usp=sharing">Google
 Drive da disciplina</a>.</p>
 <ol style="list-style-type: decimal">
 <li>Esta atividade deve ser realizada de modo individual e cada
@@ -518,7 +518,7 @@ participante deverá baixar as amostras (i.e., fichas de campo) indicadas
 junto ao seu nome na tabela abaixo.</li>
 </ol>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">data.frame</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>  <span class="at">participante =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">1</span>),</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>  <span class="at">participante =</span> <span class="fu">seq</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>),</span>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>  <span class="at">fichas =</span> <span class="fu">c</span>(<span class="fu">read.csv</span>(<span class="st">&quot;data/iris_mod.csv&quot;</span>, <span class="at">header =</span> T) <span class="sc">%&gt;%</span> </span>
 <span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>                 <span class="fu">distinct</span>(amostra) <span class="sc">%&gt;%</span> </span>
 <span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>                 <span class="fu">pull</span>()<span class="sc">%&gt;%</span> </span>
@@ -532,8 +532,8 @@ junto ao seu nome na tabela abaixo.</li>
 <span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
 <table>
 <colgroup>
-<col width="8%" />
-<col width="91%" />
+<col width="12%" />
+<col width="87%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -544,39 +544,53 @@ junto ao seu nome na tabela abaixo.</li>
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="left">A118, A81 , A129, A134, A11 , A55 , A97 , A60 , A84 ,
-A114, A108, A138, A146, A130, A36 , A120, A115, A23 , A85 , A6 , A30 ,
-A37 , A112, A72 , A15</td>
+<td align="left">A92 , A141, A136, A93 , A85 , A89 , A128, A97 , A55 ,
+A54 , A116, A117, A144, A59 , A15</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="left">A140, A5 , A143, A150, A110, A24 , A117, A133, A13 ,
-A53 , A86 , A88 , A43 , A125, A52 , A98 , A25 , A18 , A127, A66 , A106,
-A39 , A101, A116, A71</td>
+<td align="left">A12 , A31 , A38 , A28 , A91 , A96 , A72 , A7 , A66 ,
+A86 , A102, A47 , A78 , A118, A37</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="left">A2 , A99 , A47 , A139, A19 , A4 , A123, A142, A9 , A77
-, A135, A50 , A68 , A93 , A45 , A103, A136, A100, A73 , A111, A144, A31
-, A54 , A79 , A44</td>
+<td align="left">A45 , A134, A131, A103, A2 , A25 , A126, A24 , A115,
+A30 , A57 , A146, A112, A16 , A20</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="left">A137, A92 , A51 , A126, A104, A57 , A75 , A149, A128,
-A70 , A63 , A49 , A35 , A14 , A26 , A102, A83 , A17 , A124, A107, A58 ,
-A94 , A10 , A76 , A96</td>
+<td align="left">A36 , A127, A104, A56 , A53 , A132, A39 , A113, A74 ,
+A8 , A46 , A119, A44 , A150, A32</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="left">A1 , A22 , A121, A95 , A105, A16 , A41 , A69 , A28 ,
-A147, A12 , A113, A132, A122, A65 , A90 , A64 , A29 , A21 , A32 , A119,
-A145, A3 , A67 , A148</td>
+<td align="left">A106, A122, A40 , A99 , A107, A50 , A90 , A5 , A62 ,
+A135, A143, A81 , A41 , A80 , A82</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="left">A42 , A78 , A40 , A34 , A89 , A141, A131, A59 , A82 ,
-A20 , A7 , A80 , A91 , A87 , A56 , A62 , A46 , A8 , A74 , A33 , A61 ,
-A109, A38 , A48 , A27</td>
+<td align="left">A94 , A35 , A84 , A19 , A27 , A60 , A77 , A88 , A123,
+A21 , A125, A138, A71 , A17 , A68</td>
+</tr>
+<tr class="odd">
+<td align="right">7</td>
+<td align="left">A111, A52 , A75 , A130, A121, A61 , A76 , A29 , A9 , A4
+, A142, A22 , A110, A1 , A42</td>
+</tr>
+<tr class="even">
+<td align="right">8</td>
+<td align="left">A148, A147, A133, A10 , A3 , A101, A65 , A58 , A23 ,
+A64 , A120, A114, A33 , A43 , A140</td>
+</tr>
+<tr class="odd">
+<td align="right">9</td>
+<td align="left">A6 , A100, A79 , A137, A70 , A14 , A63 , A18 , A129,
+A48 , A73 , A49 , A83 , A87 , A149</td>
+</tr>
+<tr class="even">
+<td align="right">10</td>
+<td align="left">A124, A11 , A67 , A105, A51 , A95 , A139, A26 , A108,
+A109, A13 , A69 , A34 , A98 , A145</td>
 </tr>
 </tbody>
 </table>
@@ -586,10 +600,10 @@ ser salvo no formato <code>*.csv</code> (<em>comma separated
 values</em>) e nomeado seguindo o padrão:
 <strong>atividade1_NOME-DO-PARTICIPANTE.csv</strong></p></li>
 <li><p>Subir a planilha para no <a
-href="https://drive.google.com/drive/folders/1C5LIx2rifGsHz22qwzjxDNwEQne3YRrT?usp=sharing">drive
+href="https://drive.google.com/drive/folders/1iAFI9ptbPb8FMFm3NtxzMPkRUylysTBA?usp=sharing">drive
 compartilhado</a> na pasta <strong>atividade1_data</strong> dentro da
 pasta <strong>atividades</strong> (i.e. <em>Ciencia
-Colab/2024/aulas/aula1_amostras/planilhas/</em>).</p></li>
+Colab/2025/aulas/planilhas/</em>).</p></li>
 </ol>
 <hr />
 <ul class="pager">

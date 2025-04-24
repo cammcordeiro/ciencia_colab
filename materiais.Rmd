@@ -45,7 +45,7 @@ text-align: justify}
 
 -   [**Carroll SR et al. (2020)** The CARE Principles for Indigenous Data Governance. Data Science Journal, 19(43):1-12](https://drive.google.com/drive/folders/1gQ8BQVyDHW78pu3pKjrzD3sQeJNaZ4Gm?usp=sharing)
 
-4\. **Debate 5**
+5\. **Debate 5**
 
 -   [**Gundersen OE et al. (2018)** On Reproducible AI:Towards Reproducible Research, and Digital Scholarship in AI Publications. AI Magazine, 39(3): 56-68.](https://drive.google.com/drive/folders/1gQ8BQVyDHW78pu3pKjrzD3sQeJNaZ4Gm?usp=sharing)
 

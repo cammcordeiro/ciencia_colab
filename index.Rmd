@@ -35,7 +35,7 @@ A disciplina será conduzida por meio de plataforma digital com todas as aulas e
 
 A segunda avaliação consistirá em um trabalho final autoral confeccionado como um roteiro reprodutível de aquisição, polimento e visualização de dados públicos ou dos participantes. Todas as práticas realizadas serão acompanhadas na rotina comentada utilizada nas práticas adicionada das observações dos participantes. A frequência dos estudantes será contabilizada ao início de cada período das aulas. <br><br>
 
-### Referências recomendadas
+### Referências recomendadas (atualizações são feitas nas sugestões para cada aula)
 
 -   Baker K, Millerand F (2012) Infrastructuring ecology: challenges in achieving data sharing. In: Collaboration in the New Life Sciences. (eds) Parker J, Vermeulen N, Penders B. Ashgate. Disponível em: <http://interoperability.ucsd.edu/docs/10BakerMillerand_InfrastructuringEcology_old.pdf>
 

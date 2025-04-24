@@ -21,8 +21,8 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
 # load packages
 library(tidyverse)
-library(taxize)
 library(validate)
+library(taxadb)
 
 ```
 
@@ -108,7 +108,8 @@ Avaliando os dados, podemos ver que não existem inconsistências e que já poss
 
 Em seguida, um passo importante é checar se os nomes utilizados dos táxons são válidos.
 
-1.  Para isso podemos utilizar a função `get_tsn` do pacote `taxize`. Esta função permite investigar na base de dados do [*Integrated Taxonomic Information System*](https://www.itis.gov/) se a nomenclatura aplicada aos táxons é válida ou se necessita de atualização.
+1.  Para isso podemos utilizar a função `filter_name` do pacote `taxadb`. Esta função permite investigar os nomes em diferentes base de dados (e.g. GBIF, ITIS, COL etc.), mas neste caso vamos buscar na [*Integrated Taxonomic Information System*](https://www.itis.gov/) se a nomenclatura aplicada aos táxons é válida ou se necessita de atualização.
+
 
 ```{r check_spp}
 
@@ -117,12 +118,11 @@ species <- iris %>%
   distinct(Species) %>% 
   pull() %>% 
   c("Iris murchosa", .) %>% # inserimos uma espécie fictícia para teste
-  get_tsn() %>% 
+  filter_name(., provider = "itis") %>% 
   data.frame() %>% 
   bind_cols(Species = iris %>% 
               distinct(Species) %>% 
-              pull() %>% 
-              c("Iris murchosa", .))
+              pull())
 
 ```
 Podemos observar que nossa impostora (*Iris murchosa*) não existe na base de dados do ITIS.
@@ -148,23 +148,22 @@ Sabendo-se que podemos prosseguir sem corrigir os táxons, agora é necessário 
 ```{r add_fieds, message=FALSE}
 
 iris_1 <- iris %>% 
-  dplyr::mutate(eventID = paste(site, date, sep = "_"), # create indexing fields 
-                occurrenceID = paste(site, date, amostra, sep = "_")) %>% 
-  left_join(species %>% 
-              select(Species, uri)) %>% # add species unique identifier
-  dplyr::rename(decimalLongitude = lon, # rename fields according to DwC 
-         decimalLatitude = lat,
-         eventDate = date,
-         scientificName = Species,
-         scientificNameID = uri) %>% 
-  mutate(geodeticDatum = "WGS84", # and add complimentary fields
-         verbatimCoordinateSystem = "decimal degrees",
-         georeferenceProtocol = "Random coordinates obtained from Google Earth",
-         locality = "Gaspe Peninsula",
-         recordedBy = "Edgar Anderson",
-         taxonRank = "Species",
-         organismQuantityType = "individuals",
-         basisOfRecord = "Human observation")
+    dplyr::mutate(eventID = paste(site, date, sep = "_"), # create indexing fields 
+                  occurrenceID = paste(site, date, amostra, sep = "_")) %>% 
+    left_join(species %>% 
+                select(Species, acceptedNameUsageID, scientificName)) %>% # add species unique identifier
+    dplyr::rename(decimalLongitude = lon, # rename fields according to DwC 
+                  decimalLatitude = lat,
+                  eventDate = date) %>% 
+    mutate(geodeticDatum = "WGS84", # and add complimentary fields
+           verbatimCoordinateSystem = "decimal degrees",
+           georeferenceProtocol = "Random coordinates obtained from Google Earth",
+           locality = "Gaspe Peninsula",
+           recordedBy = "Edgar Anderson",
+           taxonRank = "Species",
+           organismQuantityType = "individuals",
+           basisOfRecord = "Human observation")
+
 ```
 
 ------------------------------------------------------------------------
@@ -198,7 +197,7 @@ O próximo passo é derivar as ocorrências únicas presentes no *dataset*. Como
 ```{r occurrence}
 ## create occurrence
 occurrences <- iris_1 %>% 
-  select(eventID, occurrenceID, scientificName, scientificNameID,
+  select(eventID, occurrenceID, scientificName, acceptedNameUsageID,
          recordedBy, taxonRank, organismQuantityType, basisOfRecord) %>%
   distinct() 
 ```

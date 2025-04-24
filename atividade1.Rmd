@@ -38,14 +38,14 @@ Vale indicar que, as coordenadas indicadas nas fichas de campo foram obtidas com
 
 ## Instruções
 
-A atividade 1 consiste em transferir os dados indicados nas fichas de campo para o formato de planilha. As fichas encontram-se na pasta compartilhada do [Google Drive da disciplina](https://drive.google.com/drive/folders/1S_yTN8DfdS1l6RtB8McWUoEeaBZLAJuGGqQdUkMkUD87ARpeelck2iyXv_c1tR4qnQWQhArk?usp=sharing).
+A atividade 1 consiste em transferir os dados indicados nas fichas de campo para o formato de planilha. As fichas encontram-se na pasta compartilhada do [Google Drive da disciplina](https://drive.google.com/drive/folders/1a1x8tgpXuw28rEm8CdUYaOJqJxcjLBVH?usp=sharing).
 
 1.  Esta atividade deve ser realizada de modo individual e cada participante deverá baixar as amostras (i.e., fichas de campo) indicadas junto ao seu nome na tabela abaixo.
 
 ```{r load data, warning = FALSE}
 
 data.frame(
-  participante = seq(1, 6, 1),
+  participante = seq(1:10),
   fichas = c(read.csv("data/iris_mod.csv", header = T) %>% 
                  distinct(amostra) %>% 
                  pull()%>% 
@@ -62,7 +62,7 @@ data.frame(
 
 2.  Ao finalizar o planilhamento das informações, o arquivo deverá ser salvo no formato `*.csv` (*comma separated values*) e nomeado seguindo o padrão: **atividade1_NOME-DO-PARTICIPANTE.csv**
 
-3.  Subir a planilha para no [drive compartilhado](https://drive.google.com/drive/folders/1C5LIx2rifGsHz22qwzjxDNwEQne3YRrT?usp=sharing) na pasta **atividade1_data** dentro da pasta **atividades** (i.e. *Ciencia Colab/2024/aulas/aula1_amostras/planilhas/*).
+3.  Subir a planilha para no [drive compartilhado](https://drive.google.com/drive/folders/1iAFI9ptbPb8FMFm3NtxzMPkRUylysTBA?usp=sharing) na pasta **atividade1_data** dentro da pasta **atividades** (i.e. *Ciencia Colab/2025/aulas/planilhas/*).
 
 ***
 
