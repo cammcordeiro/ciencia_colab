@@ -9,22 +9,22 @@ output: html_document
 packages <- c("rinat", "tidyverse", "leaflet", "htmltools")
 
 installed_packages <- packages %in% rownames(installed.packages())
-# 
-# if (any(installed_packages == FALSE)) {
-#   install.packages(packages[!installed_packages])
-#   } else {
-#   invisible(lapply(packages, library, character.only = TRUE)); rm(packages, installed_packages)
-#   }
+
+if (any(installed_packages == FALSE)) {
+  install.packages(packages[!installed_packages])
+  } else {
+  invisible(lapply(packages, library, character.only = TRUE)); rm(packages, installed_packages)
+  }
 
 
 ```
 
 ### Obter dados e metadados
 ```{r dados}
-lente <- get_inat_obs_project("lente-ecologica-biodiversidade-do-norte-fluminense-03ec13fb-b9dc-4175-b47e-09dce7fa5848", type = "info", raw = FALSE)
+lente <- rinat::get_inat_obs_project("lente-ecologica-biodiversidade-do-norte-fluminense-03ec13fb-b9dc-4175-b47e-09dce7fa5848", type = "info", raw = FALSE)
 
 # extrair registros
-lente_obs <- get_inat_obs_project(lente$id, type = "observations")
+lente_obs <- rinat::get_inat_obs_project(lente$id, type = "observations")
 
 ```
 <br></br>
@@ -35,25 +35,30 @@ lente_obs <- get_inat_obs_project(lente$id, type = "observations")
 #### Mapa clássico
 
 ```{r mapa}
+library(tidyverse)
+
 lente_obs %>% 
-  ggplot(aes(x = as.numeric(longitude), y = as.numeric(latitude))) +
+  ggplot(aes(x = as.numeric(longitude), y = as.numeric(latitude), color = quality_grade)) +
                            # colour = scientific_name)) +
     geom_polygon(data = map_data("world"),
                  aes(x = long, y = lat, group = group),
                  fill = "grey95",
                  color = "gray40",
                  linewidth = 0.1) +
-    geom_point(size = 0.7, alpha = 0.5) +
+    geom_point(size = 1.2, alpha = 0.6) +
     coord_fixed(xlim = range(as.numeric(lente_obs$longitude), na.rm = TRUE),
                 ylim = range(as.numeric(lente_obs$latitude), na.rm = TRUE)) +
     theme_classic() +
+    theme(legend.title = element_blank()) +
     labs(x = "Longitude", y = "Latitude")
+
 ```
 <br></br>
 
 #### Mapa interativo
 
 ```{r mapa_interativo}
+library(leaflet)
 
 lente_obs %>% 
   leaflet() %>% 
